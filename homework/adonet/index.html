@@ -1,0 +1,1072 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>Exercise: ADO.NET data access - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-adonet-data-access" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Exercise: ADO.NET data access
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Data-driven systems
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../db/" class="md-tabs__link">
+          Database
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../lecture-notes/architecture/" class="md-tabs__link">
+          Lecture notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../seminar/transactions/" class="md-tabs__link">
+          Seminars
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" class="md-tabs__link md-tabs__link--active">
+          Homework
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Data-driven systems" class="md-nav__link">
+      Data-driven systems
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Database
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Database" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Database
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/" title="Sample database scheme" class="md-nav__link">
+      Sample database scheme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mssql/" title="Using Microsoft SQL Server" class="md-nav__link">
+      Using Microsoft SQL Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mongodb/" title="Using MongoDB" class="md-nav__link">
+      Using MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" title="Sample database: mssql.sql" class="md-nav__link">
+      Sample database: mssql.sql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" title="Sample database: mongo.js" class="md-nav__link">
+      Sample database: mongo.js
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lecture notes
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Lecture notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/architecture/" title="Data-driven systems and the thee- or multi-tier architecture" class="md-nav__link">
+      Data-driven systems and the thee- or multi-tier architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/transactions/" title="Transactions in databases" class="md-nav__link">
+      Transactions in databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/sql/" title="SQL language, MSSQL platform-specific SQL" class="md-nav__link">
+      SQL language, MSSQL platform-specific SQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/server-side-programming/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/linq/" title="LINQ: Language Integrated Query" class="md-nav__link">
+      LINQ: Language Integrated Query
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mongodb/" title="MongoDB operations and the MongoDB .NET Driver" class="md-nav__link">
+      MongoDB operations and the MongoDB .NET Driver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/di/" title="Dependency Injection ASP.NET Core environment" class="md-nav__link">
+      Dependency Injection ASP.NET Core environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/rest-webapi-sample" title="REST and WebAPI sample app (GitHub)" class="md-nav__link">
+      REST and WebAPI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/todoapi-di-sample" title="ASP.NET Core DI sample app (GitHub)" class="md-nav__link">
+      ASP.NET Core DI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" title="Sample three-tier webapp (GitHub)" class="md-nav__link">
+      Sample three-tier webapp (GitHub)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Seminars
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Seminars
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/transactions/" title="Transactions" class="md-nav__link">
+      Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/mssql/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/ef/" title="Entity Framework" class="md-nav__link">
+      Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/mongodb/" title="MongoDB" class="md-nav__link">
+      MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/jpa/" title="JPA & Spring Data" class="md-nav__link">
+      JPA & Spring Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/rest/" title="REST API & ASP.NET Web API" class="md-nav__link">
+      REST API & ASP.NET Web API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Homework
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Homework" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Homework
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Optional homework" class="md-nav__link">
+      Optional homework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mssql/" title="Exercise: MSSQL server-side programming" class="md-nav__link">
+      Exercise: MSSQL server-side programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Exercise: ADO.NET data access
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Exercise: ADO.NET data access" class="md-nav__link md-nav__link--active">
+      Exercise: ADO.NET data access
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-tools" class="md-nav__link">
+    Required tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-neptun-code" class="md-nav__link">
+    Exercise 0: Neptun code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-product-repository-2-points" class="md-nav__link">
+    Exercise 1: Product repository (2 points)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-optimistic-concurrency-handling-2-points" class="md-nav__link">
+    Exercise 2: Optimistic concurrency handling (2 points)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ef/" title="Exercise: Entity Framework" class="md-nav__link">
+      Exercise: Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mongodb/" title="Exercise: MongoDB" class="md-nav__link">
+      Exercise: MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/" title="Exercise: REST API and Web API" class="md-nav__link">
+      Exercise: REST API and Web API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../GitHub/" title="Submitting your work (GitHub)" class="md-nav__link">
+      Submitting your work (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../GitHub-Actions/" title="Using GitHub Actions" class="md-nav__link">
+      Using GitHub Actions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../VisualStudio/" title="Install Visual Studio" class="md-nav__link">
+      Install Visual Studio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-tools" class="md-nav__link">
+    Required tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-neptun-code" class="md-nav__link">
+    Exercise 0: Neptun code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-product-repository-2-points" class="md-nav__link">
+    Exercise 1: Product repository (2 points)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-optimistic-concurrency-handling-2-points" class="md-nav__link">
+    Exercise 2: Optimistic concurrency handling (2 points)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/homework/adonet/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="exercise-adonet-data-access">Exercise: ADO.NET data access<a class="headerlink" href="#exercise-adonet-data-access" title="Permanent link">&para;</a></h1>
+<p>This exercise is optional. You may earn <strong>2+2 points</strong> by completing this exercise.</p>
+<p>Use GitHub Classroom to get your git repository at <a href="https://classroom.github.com/a/92X9gQ8k">https://classroom.github.com/a/92X9gQ8k</a>. Clone your repository. It contains a skeleton and the expected structure of your submission. After completing the exercises and verifying them, commit and push your submission.</p>
+<h2 id="required-tools">Required tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Windows, Linux or macOS: All tools are platform-independent, or a platform-independent alternative is available.</li>
+<li>Microsoft SQL Server<ul>
+<li>The free Express version is sufficient, or you may also use <em>localdb</em> installed with Visual Studio</li>
+<li>A <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup">Linux version</a> is also available.</li>
+<li>On macOS, you can use Docker.</li>
+</ul>
+</li>
+<li><a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms">SQL Server Management Studio</a>, or you may also use the platform-independent <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download">Azure Data Studio</a> is</li>
+<li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
+<li>Microsoft Visual Studio 2019 <a href="../VisualStudio/">with the settings here</a><ul>
+<li>When using Linux or macOS, you can use Visual Studio Code, the .NET Core SDK, and <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/">dotnet CLI</a>.</li>
+</ul>
+</li>
+<li><a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">.NET Core 3.1 SDK</a><ul>
+<li>Usually installed with Visual Studio; if not, use the link above to install (the SDK and <em>not</em> the runtime).</li>
+<li>You need to install it manually when using Linux or macOS.</li>
+</ul>
+</li>
+<li>GitHub account and a git client</li>
+</ul>
+<h2 id="exercise-0-neptun-code">Exercise 0: Neptun code<a class="headerlink" href="#exercise-0-neptun-code" title="Permanent link">&para;</a></h2>
+<p>Your very first task is to type your Neptun code into <code>neptun.txt</code> in the root of the repository.</p>
+<h2 id="exercise-1-product-repository-2-points">Exercise 1: Product repository (2 points)<a class="headerlink" href="#exercise-1-product-repository-2-points" title="Permanent link">&para;</a></h2>
+<p>Create <em>repository</em> class for managing the <code>Product</code> entities; use <strong>ADO.NET Connection</strong> technology. Open the <em>sln</em> file from the checked-out folder using Visual Studio. Find classes <code>Repository.ProductRepository</code> and <code>Model.Product</code>. Implement the following methods of class <code>ProductRepository</code>:</p>
+<ul>
+<li><code>Search(string name)</code>: find all products in the database matching the provided name, and return them as C# objects. If the name filter argument is <code>null</code>, the method should return all products; otherwise, it should match names that contain the specified string in a <em>case-insensitive</em> manner!</li>
+<li><code>FindById(int id)</code>: returns a single product matched by the ID, or returns <code>null</code> if not found.</li>
+<li><code>Update(Product p)</code> updates the properties of a product in the database based on the values received as parameter. Update the <code>Name</code>, <code>Price</code>, and <code>Stock</code> values, and you may ignore the rest.</li>
+</ul>
+<p>You should mind the following requirements:</p>
+<ul>
+<li>Only make changes to class <code>ProductRepository</code>!</li>
+<li>In the repository code open the ADO.NET connection using the connection string in field <code>connectionString</code> (and do <strong>not</strong> use <code>TestConnectionStringHelper</code> here).</li>
+<li>You need to find the tax percentage of the product too. In the returned instance of <code>Model.Product</code> you must include the percentage of the referenced <code>VAT</code> record and not the ID of this VAT record! The name of the category of the product has to be retrieved similarly.</li>
+<li>You may only use ADO.NET.</li>
+<li>You must prohibit SQL injection.</li>
+<li>Make no changes to <code>Model.Product</code> in this exercise!</li>
+<li>Do not change the definition of class <code>ProductRepository</code> (do not change the class's name, nor the constructor or method declarations); only write the method bodies.</li>
+</ul>
+<p>There are unit tests available in the solution. You can <a href="https://docs.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2019">run the unit tests in Visual Studio</a>, or if you are using another IDE (e.g., VS Code and <code>dotnet cli</code>), then <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test">run the tests using the cli</a>. You may update the database connection string in class <code>TestConnectionStringHelper</code> if needed.</p>
+<div class="admonition important">
+<p class="admonition-title">Tests</p>
+<p>The tests presume that the database is in its initial state. Re-run the database initialization script to restore this state.</p>
+<p>Do <strong>NOT</strong> change the unit tests. You may temporarily alter the unit tests if you need to, but make sure to reset your changes before committing.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">SUBMISSION</p>
+<p>Upload the changed C# source code.</p>
+<p>Create a screenshot displaying the successfully executed unit tests. You can run the tests in Visual Studio or using <code>dotnet cli</code>. Make sure that the screenshot includes the <strong>source code of the repository</strong> (as much as you can fit on the screenshot), and the <strong>test execution outcome</strong>! Save the screenshot as <code>f1.png</code> and upload it as part of your submission!</p>
+<p>If you are using <code>dotnet cli</code> to run the tests, make sure to display the test names too. Use the <code>-v n</code> command line switch to set detailed logging.</p>
+<p>The image does not need to show the exact same source code that you submit; there can be some minor changes. If the tests run successfully and you create the screenshot, then later you make some <strong>minor</strong> change to the source, there is no need for you to update the screenshot.</p>
+</div>
+<h2 id="exercise-2-optimistic-concurrency-handling-2-points">Exercise 2: Optimistic concurrency handling (2 points)<a class="headerlink" href="#exercise-2-optimistic-concurrency-handling-2-points" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p>In the evaluation, you will see the text “imsc” in the exercise title; this is meant for the Hungarian students. Please ignore that.</p>
+</div>
+<p>When updating a product in the database, the code shall identify and prohibit overwriting a previously unseen modification. Implement this behavior in <code>ProductRepository.UpdateWithConcurrencyCheck</code>. This method shall deny the update if it discovers a <em>lost update</em> concurrency issue.</p>
+<p>The specific sequence of events that we want to prohibit:</p>
+<ol>
+<li>User <em>A</em> queries a product.</li>
+<li>User <em>B</em> fetches the same product.</li>
+<li>User <em>A</em> changes a property, such as the price, then updates the database with this change.</li>
+<li>User <em>B</em> makes a change to the product properties (either the price property, or another one), and overwrites the changes made by user <em>A</em> without noticing it.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Optimistic concurrency handling</p>
+<p>Use the technique of optimistic concurrency handling to resolve this issue. You <strong>must not use transactions</strong> here, since the query and the data update happens over a longer period without maintaining a database connection. Do <strong>not use multiple SQL statements</strong> either, as in-between the execution of multiple statements the database content can change resulting in your application not working with the latest data. Implement the method <code>ProductRepository.UpdateWithConcurrencyCheck</code>, and also update <code>Model.Product</code> as needed. You may <strong>not</strong> add any new columns to the database.</p>
+</div>
+<p>You should mind the following requirements:</p>
+<ul>
+<li>Only make changes to the method <code>ProductRepository.UpdateWithConcurrencyCheck</code> and class <code>Model.Product</code>!</li>
+<li>The method shall indicate as return value whether the change was saved (that it, it discovered no concurrency issues).</li>
+<li><strong>Explain the behavior</strong> in a C# comment in method UpdateWithConcurrencyCheck (in 2-3 sentences).</li>
+<li>Solve the exercise with using a single SQL command!</li>
+<li>You may only use ADO.NET.</li>
+<li>You must prohibit SQL injection.</li>
+<li>Do not change the definition of class <code>ProductRepository</code> (do not change the name of the class, nor the constructor or method declarations); only write the single method body.</li>
+<li>Do not change the constructor signature of the class <code>Model.Product</code> (number, order, or names of the parameters), but you may change the body. Do not alter any existing properties of the class, but you can add new ones.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">SUBMISSION</p>
+<p>Upload the changed C# source code. Do not forget the explanation comment!</p>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+  <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+
+      <!-- Link to previous page -->
+      
+      <a href="../mssql/" title="Exercise: MSSQL server-side programming"
+        class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </div>
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Previous
+            </span>
+            Exercise: MSSQL server-side programming
+          </div>
+        </div>
+      </a>
+      
+
+      <!-- Link to next page -->
+      
+      <a href="../ef/" title="Exercise: Entity Framework"
+        class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Next
+            </span>
+            Exercise: Entity Framework
+          </div>
+        </div>
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+        </div>
+      </a>
+      
+    </nav>
+  </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+        <div class="md-footer-copyright__highlight">
+          Copyright &copy; BME AUT
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

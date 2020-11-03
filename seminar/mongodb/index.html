@@ -1,0 +1,1385 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>MongoDB - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mongodb" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              MongoDB
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Data-driven systems
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../db/" class="md-tabs__link">
+          Database
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../lecture-notes/architecture/" class="md-tabs__link">
+          Lecture notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../transactions/" class="md-tabs__link md-tabs__link--active">
+          Seminars
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../homework/" class="md-tabs__link">
+          Homework
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Data-driven systems" class="md-nav__link">
+      Data-driven systems
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Database
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Database" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Database
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/" title="Sample database scheme" class="md-nav__link">
+      Sample database scheme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mssql/" title="Using Microsoft SQL Server" class="md-nav__link">
+      Using Microsoft SQL Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mongodb/" title="Using MongoDB" class="md-nav__link">
+      Using MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" title="Sample database: mssql.sql" class="md-nav__link">
+      Sample database: mssql.sql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" title="Sample database: mongo.js" class="md-nav__link">
+      Sample database: mongo.js
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lecture notes
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Lecture notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/architecture/" title="Data-driven systems and the thee- or multi-tier architecture" class="md-nav__link">
+      Data-driven systems and the thee- or multi-tier architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/transactions/" title="Transactions in databases" class="md-nav__link">
+      Transactions in databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/sql/" title="SQL language, MSSQL platform-specific SQL" class="md-nav__link">
+      SQL language, MSSQL platform-specific SQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/server-side-programming/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/linq/" title="LINQ: Language Integrated Query" class="md-nav__link">
+      LINQ: Language Integrated Query
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mongodb/" title="MongoDB operations and the MongoDB .NET Driver" class="md-nav__link">
+      MongoDB operations and the MongoDB .NET Driver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/di/" title="Dependency Injection ASP.NET Core environment" class="md-nav__link">
+      Dependency Injection ASP.NET Core environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/rest-webapi-sample" title="REST and WebAPI sample app (GitHub)" class="md-nav__link">
+      REST and WebAPI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/todoapi-di-sample" title="ASP.NET Core DI sample app (GitHub)" class="md-nav__link">
+      ASP.NET Core DI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" title="Sample three-tier webapp (GitHub)" class="md-nav__link">
+      Sample three-tier webapp (GitHub)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Seminars
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Seminars
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Transactions" class="md-nav__link">
+      Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mssql/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ef/" title="Entity Framework" class="md-nav__link">
+      Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        MongoDB
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="MongoDB" class="md-nav__link md-nav__link--active">
+      MongoDB
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-work-during-the-seminar" class="md-nav__link">
+    How to work during the seminar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-create-database-open-starter-code" class="md-nav__link">
+    Exercise 0: Create database, open starter code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-queries" class="md-nav__link">
+    Exercise 1: Queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-create-a-new-entity-class" class="md-nav__link">
+    Exercise 2: Create a new entity class
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-data-modification" class="md-nav__link">
+    Exercise 3: Data modification
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../jpa/" title="JPA & Spring Data" class="md-nav__link">
+      JPA & Spring Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/" title="REST API & ASP.NET Web API" class="md-nav__link">
+      REST API & ASP.NET Web API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Homework
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Homework" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Homework
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/" title="Optional homework" class="md-nav__link">
+      Optional homework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mssql/" title="Exercise: MSSQL server-side programming" class="md-nav__link">
+      Exercise: MSSQL server-side programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/adonet/" title="Exercise: ADO.NET data access" class="md-nav__link">
+      Exercise: ADO.NET data access
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/ef/" title="Exercise: Entity Framework" class="md-nav__link">
+      Exercise: Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mongodb/" title="Exercise: MongoDB" class="md-nav__link">
+      Exercise: MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/rest/" title="Exercise: REST API and Web API" class="md-nav__link">
+      Exercise: REST API and Web API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub/" title="Submitting your work (GitHub)" class="md-nav__link">
+      Submitting your work (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub-Actions/" title="Using GitHub Actions" class="md-nav__link">
+      Using GitHub Actions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/VisualStudio/" title="Install Visual Studio" class="md-nav__link">
+      Install Visual Studio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-work-during-the-seminar" class="md-nav__link">
+    How to work during the seminar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-create-database-open-starter-code" class="md-nav__link">
+    Exercise 0: Create database, open starter code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-queries" class="md-nav__link">
+    Exercise 1: Queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-create-a-new-entity-class" class="md-nav__link">
+    Exercise 2: Create a new entity class
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-data-modification" class="md-nav__link">
+    Exercise 3: Data modification
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/seminar/mongodb/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="mongodb">MongoDB<a class="headerlink" href="#mongodb" title="Permanent link">&para;</a></h1>
+<p>The seminar's goal is to understand the concepts of the <em>MongoDB</em> document database and the usage of the <em>MongoDB C#/.NET Driver</em>.</p>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
+<p>Required tools to complete the tasks:</p>
+<ul>
+<li>Microsoft Visual Studio 2019 (<em>not</em> VS Code)</li>
+<li>MongoDB Community Edition</li>
+<li>Robo 3T</li>
+<li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js">mongo.js</a></li>
+<li>Starter code: <a href="https://github.com/bmeviauac01/gyakorlat-mongo-kiindulo">https://github.com/bmeviauac01/gyakorlat-mongo-kiindulo</a></li>
+</ul>
+<p>Recommended to review:</p>
+<ul>
+<li>C# language and Linq queries</li>
+<li>MongoDB lecture</li>
+<li><a href="../../db/mongodb/">Using MongoDB guide</a></li>
+</ul>
+<h2 id="how-to-work-during-the-seminar">How to work during the seminar<a class="headerlink" href="#how-to-work-during-the-seminar" title="Permanent link">&para;</a></h2>
+<p>The exercises are solved together with the instructor. A few exercises we can try to solve by ourselves and then discuss the results. The final exercise is individual work if time permits.</p>
+<div class="admonition info">
+<p>This guide summarizes and explains the behavior. Before looking at these provided answers, we should think first!</p>
+</div>
+<h2 id="exercise-0-create-database-open-starter-code">Exercise 0: Create database, open starter code<a class="headerlink" href="#exercise-0-create-database-open-starter-code" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Create a new working directory, e.g., <code>c:\work\NEPTUN</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Working directory</p>
+<p>This folder will be our <strong>working directory</strong>, that is, everything is created within this folder.</p>
+</div>
+</li>
+<li>
+<p>Start the MongoDB server.</p>
+<ul>
+<li>Create a new folder for the database files, e.g., use name <code>db</code>. (Create this within the working directory.)</li>
+<li>
+<p>Open a <em>command prompt</em> and start MongoDB server: <code>mongod.exe --dbpath="c:\work\&lt;NEPTUN&gt;\db"</code></p>
+<div class="admonition info">
+<p><em>Command prompt</em> can be located in the start menu by typing "cmd".</p>
+<p>In the university computer laboratories, MongoDB is in folder <code>c:\tools\mongodb\bin</code>. Navigate to this directory using the <code>cd</code> command.</p>
+</div>
+</li>
+<li>
+<p>Keep this command prompt open because it hosts our server. To stop the server at the end of the seminar, press Ctrl+C.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Create the database.</p>
+<ul>
+<li>Download the database initialization script and save it as <code>mongo.js</code> in the working directory.</li>
+<li>
+<p>Open a <strong>new</strong> <em>command prompt</em> and initialize database: <code>mongo.exe localhost:27017/datadriven c:\work\&lt;NEPTUN&gt;\mongo.js</code></p>
+<div class="admonition note">
+<p>The executable is not mongo&#8203;<strong>d</strong> but simply mongo. This is a client software to connect to the server and execute queries.</p>
+<p>In the university computer laboratories, this executable is located at <code>c:\tools\mongodb\bin</code>.</p>
+<p>Let us note the connection string that contains the name of the database too!</p>
+</div>
+</li>
+</ul>
+</li>
+<li>
+<p>Check the database using Robo3T.</p>
+<ul>
+<li>
+<p>Start Robo3T (in the university computer laboratories, it is located at <code>c:\tools\robo3t</code>) and connect to the server.</p>
+<p><img alt="Robo3T Connection Settings" src="images/robo3t_connection.png" /></p>
+</li>
+<li>
+<p>Check if the <em>Collections</em> were created.</p>
+<p><img alt="Robo3T Collections" src="images/robo3t_collections.png" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Download the starter code!</p>
+<ul>
+<li>Open yet another <strong>new</strong> <em>command prompt</em> into our working directory.</li>
+<li>Execute the following command: <code>git clone --depth 1 https://github.com/bmeviauac01/gyakorlat-mongo-kiindulo.git</code></li>
+</ul>
+</li>
+<li>
+<p>Open the <em>sln</em> file from the newly created folder using Visual Studio.</p>
+</li>
+<li>
+<p>Let us examine this project.</p>
+<ul>
+<li>This is a .NET Core console application. The structure resembles the structure of the Entity Framework project seen before: directory <code>Entities</code> contains the database entities while our code will be written to <code>Program.cs</code>.</li>
+<li><code>Program.cs</code> already contains the initialization of the connection to MongoDB.<ul>
+<li>Interface <code>IMongoClient</code> is used for all communication with the database. We will not use this directly.</li>
+<li>Interface <code>IMongoDatabase</code> represents the database <code>datadriven</code> within the MongoDB server.</li>
+<li>And the <code>IMongoCollection&lt;TEntity&gt;</code> interfaces represent the specific collections we can use to execute queries and modification commands.</li>
+</ul>
+</li>
+<li>The database documents are mapped to the C# entity classes in folder <code>Entities</code>. A major difference compared to the behavior previously seen in Entity Framework is that these classes were not generated by written manually.<ul>
+<li>Most entities are already mapped.</li>
+<li>We will create one more class during an exercise.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="exercise-1-queries">Exercise 1: Queries<a class="headerlink" href="#exercise-1-queries" title="Permanent link">&para;</a></h2>
+<p>Write C# code using the <em>MongoDB C#/.NET Driver</em> in the following exercises. Print the results to the console.</p>
+<ol>
+<li>
+<p>List the names and the amount of stock of all products that we have more than 30 in stock!</p>
+</li>
+<li>
+<p>List the orders that consist of at least two items!</p>
+</li>
+<li>
+<p>List the orders that have a total value of at least 30.000! For each order, print the customer name, and list all items of the order (with the product name, amount, and price).</p>
+</li>
+<li>
+<p>Find the most expensive product!</p>
+</li>
+<li>
+<p>List the products that have been ordered at least twice!</p>
+</li>
+</ol>
+<details class="example"><summary>Solution</summary><ol>
+<li>
+<p>We need only the product collection and execute a simple query. The filter criteria can be written as a Lambda-expression and with the builder syntax too.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;***** Exercise one *****&quot;</span><span class="p">);</span>
+
+<span class="c1">//2.1 first solution</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.1 First solution:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">qProductAndStock1</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span> <span class="p">&gt;</span> <span class="m">30</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductAndStock1</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tName={p.Name}\tStock={p.Stock}&quot;</span><span class="p">);</span>
+
+<span class="c1">// 2.1 second solution</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.1 Second solution:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">qProductAndStock2</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">Builders</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;.</span><span class="n">Filter</span><span class="p">.</span><span class="n">Gt</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span><span class="p">,</span> <span class="m">30</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductAndStock2</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tName={p.Name}\tStock={p.Stock}&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>This is similar to the previous one. We may note that we would have needed a join in a relational database, but we have everything at hand here.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 2.2 first solution</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.2 First solution:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">qOrderItems1</span> <span class="p">=</span> <span class="n">ordersCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;=</span> <span class="m">2</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">o</span> <span class="k">in</span> <span class="n">qOrderItems1</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tCustomerID={o.CustomerID}\tOrderID={o.ID}\tItems={o.OrderItems.Length}&quot;</span><span class="p">);</span>
+
+<span class="c1">//2.2 second solution</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.2 Second solution:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">qOrderItems2</span> <span class="p">=</span> <span class="n">ordersCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">Builders</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;.</span><span class="n">Filter</span><span class="p">.</span><span class="n">SizeGte</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">o</span> <span class="k">in</span> <span class="n">qOrderItems2</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tCustomerID={o.CustomerID}\tOrderID={o.ID}\tItems={o.OrderItems.Length}&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>A simple query is not sufficient for this exercise; thus, we need the aggregation pipeline. We may still note that every information we need is still available in one collection.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//2.3</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.3:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">qOrderTotal</span> <span class="p">=</span> <span class="n">ordersCollection</span>
+    <span class="p">.</span><span class="n">Aggregate</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">Project</span><span class="p">(</span><span class="n">order</span> <span class="p">=&gt;</span> <span class="k">new</span>
+    <span class="p">{</span>
+        <span class="n">CustomerID</span> <span class="p">=</span> <span class="n">order</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span>
+        <span class="n">OrderItems</span> <span class="p">=</span> <span class="n">order</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">,</span>
+        <span class="n">Total</span> <span class="p">=</span> <span class="n">order</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">oi</span> <span class="p">=&gt;</span> <span class="n">oi</span><span class="p">.</span><span class="n">Amount</span> <span class="p">*</span> <span class="n">oi</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="n">order</span> <span class="p">=&gt;</span> <span class="n">order</span><span class="p">.</span><span class="n">Total</span> <span class="p">&gt;</span> <span class="m">30000</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">o</span> <span class="k">in</span> <span class="n">qOrderTotal</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tCustomerID={o.CustomerID}&quot;</span><span class="p">);</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">oi</span> <span class="k">in</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">)</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\t\tProductID={oi.ProductID}\tPrice={oi.Price}\tAmount={oi.Amount}&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>To find the most expensive product, we need two queries: first, find the largest price value, then find the products with this price.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//2.4</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.4:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">maxPrice</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">SortByDescending</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Limit</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Project</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Single</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">qProductMax</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">==</span> <span class="n">maxPrice</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">t</span> <span class="k">in</span> <span class="n">qProductMax</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tName={t.Name}\tPrice={t.Price}&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>This exercise is complicated with our current database scheme because we do not have everything at hand within one collection. We need the product information from one collection, and the order details from another one.</p>
+<p>We will be doing a "join" in the client-side, that is, in C# code. The solution's outline is to query the orders, then in C# gather the orders by product, and finally, query the product details.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//2.5</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.5:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">qOrders</span> <span class="p">=</span> <span class="n">ordersCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">productOrders</span> <span class="p">=</span> <span class="n">qOrders</span>
+    <span class="p">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">)</span> <span class="c1">// All order items into one list</span>
+    <span class="p">.</span><span class="n">GroupBy</span><span class="p">(</span><span class="n">oi</span> <span class="p">=&gt;</span> <span class="n">oi</span><span class="p">.</span><span class="n">ProductID</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Count</span><span class="p">()</span> <span class="p">&gt;=</span> <span class="m">2</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">qProducts</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">productLookup</span> <span class="p">=</span> <span class="n">qProducts</span><span class="p">.</span><span class="n">ToDictionary</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">ID</span><span class="p">);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">productOrders</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">product</span> <span class="p">=</span> <span class="n">productLookup</span><span class="p">.</span><span class="n">GetValueOrDefault</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">Key</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tName={product?.Name}\tStock={product?.Stock}\tOrders={p.Count()}&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This solution is very elegant and works only for small databases. Suppose we face a similar task under real-life circumstances. We have two choices: denormalize the database scheme and copy product details into the orders, or create an aggregation pipeline executed by the server that does something similar to the code above (MongoDB can do that, but it will not be very fast).</p>
+</li>
+</ol>
+</details>
+<h2 id="exercise-2-create-a-new-entity-class">Exercise 2: Create a new entity class<a class="headerlink" href="#exercise-2-create-a-new-entity-class" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Examine the classes <code>Product</code> and <code>VAT</code>. Why is there a field with a <code>[BsonId]</code> attribute in class <code>Product</code> and not in class <code>VAT</code>?</p>
+</li>
+<li>
+<p>Create a new entity class for mapping <code>Category</code> document, then add and initialize a <code>IMongoCollection&lt;Category&gt;</code> field next to the others.</p>
+</li>
+</ol>
+<details class="example"><summary>Solution</summary><ol>
+<li>
+<p>Class <code>Product</code> represents the <code>products</code> collection; therefore each item has a unique <code>ObjectID</code>. On the other hand, class <code>VAT</code> is an embedded field used by <code>Product</code> and has no collection on its own; hence it needs no id.</p>
+</li>
+<li>
+<p>Create our new <code>Category</code> POCO class.</p>
+<p>Let us check a few sample documents using Robo3T in <code>categories</code> collection.</p>
+<p><img alt="Categories documents" src="images/categories.png" /></p>
+<p>Create a new class <code>Category</code> in folder <code>Entities</code> with matching fields as below.</p>
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="nn">MongoDB.Bson</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">MongoDB.Bson.Serialization.Attributes</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.Mongo.Entitites</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Category</span>
+    <span class="p">{</span>
+<span class="na">        [BsonId]</span>
+        <span class="k">public</span> <span class="n">ObjectId</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">ObjectId</span><span class="p">?</span> <span class="n">ParentCategoryID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Add a new collection interface field in <code>Program.cs</code> as follows.</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span> <span class="k">static</span> <span class="n">IMongoCollection</span><span class="p">&lt;</span><span class="n">Category</span><span class="p">&gt;</span> <span class="n">categoriesCollection</span><span class="p">;</span>
+</code></pre></div>
+
+<p>And assign the value in the <code>initialize</code> method to get the collection.</p>
+<div class="highlight"><pre><span></span><code><span class="n">categoriesCollection</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="n">GetCollection</span><span class="p">&lt;</span><span class="n">Category</span><span class="p">&gt;(</span><span class="s">&quot;categories&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+</ol>
+</details>
+<h2 id="exercise-3-data-modification">Exercise 3: Data modification<a class="headerlink" href="#exercise-3-data-modification" title="Permanent link">&para;</a></h2>
+<p>The collection classes <code>IMongoColection&lt;TEntity&gt;</code> can also be used to execute modification operations.</p>
+<ol>
+<li>
+<p>Write C# code that increases the price of all products in category "LEGO" by 10 percent!</p>
+</li>
+<li>
+<p>Create a new category named <em>Expensive toys</em> and move all products here that cost more than 8000!</p>
+</li>
+<li>
+<p>Delete all categories that contain no products.</p>
+</li>
+</ol>
+<details class="example"><summary>Solution</summary><ol>
+<li>
+<p>Find the ID of the category then update all products that have this category id.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;***** Exercise three *****&quot;</span><span class="p">);</span>
+
+<span class="c1">//3.1</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t3.1:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">categoryLegoId</span> <span class="p">=</span> <span class="n">categoriesCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;LEGO&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Project</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">ID</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Single</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">qProductLego</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CategoryID</span> <span class="p">==</span> <span class="n">categoryLegoId</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tBefore modification:&quot;</span><span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductLego</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\t\tName={p.Name}\tStock={p.Stock}\tÁr={p.Price}&quot;</span><span class="p">);</span>
+
+<span class="n">productsCollection</span><span class="p">.</span><span class="n">UpdateMany</span><span class="p">(</span>
+    <span class="n">filter</span><span class="p">:</span> <span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CategoryID</span> <span class="p">==</span> <span class="n">categoryLegoId</span><span class="p">,</span>
+    <span class="n">update</span><span class="p">:</span> <span class="n">Builders</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;.</span><span class="n">Update</span><span class="p">.</span><span class="n">Mul</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="m">1.1</span><span class="p">));</span>
+
+<span class="n">qProductLego</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CategoryID</span> <span class="p">==</span> <span class="n">categoryLegoId</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tAfter modification:&quot;</span><span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductLego</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\t\tName={p.Name}\tStock={p.Stock}\tÁr={p.Price}&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>MongoDB can execute the following sequence of steps in a single atomic step: "Get me category <code>Expensive toys</code>. If it does not exist, create it." We will use <code>FindOneAndUpdate</code> to achieve this.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//3.2</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t3.2:&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">catExpensiveToys</span> <span class="p">=</span> <span class="n">categoriesCollection</span><span class="p">.</span><span class="n">FindOneAndUpdate</span><span class="p">&lt;</span><span class="n">Category</span><span class="p">&gt;(</span>
+    <span class="n">filter</span><span class="p">:</span> <span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;Expensive toys&quot;</span><span class="p">,</span>
+    <span class="n">update</span><span class="p">:</span> <span class="n">Builders</span><span class="p">&lt;</span><span class="n">Category</span><span class="p">&gt;.</span><span class="n">Update</span><span class="p">.</span><span class="n">SetOnInsert</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="s">&quot;Expensive toys&quot;</span><span class="p">),</span>
+    <span class="n">options</span><span class="p">:</span> <span class="k">new</span> <span class="n">FindOneAndUpdateOptions</span><span class="p">&lt;</span><span class="n">Category</span><span class="p">,</span> <span class="n">Category</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">IsUpsert</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="n">ReturnDocument</span> <span class="p">=</span> <span class="n">ReturnDocument</span><span class="p">.</span><span class="n">After</span> <span class="p">});</span>
+
+<span class="n">productsCollection</span><span class="p">.</span><span class="n">UpdateMany</span><span class="p">(</span>
+    <span class="n">filter</span><span class="p">:</span> <span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">&gt;</span> <span class="m">8000</span><span class="p">,</span>
+    <span class="n">update</span><span class="p">:</span> <span class="n">Builders</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;.</span><span class="n">Update</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CategoryID</span><span class="p">,</span> <span class="n">catExpensiveToys</span><span class="p">.</span><span class="n">ID</span><span class="p">));</span>
+
+<span class="kt">var</span> <span class="n">qProdExpensive</span> <span class="p">=</span> <span class="n">productsCollection</span>
+    <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CategoryID</span> <span class="p">==</span> <span class="n">catExpensiveToys</span><span class="p">.</span><span class="n">ID</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProdExpensive</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tName={p.Name}\tPrice={p.Price}&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Query categories that contain any product, then delete the ones that do not belong among this list.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//3.3</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t3.3:&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tBefore modification: {categoriesCollection.CountDocuments(_ =&gt; true)} categories&quot;</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">qProductCategory</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">ObjectId</span><span class="p">&gt;(</span>
+    <span class="n">productsCollection</span>
+        <span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">Project</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CategoryID</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">ToList</span><span class="p">());</span>
+
+<span class="n">categoriesCollection</span><span class="p">.</span><span class="n">DeleteMany</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="p">!</span><span class="n">qProductCategory</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">ID</span><span class="p">));</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;\t\tAfter modification: {categoriesCollection.CountDocuments(_ =&gt; true)} categories&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Let us note that this is not an atomic operation. If a product was added concurrently, we could have deleted its category.</p>
+</li>
+</ol>
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+  <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+
+      <!-- Link to previous page -->
+      
+      <a href="../ef/" title="Entity Framework"
+        class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </div>
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Previous
+            </span>
+            Entity Framework
+          </div>
+        </div>
+      </a>
+      
+
+      <!-- Link to next page -->
+      
+      <a href="../jpa/" title="JPA & Spring Data"
+        class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Next
+            </span>
+            JPA & Spring Data
+          </div>
+        </div>
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+        </div>
+      </a>
+      
+    </nav>
+  </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+        <div class="md-footer-copyright__highlight">
+          Copyright &copy; BME AUT
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1422 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>REST API & ASP.NET Web API - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rest-api-aspnet-web-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              REST API & ASP.NET Web API
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Data-driven systems
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../db/" class="md-tabs__link">
+          Database
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../lecture-notes/architecture/" class="md-tabs__link">
+          Lecture notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../transactions/" class="md-tabs__link md-tabs__link--active">
+          Seminars
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../homework/" class="md-tabs__link">
+          Homework
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Data-driven systems" class="md-nav__link">
+      Data-driven systems
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Database
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Database" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Database
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/" title="Sample database scheme" class="md-nav__link">
+      Sample database scheme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mssql/" title="Using Microsoft SQL Server" class="md-nav__link">
+      Using Microsoft SQL Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mongodb/" title="Using MongoDB" class="md-nav__link">
+      Using MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" title="Sample database: mssql.sql" class="md-nav__link">
+      Sample database: mssql.sql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" title="Sample database: mongo.js" class="md-nav__link">
+      Sample database: mongo.js
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lecture notes
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Lecture notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/architecture/" title="Data-driven systems and the thee- or multi-tier architecture" class="md-nav__link">
+      Data-driven systems and the thee- or multi-tier architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/transactions/" title="Transactions in databases" class="md-nav__link">
+      Transactions in databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/sql/" title="SQL language, MSSQL platform-specific SQL" class="md-nav__link">
+      SQL language, MSSQL platform-specific SQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/server-side-programming/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/linq/" title="LINQ: Language Integrated Query" class="md-nav__link">
+      LINQ: Language Integrated Query
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mongodb/" title="MongoDB operations and the MongoDB .NET Driver" class="md-nav__link">
+      MongoDB operations and the MongoDB .NET Driver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/di/" title="Dependency Injection ASP.NET Core environment" class="md-nav__link">
+      Dependency Injection ASP.NET Core environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/rest-webapi-sample" title="REST and WebAPI sample app (GitHub)" class="md-nav__link">
+      REST and WebAPI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/todoapi-di-sample" title="ASP.NET Core DI sample app (GitHub)" class="md-nav__link">
+      ASP.NET Core DI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" title="Sample three-tier webapp (GitHub)" class="md-nav__link">
+      Sample three-tier webapp (GitHub)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Seminars
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Seminars
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Transactions" class="md-nav__link">
+      Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mssql/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ef/" title="Entity Framework" class="md-nav__link">
+      Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mongodb/" title="MongoDB" class="md-nav__link">
+      MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../jpa/" title="JPA & Spring Data" class="md-nav__link">
+      JPA & Spring Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        REST API & ASP.NET Web API
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="REST API & ASP.NET Web API" class="md-nav__link md-nav__link--active">
+      REST API & ASP.NET Web API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-work-during-the-seminar" class="md-nav__link">
+    How to work during the seminar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-createcheck-the-database" class="md-nav__link">
+    Exercise 0: Create/check the database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-open-starter-project" class="md-nav__link">
+    Exercise 1: Open starter project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-first-controller-and-testing-with-postman" class="md-nav__link">
+    Exercise 2: First controller and testing with Postman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-product-search-api" class="md-nav__link">
+    Exercise 3: Product search API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-editing-products-via-the-api" class="md-nav__link">
+    Exercise 4: Editing products via the API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-5-add-new-product-with-category-and-vat" class="md-nav__link">
+    Exercise 5: Add new product with category and VAT
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Homework
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Homework" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Homework
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/" title="Optional homework" class="md-nav__link">
+      Optional homework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mssql/" title="Exercise: MSSQL server-side programming" class="md-nav__link">
+      Exercise: MSSQL server-side programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/adonet/" title="Exercise: ADO.NET data access" class="md-nav__link">
+      Exercise: ADO.NET data access
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/ef/" title="Exercise: Entity Framework" class="md-nav__link">
+      Exercise: Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mongodb/" title="Exercise: MongoDB" class="md-nav__link">
+      Exercise: MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/rest/" title="Exercise: REST API and Web API" class="md-nav__link">
+      Exercise: REST API and Web API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub/" title="Submitting your work (GitHub)" class="md-nav__link">
+      Submitting your work (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub-Actions/" title="Using GitHub Actions" class="md-nav__link">
+      Using GitHub Actions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/VisualStudio/" title="Install Visual Studio" class="md-nav__link">
+      Install Visual Studio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-work-during-the-seminar" class="md-nav__link">
+    How to work during the seminar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-createcheck-the-database" class="md-nav__link">
+    Exercise 0: Create/check the database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-open-starter-project" class="md-nav__link">
+    Exercise 1: Open starter project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-first-controller-and-testing-with-postman" class="md-nav__link">
+    Exercise 2: First controller and testing with Postman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-product-search-api" class="md-nav__link">
+    Exercise 3: Product search API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-editing-products-via-the-api" class="md-nav__link">
+    Exercise 4: Editing products via the API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-5-add-new-product-with-category-and-vat" class="md-nav__link">
+    Exercise 5: Add new product with category and VAT
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/seminar/rest/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="rest-api-aspnet-web-api">REST API &amp; ASP.NET Web API<a class="headerlink" href="#rest-api-aspnet-web-api" title="Permanent link">&para;</a></h1>
+<p>The seminar's goal is to practice working with REST APIs and the .NET Web API technology.</p>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
+<p>Required tools to complete the tasks:</p>
+<ul>
+<li>Microsoft Visual Studio 2019 (<em>not</em> VS Code)</li>
+<li>Microsoft SQL Server (LocalDB or Express edition)</li>
+<li>SQL Server Management Studio</li>
+<li>Postman: <a href="https://www.getpostman.com/downloads/">https://www.getpostman.com/downloads/</a></li>
+<li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
+<li>Starter code: <a href="https://github.com/bmeviauac01/gyakorlat-rest-kiindulo">https://github.com/bmeviauac01/gyakorlat-rest-kiindulo</a></li>
+</ul>
+<p>Recommended to review:</p>
+<ul>
+<li>C# language</li>
+<li>Entity Framework and Linq</li>
+<li>REST API and Web API lecture</li>
+</ul>
+<h2 id="how-to-work-during-the-seminar">How to work during the seminar<a class="headerlink" href="#how-to-work-during-the-seminar" title="Permanent link">&para;</a></h2>
+<p>The exercises are solved together with the instructor. A few exercises we can try to solve by ourselves and then discuss the results. The final exercise is individual work if time permits.</p>
+<div class="admonition info">
+<p>This guide summarizes and explains the behavior. Before looking at these provided answers, we should think first!</p>
+</div>
+<h2 id="exercise-0-createcheck-the-database">Exercise 0: Create/check the database<a class="headerlink" href="#exercise-0-createcheck-the-database" title="Permanent link">&para;</a></h2>
+<p>The database resides on each machine; thus, the database you created previously might not be available. First, check if your database exists, and if it does not, create and initialize it. (See the instructions <a href="../transactions/">in the first seminar material</a>.)</p>
+<h2 id="exercise-1-open-starter-project">Exercise 1: Open starter project<a class="headerlink" href="#exercise-1-open-starter-project" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Download the project skeleton!</p>
+<ul>
+<li>Open a new <em>command prompt</em></li>
+<li>Navigate to a directory, e.g. <code>c:\work\NEPTUN</code></li>
+<li>Execute the following command: <code>git clone --depth 1 https://github.com/bmeviauac01/gyakorlat-rest-kiindulo.git</code></li>
+</ul>
+</li>
+<li>
+<p>Open the <em>sln</em> file in the <code>rest</code> folder using Visual Studio.</p>
+</li>
+<li>
+<p>Let us examine this project.</p>
+<ul>
+<li>This is an ASP.NET Core Web API project. This project is created for hosting REST API backends. It contains a web server internally; thus, when running it using F5 we get a fully functional API able to respond to http requests.</li>
+<li>Let us examine <code>Program.cs</code>. We do not need to understand everything here. This is like a console application; the <code>Main</code> method here, the entry point that starts a web server.</li>
+<li>
+<p>The Entity Framework <em>Code First</em> mapping of our database is in the <code>Dal</code> folder. Class <code>DataDrivenDbContext</code> is the data access class. We need to fix the <em>connection string</em> in the <code>OnConfiguring</code> method in this class.</p>
+<div class="admonition note">
+<p>The connection string usually should not be hard-wired in the source code. This is for the sake of simplicity here.</p>
+</div>
+</li>
+<li>
+<p>There is a test controller in folder <code>Controllers</code>. Let us open and examine the code. Let us note the <code>[ApiController]</code> and <code>[Route]</code> attributes and the inheritance. These make a class a <em>Web API controller</em>. The behavior is automatic: the controller's methods are invoked by the framework when they match the expected signature. This means that no additional configuration is needed here.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Start the application. After building the source code, a console application will start where we will see diagnostic messages. Let us open a browser and navigate to <a href="http://localhost:5000/api/values">http://localhost:5000/api/values</a>. We should receive a JSON response. Stop the application by pressing <em>Ctrl-C</em> in the console, or stop with Visual Studio.</p>
+</li>
+</ol>
+<h2 id="exercise-2-first-controller-and-testing-with-postman">Exercise 2: First controller and testing with Postman<a class="headerlink" href="#exercise-2-first-controller-and-testing-with-postman" title="Permanent link">&para;</a></h2>
+<p>Create a new Web API controller that responds with a greeting. Test the behavior using Postman.</p>
+<ol>
+<li>Delete the existing class <code>ValuesController</code>. Add a new empty <em>Api Controller</em> with the name <code>HelloController</code>: in <em>Solution Explorer</em> right-click the <em>Controllers</em> folder and choose <em>Add / Controller... / API Controller - Empty</em>. The <code>HelloController</code> should respond to URL <code>/api/hello</code>.</li>
+<li>The application shall respond with a text when GET request is received. Test this endpoint using Postman by sending a GET request to <a href="http://localhost:5000/api/hello">http://localhost:5000/api/hello</a>.</li>
+<li>Change the REST endpoint by expecting an optional name as a <em>query parameter</em>; if such value is provided, the response greeting should include this name. Test this with Postman: send a name by calling URL <a href="http://localhost:5000/api/hello?name=apple">http://localhost:5000/api/hello?name=apple</a>.</li>
+<li>Create a <em>new</em> REST API endpoint that responds to URL <a href="http://localhost:5000/api/hello/apple">http://localhost:5000/api/hello/apple</a> just like the previous one, but the name is in the <em>path</em> here.</li>
+</ol>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="na">[Route(&quot;api/hello&quot;)]</span>
+<span class="na">[ApiController]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+<span class="p">{</span>
+    <span class="c1">// 2.</span>
+    <span class="c1">//[HttpGet]</span>
+    <span class="c1">//public ActionResult&lt;string&gt; Hello()</span>
+    <span class="c1">//{</span>
+    <span class="c1">//    return &quot;Hello!&quot;;</span>
+    <span class="c1">//}</span>
+
+    <span class="c1">// 3.</span>
+<span class="na">    [HttpGet]</span>
+    <span class="k">public</span> <span class="n">ActionResult</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Hello</span><span class="p">([</span><span class="n">FromQuery</span><span class="p">]</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s">&quot;Hello noname!&quot;</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="s">&quot;Hello &quot;</span> <span class="p">+</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 4.</span>
+<span class="na">    [HttpGet]</span>
+<span class="na">    [Route(&quot;{personName}&quot;)]</span> <span class="c1">// the liter inside {} in this route must match the parameter name</span>
+    <span class="k">public</span> <span class="n">ActionResult</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">HelloRoute</span><span class="p">(</span><span class="kt">string</span> <span class="n">personName</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;Hello route &quot;</span> <span class="p">+</span> <span class="n">personName</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Let us summarize what we need to create a new WebAPI endpoint:</p>
+<ul>
+<li>Inherit from the <code>ControllerBase</code> class and add the <code>[ApiController]</code> attribute.</li>
+<li>Specify the URL route on the class or above the method (or on both) using the <code>[Route]</code> attribute.</li>
+<li>Define a method with the right signature (return value and parameters).</li>
+<li>Choose what type of http queries to respond to using one of the <code>[Http*]</code> attributes.</li>
+</ul>
+</details>
+<h2 id="exercise-3-product-search-api">Exercise 3: Product search API<a class="headerlink" href="#exercise-3-product-search-api" title="Permanent link">&para;</a></h2>
+<p>A real API does not return constant strings. Create an API for searching among the products of our webshop.</p>
+<ul>
+<li>Create a new controller.</li>
+<li>Enable listing products; 5 per page.</li>
+<li>Enable search based on the name.</li>
+<li>The data returned should <em>not</em> be the database entity; instead create a new <em>DTO</em> (data transfer object) class in a new folder called <code>Models</code>.</li>
+</ul>
+<p>Test the new endpoints.</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="c1">// *********************************</span>
+<span class="c1">// Models/Product.cs</span>
+
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.REST.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Product</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">Product</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">double?</span> <span class="n">price</span><span class="p">,</span> <span class="kt">int?</span> <span class="n">stock</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Id</span> <span class="p">=</span> <span class="n">id</span><span class="p">;</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="n">name</span><span class="p">;</span>
+            <span class="n">Price</span> <span class="p">=</span> <span class="n">price</span><span class="p">;</span>
+            <span class="n">Stock</span> <span class="p">=</span> <span class="n">stock</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Contains only the relevant data; e.g. the database foreign keys are of no use here.</span>
+        <span class="c1">// Assignment only via the constructor; this makes it unambiguous</span>
+        <span class="c1">// that this is a snapshot of information that cannot be modified.</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">double?</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int?</span> <span class="n">Stock</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="c1">// *********************************</span>
+<span class="c1">// Controllers/ProductsController.cs</span>
+
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.REST.Controllers</span>
+<span class="p">{</span>
+<span class="na">    [Route(&quot;api/products&quot;)]</span> <span class="c1">// it is better to explicitly specify the url</span>
+<span class="na">    [ApiController]</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ProductsController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">Dal</span><span class="p">.</span><span class="n">DataDrivenDbContext</span> <span class="n">dbContext</span><span class="p">;</span>
+
+        <span class="c1">// The database is obtained through the Dependency Injection service of the framework.</span>
+        <span class="c1">// The DbContext is automatically disposed at the end of the request.</span>
+        <span class="k">public</span> <span class="nf">ProductsController</span><span class="p">(</span><span class="n">Dal</span><span class="p">.</span><span class="n">DataDrivenDbContext</span> <span class="n">dbContext</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">dbContext</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">;</span>
+        <span class="p">}</span>
+
+<span class="na">        [HttpGet]</span>
+        <span class="k">public</span> <span class="n">ActionResult</span><span class="p">&lt;</span><span class="n">Models</span><span class="p">.</span><span class="n">Product</span><span class="p">[]&gt;</span> <span class="n">List</span><span class="p">([</span><span class="n">FromQuery</span><span class="p">]</span> <span class="kt">string</span> <span class="n">search</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span> <span class="p">[</span><span class="n">FromQuery</span><span class="p">]</span> <span class="kt">int</span> <span class="k">from</span> <span class="p">=</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">IQueryable</span><span class="p">&lt;</span><span class="n">Dal</span><span class="p">.</span><span class="n">Product</span><span class="p">&gt;</span> <span class="n">filteredList</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">search</span><span class="p">))</span> <span class="c1">// no search yields all products</span>
+                <span class="n">filteredList</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">;</span>
+            <span class="k">else</span> <span class="c1">// search by name</span>
+                <span class="n">filteredList</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">search</span><span class="p">));</span>
+
+            <span class="k">return</span> <span class="n">filteredList</span>
+                    <span class="p">.</span><span class="n">Skip</span><span class="p">(</span><span class="k">from</span><span class="p">)</span> <span class="c1">// paging: from which product</span>
+                    <span class="p">.</span><span class="n">Take</span><span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="c1">// 5 items on one page</span>
+                    <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Models</span><span class="p">.</span><span class="n">Product</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span><span class="p">))</span> <span class="c1">// db to dto conversion</span>
+                    <span class="p">.</span><span class="n">ToArray</span><span class="p">();</span> <span class="c1">// enforce evaluating the IQueryable - otherwise would yield an error</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Let us note that we did not need to concern ourselves with JSON serialization. The API returns objects. The framework automatically handles the serialization.</p>
+<p>Paging is useful to limit the size of the response (and paging is also customary on UIs). Specifying a “from” is a simple and frequently used solution.</p>
+<p>The result of the method before the <code>ToArray</code> is an <code>IQueryable</code>. We may remember that the <code>IQueryable</code> does not contain the result; it is merely a descriptor of the query. If we had no <code>ToArray</code>, we would see an error. When the framework would begin the serialization to JSON, it would start iterating the query; but at this point, the database connection has already been closed. Therefore WebAPI endpoints should not return <code>IEnumerable</code> or <code>IQueryable</code>.</p>
+</details>
+<h2 id="exercise-4-editing-products-via-the-api">Exercise 4: Editing products via the API<a class="headerlink" href="#exercise-4-editing-products-via-the-api" title="Permanent link">&para;</a></h2>
+<p>Add the following functionality to our API:</p>
+<ul>
+<li>Fetch the data of a particular product specified by id at url <code>/api/products/id</code>.</li>
+<li>Update the name, price, and stock of a product.</li>
+<li>Add a new product (create a new DTO class for input that contains only the name, price, and stock).</li>
+<li>Delete a product by specifying the id.</li>
+</ul>
+<p>Test each endpoint!</p>
+<p><strong>Inserting</strong> a new product you will need the following settings in Postman:</p>
+<ul>
+<li>POST request to the correct URL</li>
+<li>Specify the <em>Body</em>: choose <code>raw</code> and then <code>JSON</code></li>
+<li>And use the JSON as <em>body</em> below:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="err">“BME</span> <span class="err">pen</span><span class="s2">&quot;,</span>
+<span class="s2">  &quot;</span><span class="err">price</span><span class="s2">&quot;: 8900,</span>
+<span class="s2">  &quot;</span><span class="err">stock&quot;</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><strong>Updating</strong> a product you will need the following settings:</p>
+<ul>
+<li>PUT request to the correct URL</li>
+<li>Specify the <em>Body</em>: choose <code>raw</code> and then <code>JSON</code></li>
+<li>And use the JSON as <em>body</em> below:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="err">ID:</span> <span class="err">10,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Silence for one hour”,</span>
+<span class="s2">  &quot;</span><span class="err">price</span><span class="s2">&quot;: 440,</span>
+<span class="s2">  &quot;</span><span class="err">stock&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><img alt="Postman PUT query" src="images/postman-put-query.png" /></p>
+<p>Make sure to check the headers of the response too! Update and insert should add the <em>Location</em> header. This header should contain the URL to fetch the record.</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="c1">// *********************************</span>
+<span class="c1">// Models/NewProduct.cs</span>
+
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.REST.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">NewProduct</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">NewProduct</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">double?</span> <span class="n">price</span><span class="p">,</span> <span class="kt">int?</span> <span class="n">stock</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="n">name</span><span class="p">;</span>
+            <span class="n">Price</span> <span class="p">=</span> <span class="n">price</span><span class="p">;</span>
+            <span class="n">Stock</span> <span class="p">=</span> <span class="n">stock</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">double?</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int?</span> <span class="n">Stock</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="c1">// *********************************</span>
+<span class="c1">// Controllers/ProductsController.cs</span>
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.REST.Controllers</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ProductsController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+
+        <span class="c1">// GET api/products/id</span>
+<span class="na">        [HttpGet]</span>
+<span class="na">        [Route(&quot;{id}&quot;)]</span>
+        <span class="k">public</span> <span class="n">ActionResult</span><span class="p">&lt;</span><span class="n">Models</span><span class="p">.</span><span class="n">Product</span><span class="p">&gt;</span> <span class="n">Get</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">dbProduct</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">SingleOrDefault</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Id</span> <span class="p">==</span> <span class="n">id</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">dbProduct</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nf">NotFound</span><span class="p">();</span> <span class="c1">// expected response when an item is not found</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Models</span><span class="p">.</span><span class="n">Product</span><span class="p">(</span><span class="n">dbProduct</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Stock</span><span class="p">);</span> <span class="c1">// in case of success return the item itself</span>
+        <span class="p">}</span>
+
+        <span class="c1">// PUT api/products/id</span>
+<span class="na">        [HttpPut]</span>
+<span class="na">        [Route(&quot;{id}&quot;)]</span>
+        <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Modify</span><span class="p">([</span><span class="n">FromRoute</span><span class="p">]</span> <span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="p">[</span><span class="n">FromBody</span><span class="p">]</span> <span class="n">Models</span><span class="p">.</span><span class="n">Product</span> <span class="n">updated</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="p">!=</span> <span class="n">updated</span><span class="p">.</span><span class="n">Id</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nf">BadRequest</span><span class="p">();</span>
+
+            <span class="kt">var</span> <span class="n">dbProduct</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">SingleOrDefault</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Id</span> <span class="p">==</span> <span class="n">id</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">dbProduct</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nf">NotFound</span><span class="p">();</span>
+
+            <span class="c1">// modifications performed here</span>
+            <span class="n">dbProduct</span><span class="p">.</span><span class="n">Name</span> <span class="p">=</span> <span class="n">updated</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+            <span class="n">dbProduct</span><span class="p">.</span><span class="n">Price</span> <span class="p">=</span> <span class="n">updated</span><span class="p">.</span><span class="n">Price</span><span class="p">;</span>
+            <span class="n">dbProduct</span><span class="p">.</span><span class="n">Stock</span> <span class="p">=</span> <span class="n">updated</span><span class="p">.</span><span class="n">Stock</span><span class="p">;</span>
+
+            <span class="c1">// save to database</span>
+            <span class="n">dbContext</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
+
+            <span class="k">return</span> <span class="nf">NoContent</span><span class="p">();</span> <span class="c1">// response 204 NoContent</span>
+        <span class="p">}</span>
+
+        <span class="c1">// POST api/products</span>
+<span class="na">        [HttpPost]</span>
+        <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Create</span><span class="p">([</span><span class="n">FromBody</span><span class="p">]</span> <span class="n">Models</span><span class="p">.</span><span class="n">NewProduct</span> <span class="n">newProduct</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">dbProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dal</span><span class="p">.</span><span class="n">Product</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="n">Name</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
+                <span class="n">Price</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span>
+                <span class="n">Stock</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">Stock</span><span class="p">,</span>
+                <span class="n">CategoryId</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="c1">// not nice, temporary solution</span>
+                <span class="n">VatId</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// not nice, temporary solution</span>
+            <span class="p">};</span>
+
+            <span class="c1">// save to database</span>
+            <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">dbProduct</span><span class="p">);</span>
+            <span class="n">dbContext</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
+
+            <span class="k">return</span> <span class="nf">CreatedAtAction</span><span class="p">(</span><span class="n">nameof</span><span class="p">(</span><span class="n">Get</span><span class="p">),</span> <span class="k">new</span> <span class="p">{</span> <span class="n">id</span> <span class="p">=</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Id</span> <span class="p">},</span> <span class="k">new</span> <span class="n">Models</span><span class="p">.</span><span class="n">Product</span><span class="p">(</span><span class="n">dbProduct</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Stock</span><span class="p">));</span> <span class="c1">// this will add the URL where the new item is available into the header</span>
+        <span class="p">}</span>
+
+        <span class="c1">// DELETE api/products/id</span>
+<span class="na">        [HttpDelete]</span>
+<span class="na">        [Route(&quot;{id}&quot;)]</span>
+        <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Delete</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">dbProduct</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">SingleOrDefault</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Id</span> <span class="p">==</span> <span class="n">id</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">dbProduct</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nf">NotFound</span><span class="p">();</span>
+
+            <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">dbProduct</span><span class="p">);</span>
+            <span class="n">dbContext</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
+
+            <span class="k">return</span> <span class="nf">NoContent</span><span class="p">();</span> <span class="c1">// successful delete is signaled with 204 NoContent (could be 200 OK as well if we included the entity)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+<h2 id="exercise-5-add-new-product-with-category-and-vat">Exercise 5: Add new product with category and VAT<a class="headerlink" href="#exercise-5-add-new-product-with-category-and-vat" title="Permanent link">&para;</a></h2>
+<p>When creating the new product, we have to specify the category, as well as the value-added tax. Change the insert operation from before by allowing the category name and the tax percentage to be specified. Find the <code>VAT</code> and <code>Category</code> records based on the provided data, or create new records if needed.</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="c1">// *********************************</span>
+<span class="c1">// Models/NewProduct.cs</span>
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.REST.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">NewProduct</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="c1">// need to extend the constructor</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">VATPercentage</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">CategoryName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// *********************************</span>
+<span class="c1">// Controllers/ProductsController.cs</span>
+<span class="k">namespace</span> <span class="nn">BME.DataDriven.REST.Controllers</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+<span class="na">    [HttpPost]</span>
+    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Create</span><span class="p">([</span><span class="n">FromBody</span><span class="p">]</span> <span class="n">Models</span><span class="p">.</span><span class="n">NewProduct</span> <span class="n">newProduct</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">dbVat</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Vat</span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">(</span><span class="n">v</span> <span class="p">=&gt;</span> <span class="n">v</span><span class="p">.</span><span class="n">Percentage</span> <span class="p">==</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">VATPercentage</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dbVat</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="n">dbVat</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dal</span><span class="p">.</span><span class="n">VAT</span><span class="p">()</span> <span class="p">{</span> <span class="n">Percentage</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">VATPercentage</span> <span class="p">};</span>
+
+        <span class="kt">var</span> <span class="n">dbCat</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Category</span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">CategoryName</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dbCat</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="n">dbCat</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dal</span><span class="p">.</span><span class="n">Category</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">CategoryName</span> <span class="p">};</span>
+
+        <span class="kt">var</span> <span class="n">dbProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dal</span><span class="p">.</span><span class="n">Product</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
+            <span class="n">Price</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span>
+            <span class="n">Stock</span> <span class="p">=</span> <span class="n">newProduct</span><span class="p">.</span><span class="n">Stock</span><span class="p">,</span>
+            <span class="n">Category</span> <span class="p">=</span> <span class="n">dbCat</span><span class="p">,</span>
+            <span class="n">VAT</span> <span class="p">=</span> <span class="n">dbVat</span>
+        <span class="p">};</span>
+
+        <span class="c1">// save to database</span>
+        <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">dbProduct</span><span class="p">);</span>
+        <span class="n">dbContext</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nf">CreatedAtAction</span><span class="p">(</span><span class="n">nameof</span><span class="p">(</span><span class="n">Get</span><span class="p">),</span> <span class="k">new</span> <span class="p">{</span> <span class="n">id</span> <span class="p">=</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Id</span> <span class="p">},</span> <span class="k">new</span> <span class="n">Models</span><span class="p">.</span><span class="n">Product</span><span class="p">(</span><span class="n">dbProduct</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">dbProduct</span><span class="p">.</span><span class="n">Stock</span><span class="p">));</span> <span class="c1">// this will add the URL where the new item is available into the header</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+  <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+
+      <!-- Link to previous page -->
+      
+      <a href="../jpa/" title="JPA & Spring Data"
+        class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </div>
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Previous
+            </span>
+            JPA & Spring Data
+          </div>
+        </div>
+      </a>
+      
+
+      <!-- Link to next page -->
+      
+      <a href="../../homework/" title="Optional homework"
+        class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Next
+            </span>
+            Optional homework
+          </div>
+        </div>
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+        </div>
+      </a>
+      
+    </nav>
+  </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+        <div class="md-footer-copyright__highlight">
+          Copyright &copy; BME AUT
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

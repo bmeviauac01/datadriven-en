@@ -1,0 +1,1290 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>Microsoft SQL Server programming - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#microsoft-sql-server-programming" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Microsoft SQL Server programming
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Data-driven systems
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../db/" class="md-tabs__link">
+          Database
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../lecture-notes/architecture/" class="md-tabs__link">
+          Lecture notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../transactions/" class="md-tabs__link md-tabs__link--active">
+          Seminars
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../homework/" class="md-tabs__link">
+          Homework
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Data-driven systems" class="md-nav__link">
+      Data-driven systems
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Database
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Database" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Database
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/" title="Sample database scheme" class="md-nav__link">
+      Sample database scheme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mssql/" title="Using Microsoft SQL Server" class="md-nav__link">
+      Using Microsoft SQL Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mongodb/" title="Using MongoDB" class="md-nav__link">
+      Using MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" title="Sample database: mssql.sql" class="md-nav__link">
+      Sample database: mssql.sql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" title="Sample database: mongo.js" class="md-nav__link">
+      Sample database: mongo.js
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Lecture notes
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Lecture notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/architecture/" title="Data-driven systems and the thee- or multi-tier architecture" class="md-nav__link">
+      Data-driven systems and the thee- or multi-tier architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/transactions/" title="Transactions in databases" class="md-nav__link">
+      Transactions in databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/sql/" title="SQL language, MSSQL platform-specific SQL" class="md-nav__link">
+      SQL language, MSSQL platform-specific SQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mssql/server-side-programming/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/linq/" title="LINQ: Language Integrated Query" class="md-nav__link">
+      LINQ: Language Integrated Query
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/mongodb/" title="MongoDB operations and the MongoDB .NET Driver" class="md-nav__link">
+      MongoDB operations and the MongoDB .NET Driver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture-notes/di/" title="Dependency Injection ASP.NET Core environment" class="md-nav__link">
+      Dependency Injection ASP.NET Core environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/rest-webapi-sample" title="REST and WebAPI sample app (GitHub)" class="md-nav__link">
+      REST and WebAPI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/todoapi-di-sample" title="ASP.NET Core DI sample app (GitHub)" class="md-nav__link">
+      ASP.NET Core DI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" title="Sample three-tier webapp (GitHub)" class="md-nav__link">
+      Sample three-tier webapp (GitHub)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Seminars
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Seminars
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Transactions" class="md-nav__link">
+      Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Microsoft SQL Server programming
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Microsoft SQL Server programming" class="md-nav__link md-nav__link--active">
+      Microsoft SQL Server programming
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-work-during-the-seminar" class="md-nav__link">
+    How to work during the seminar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-createcheck-the-database" class="md-nav__link">
+    Exercise 0: Create/check the database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-sql-commands-review" class="md-nav__link">
+    Exercise 1: SQL commands (review)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-inserting-a-new-product-category" class="md-nav__link">
+    Exercise 2: Inserting a new product category
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-maintenance-of-order-status" class="md-nav__link">
+    Exercise 3: Maintenance of order status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-summing-the-total-purchases-of-a-customer" class="md-nav__link">
+    Exercise 4: Summing the total purchases of a customer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-5-maintenance-of-the-total-value-individual-exercise" class="md-nav__link">
+    Exercise 5: Maintenance of the total value (individual exercise)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ef/" title="Entity Framework" class="md-nav__link">
+      Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mongodb/" title="MongoDB" class="md-nav__link">
+      MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../jpa/" title="JPA & Spring Data" class="md-nav__link">
+      JPA & Spring Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/" title="REST API & ASP.NET Web API" class="md-nav__link">
+      REST API & ASP.NET Web API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Homework
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Homework" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Homework
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/" title="Optional homework" class="md-nav__link">
+      Optional homework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mssql/" title="Exercise: MSSQL server-side programming" class="md-nav__link">
+      Exercise: MSSQL server-side programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/adonet/" title="Exercise: ADO.NET data access" class="md-nav__link">
+      Exercise: ADO.NET data access
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/ef/" title="Exercise: Entity Framework" class="md-nav__link">
+      Exercise: Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mongodb/" title="Exercise: MongoDB" class="md-nav__link">
+      Exercise: MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/rest/" title="Exercise: REST API and Web API" class="md-nav__link">
+      Exercise: REST API and Web API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub/" title="Submitting your work (GitHub)" class="md-nav__link">
+      Submitting your work (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub-Actions/" title="Using GitHub Actions" class="md-nav__link">
+      Using GitHub Actions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/VisualStudio/" title="Install Visual Studio" class="md-nav__link">
+      Install Visual Studio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-work-during-the-seminar" class="md-nav__link">
+    How to work during the seminar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-0-createcheck-the-database" class="md-nav__link">
+    Exercise 0: Create/check the database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-sql-commands-review" class="md-nav__link">
+    Exercise 1: SQL commands (review)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-inserting-a-new-product-category" class="md-nav__link">
+    Exercise 2: Inserting a new product category
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-maintenance-of-order-status" class="md-nav__link">
+    Exercise 3: Maintenance of order status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-summing-the-total-purchases-of-a-customer" class="md-nav__link">
+    Exercise 4: Summing the total purchases of a customer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-5-maintenance-of-the-total-value-individual-exercise" class="md-nav__link">
+    Exercise 5: Maintenance of the total value (individual exercise)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/seminar/mssql/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="microsoft-sql-server-programming">Microsoft SQL Server programming<a class="headerlink" href="#microsoft-sql-server-programming" title="Permanent link">&para;</a></h1>
+<p>The seminar's goal is to get to know the server-side programming capabilities of the Microsoft SQL Server platform.</p>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
+<p>Required tools to complete the tasks:</p>
+<ul>
+<li>Microsoft SQL Server (LocalDB or Express edition)</li>
+<li>SQL Server Management Studio</li>
+<li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
+</ul>
+<p>Recommended to review:</p>
+<ul>
+<li>SQL language</li>
+<li>Microsoft SQL Server programming (stored procedures, triggers)</li>
+<li><a href="../../db/mssql/">Microsoft SQL Server usage guide</a></li>
+</ul>
+<h2 id="how-to-work-during-the-seminar">How to work during the seminar<a class="headerlink" href="#how-to-work-during-the-seminar" title="Permanent link">&para;</a></h2>
+<p>The first four exercises are solved together with the instructor. The final exercise is individual work if time permits.</p>
+<div class="admonition info">
+<p>This guide summarizes and explains the behavior. Before looking at these provided answers, we should think first!</p>
+</div>
+<h2 id="exercise-0-createcheck-the-database">Exercise 0: Create/check the database<a class="headerlink" href="#exercise-0-createcheck-the-database" title="Permanent link">&para;</a></h2>
+<p>The database resides on each machine; thus, the database you created previously might not be available. First, check if your database exists, and if it does not, create and initialize it. (See the instructions <a href="../transactions/">in the first seminar material</a>.)</p>
+<h2 id="exercise-1-sql-commands-review">Exercise 1: SQL commands (review)<a class="headerlink" href="#exercise-1-sql-commands-review" title="Permanent link">&para;</a></h2>
+<p>Write SQL commands/queries for the following exercises.</p>
+<ol>
+<li>
+<p>How many uncompleted orders are there (look for a status other than "Delivered")?</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">from</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="n">o</span> <span class="k">join</span> <span class="n">Status</span> <span class="n">s</span> <span class="k">on</span> <span class="n">o</span><span class="p">.</span><span class="n">StatusID</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">where</span> <span class="n">s</span><span class="p">.</span><span class="n">Name</span> <span class="o">!=</span> <span class="s1">&#39;Delivered&#39;</span>
+</code></pre></div>
+
+<p>We see a <code>join</code> and an aggregation here. (There are other syntaxes for joining tables; refer to the lecture notes.)</p>
+</details>
+</li>
+<li>
+<p>Which payment methods have <em>not</em> been used at all?</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">p</span><span class="p">.</span><span class="k">Method</span>
+<span class="k">from</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="n">o</span> <span class="k">right</span> <span class="k">outer</span> <span class="k">join</span> <span class="n">PaymentMethod</span> <span class="n">p</span> <span class="k">on</span> <span class="n">o</span><span class="p">.</span><span class="n">PaymentMethodID</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">where</span> <span class="n">o</span><span class="p">.</span><span class="n">ID</span> <span class="k">is</span> <span class="k">null</span>
+</code></pre></div>
+
+<p>The key in the solution is the <code>outer join</code>, through which we can see the payment method records that have <em>no</em> orders.</p>
+</details>
+</li>
+<li>
+<p>Let us insert a new customer and query the auto-assigned primary key!</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="k">insert</span> <span class="k">into</span> <span class="n">Customer</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Login</span><span class="p">,</span> <span class="n">Password</span><span class="p">,</span> <span class="n">Email</span><span class="p">)</span>
+<span class="k">values</span> <span class="p">(</span><span class="s1">&#39;Test Test&#39;</span><span class="p">,</span> <span class="s1">&#39;tt&#39;</span><span class="p">,</span> <span class="s1">&#39;********&#39;</span><span class="p">,</span> <span class="s1">&#39;tt@email.com&#39;</span><span class="p">)</span>
+
+<span class="k">select</span> <span class="o">@@</span><span class="k">IDENTITY</span>
+</code></pre></div>
+
+<p>It is recommended (though not required) to name the columns after <code>insert</code> to be unambiguous. No value was assigned to the ID column, as the definition of that column mandates that the database automatically assigns a new value upon insert. We can query this ID after the insert is completed.</p>
+</details>
+</li>
+<li>
+<p>One of the categories has the wrong name. Let us change <em>Tricycle</em> to <em>Tricycles</em>!</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="k">update</span> <span class="n">Category</span>
+<span class="k">set</span> <span class="n">Name</span> <span class="o">=</span> <span class="s1">&#39;Tricycles&#39;</span>
+<span class="k">where</span> <span class="n">Name</span> <span class="o">=</span> <span class="s1">&#39;Tricycle&#39;</span>
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Which category contains the largest number of products?</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">top</span> <span class="mi">1</span> <span class="n">Name</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">Product</span> <span class="k">where</span> <span class="n">Product</span><span class="p">.</span><span class="n">CategoryID</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">ID</span><span class="p">)</span> <span class="k">as</span> <span class="n">cnt</span>
+<span class="k">from</span> <span class="n">Category</span> <span class="k">c</span>
+<span class="k">order</span> <span class="k">by</span> <span class="n">cnt</span> <span class="k">desc</span>
+</code></pre></div>
+
+<p>There are many ways this query can be formulated. This is only one possible solution. It also serves as an example of the usage of subqueries.</p>
+</details>
+</li>
+</ol>
+<h2 id="exercise-2-inserting-a-new-product-category">Exercise 2: Inserting a new product category<a class="headerlink" href="#exercise-2-inserting-a-new-product-category" title="Permanent link">&para;</a></h2>
+<p>Create a new stored procedure that helps inserting a new product category. The procedure's inputs are the name of the new category, and optionally the name of the parent category. Raise an error if the category already exists, or the parent category does not exist. Let the database generate the primary key for the insertion.</p>
+<details class="example"><summary>Solution</summary><p><strong>Stored procedure</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span> <span class="k">or</span> <span class="k">alter</span> <span class="k">procedure</span> <span class="n">AddNewCategory</span>
+    <span class="o">@</span><span class="n">Name</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+    <span class="o">@</span><span class="n">ParentName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">as</span>
+
+<span class="k">begin</span> <span class="n">tran</span>
+
+<span class="c1">-- Is there a category with identical name?</span>
+<span class="k">declare</span> <span class="o">@</span><span class="n">ID</span> <span class="nb">int</span>
+<span class="k">select</span> <span class="o">@</span><span class="n">ID</span> <span class="o">=</span> <span class="n">ID</span>
+<span class="k">from</span> <span class="n">Category</span> <span class="k">with</span> <span class="p">(</span><span class="n">TABLOCKX</span><span class="p">)</span>
+<span class="k">where</span> <span class="k">upper</span><span class="p">(</span><span class="n">Name</span><span class="p">)</span> <span class="o">=</span> <span class="k">upper</span><span class="p">(</span><span class="o">@</span><span class="n">Name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="o">@</span><span class="n">ID</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span>
+<span class="k">begin</span>
+    <span class="k">rollback</span>
+    <span class="n">raiserror</span> <span class="p">(</span><span class="s1">&#39;Category %s already exists&#39;</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">@</span><span class="n">Name</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="k">end</span>
+
+<span class="k">declare</span> <span class="o">@</span><span class="n">ParentID</span> <span class="nb">int</span>
+<span class="k">if</span> <span class="o">@</span><span class="n">ParentName</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span>
+<span class="k">begin</span>
+    <span class="k">select</span> <span class="o">@</span><span class="n">ParentID</span> <span class="o">=</span> <span class="n">ID</span>
+    <span class="k">from</span> <span class="n">Category</span>
+    <span class="k">where</span> <span class="k">upper</span><span class="p">(</span><span class="n">Name</span><span class="p">)</span> <span class="o">=</span> <span class="k">upper</span><span class="p">(</span><span class="o">@</span><span class="n">ParentName</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="o">@</span><span class="n">ParentID</span> <span class="k">is</span> <span class="k">null</span>
+    <span class="k">begin</span>
+        <span class="k">rollback</span>
+        <span class="n">raiserror</span> <span class="p">(</span><span class="s1">&#39;Category %s does not exist&#39;</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">@</span><span class="n">ParentName</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">Category</span>
+<span class="k">values</span><span class="p">(</span><span class="o">@</span><span class="n">Name</span><span class="p">,</span><span class="o">@</span><span class="n">ParentID</span><span class="p">)</span>
+
+<span class="k">commit</span>
+</code></pre></div>
+
+<p><strong>Testing</strong></p>
+<p>Let us open a new <em>Query</em> window and execute the following testing instructions.</p>
+<p><code>exec AddNewCategory 'Beach balls', NULL</code></p>
+<p>This shall succeed. Let us verify the table contents afterward.</p>
+<p>Let us repeat the same command; it shall fail now.</p>
+<p>We can also try with a parent category.</p>
+<p><code>exec AddNewCategory 'LEGO Star Wars', 'LEGO'</code></p>
+</details>
+<h2 id="exercise-3-maintenance-of-order-status">Exercise 3: Maintenance of order status<a class="headerlink" href="#exercise-3-maintenance-of-order-status" title="Permanent link">&para;</a></h2>
+<p>Create a trigger that updates the status of each item of an order when the status of the order changes. Do this only for those items of the order that have the same status the order had before the change. Other items in the order should not be affected.</p>
+<details class="example"><summary>Solution</summary><p><strong>Trigger</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span> <span class="k">or</span> <span class="k">alter</span> <span class="k">trigger</span> <span class="n">UpdateOrderStatus</span>
+<span class="k">on</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span>
+<span class="k">for</span> <span class="k">update</span>
+<span class="k">as</span>
+
+<span class="k">update</span> <span class="n">OrderItem</span>
+<span class="k">set</span> <span class="n">StatusID</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="n">StatusID</span>
+<span class="k">from</span> <span class="n">OrderItem</span> <span class="n">oi</span>
+<span class="k">inner</span> <span class="k">join</span> <span class="n">inserted</span> <span class="n">i</span> <span class="k">on</span> <span class="n">i</span><span class="p">.</span><span class="n">Id</span><span class="o">=</span><span class="n">oi</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">inner</span> <span class="k">join</span> <span class="n">deleted</span> <span class="n">d</span> <span class="k">on</span> <span class="n">d</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">oi</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">where</span> <span class="n">i</span><span class="p">.</span><span class="n">StatusID</span> <span class="o">!=</span> <span class="n">d</span><span class="p">.</span><span class="n">StatusID</span>
+<span class="k">and</span> <span class="n">oi</span><span class="p">.</span><span class="n">StatusID</span><span class="o">=</span><span class="n">d</span><span class="p">.</span><span class="n">StatusID</span>
+</code></pre></div>
+
+<p>Let us make sure we understand the <code>update ... from</code> syntax. The behavior is as follows. We use this command when some of the changes we want to make during the update require data from another table. The syntax is based on the usual <code>update ... set...</code> format extended with a <code>from</code> part, which follows the same syntax as a <code>select from</code>, including the <code>join</code> to gather information from other tables. This allows us to use the joined records and their content in the <code>set</code> statement (that is, a value from a joined record can be on the right side of an assignment).</p>
+<p><strong>Testing</strong></p>
+<p>Let us check the status of the order and each item in the order:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">OrderItem</span><span class="p">.</span><span class="n">StatusID</span><span class="p">,</span> <span class="p">[</span><span class="k">Order</span><span class="p">].</span><span class="n">StatusID</span>
+<span class="k">from</span> <span class="n">OrderItem</span> <span class="k">join</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="k">on</span> <span class="n">OrderItem</span><span class="p">.</span><span class="n">OrderID</span><span class="o">=</span><span class="p">[</span><span class="k">Order</span><span class="p">].</span><span class="n">ID</span>
+<span class="k">where</span> <span class="n">OrderID</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p>Let us change the status of the order:</p>
+<div class="highlight"><pre><span></span><code><span class="k">update</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span>
+<span class="k">set</span> <span class="n">StatusID</span><span class="o">=</span><span class="mi">4</span>
+<span class="k">where</span> <span class="n">ID</span><span class="o">=</span><span class="mi">1</span>
+</code></pre></div>
+
+<p>Check the status now (the update should have updated all stauses):</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">OrderItem</span><span class="p">.</span><span class="n">StatusID</span><span class="p">,</span> <span class="p">[</span><span class="k">Order</span><span class="p">].</span><span class="n">StatusID</span>
+<span class="k">from</span> <span class="n">OrderItem</span> <span class="k">join</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="k">on</span> <span class="n">OrderItem</span><span class="p">.</span><span class="n">OrderID</span><span class="o">=</span><span class="p">[</span><span class="k">Order</span><span class="p">].</span><span class="n">ID</span>
+<span class="k">where</span> <span class="n">OrderID</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+</details>
+<h2 id="exercise-4-summing-the-total-purchases-of-a-customer">Exercise 4: Summing the total purchases of a customer<a class="headerlink" href="#exercise-4-summing-the-total-purchases-of-a-customer" title="Permanent link">&para;</a></h2>
+<p>Let us calculate and store the value of all purchases made by a customer!</p>
+<ol>
+<li>Add a new column to the table: <code>alter table Customer add Total float</code></li>
+<li>Calculate the current totals. Let us use a cursor for iterating through all customers.</li>
+</ol>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="k">declare</span> <span class="n">cur_customer</span> <span class="k">cursor</span>
+    <span class="k">for</span> <span class="k">select</span> <span class="n">ID</span> <span class="k">from</span> <span class="n">Customer</span>
+<span class="k">declare</span> <span class="o">@</span><span class="n">CustomerId</span> <span class="nb">int</span>
+<span class="k">declare</span> <span class="o">@</span><span class="n">Total</span> <span class="nb">float</span>
+
+<span class="k">open</span> <span class="n">cur_customer</span>
+<span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">cur_customer</span> <span class="k">into</span> <span class="o">@</span><span class="n">CustomerId</span>
+<span class="n">while</span> <span class="o">@@</span><span class="n">FETCH_STATUS</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">begin</span>
+
+    <span class="k">select</span> <span class="o">@</span><span class="n">Total</span> <span class="o">=</span> <span class="k">sum</span><span class="p">(</span><span class="n">oi</span><span class="p">.</span><span class="n">Amount</span> <span class="o">*</span> <span class="n">oi</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span>
+    <span class="k">from</span> <span class="n">CustomerSite</span> <span class="n">s</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="n">o</span> <span class="k">on</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSiteID</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="n">ID</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">OrderItem</span> <span class="n">oi</span> <span class="k">on</span> <span class="n">oi</span><span class="p">.</span><span class="n">OrderID</span><span class="o">=</span><span class="n">o</span><span class="p">.</span><span class="n">ID</span>
+    <span class="k">where</span> <span class="n">s</span><span class="p">.</span><span class="n">CustomerID</span> <span class="o">=</span> <span class="o">@</span><span class="n">CustomerId</span>
+
+    <span class="k">update</span> <span class="n">Customer</span>
+    <span class="k">set</span> <span class="n">Total</span> <span class="o">=</span> <span class="k">ISNULL</span><span class="p">(</span><span class="o">@</span><span class="n">Total</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">where</span> <span class="n">ID</span> <span class="o">=</span> <span class="o">@</span><span class="n">CustomerId</span>
+
+    <span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">cur_customer</span> <span class="k">into</span> <span class="o">@</span><span class="n">CustomerId</span>
+<span class="k">end</span>
+
+<span class="k">close</span> <span class="n">cur_customer</span>
+<span class="k">deallocate</span> <span class="n">cur_customer</span>
+</code></pre></div>
+
+<p>To verify check the contents of the <code>Customer</code> table.</p>
+</details>
+<h2 id="exercise-5-maintenance-of-the-total-value-individual-exercise">Exercise 5: Maintenance of the total value (individual exercise)<a class="headerlink" href="#exercise-5-maintenance-of-the-total-value-individual-exercise" title="Permanent link">&para;</a></h2>
+<p>The values calculated in the previous exercise contain the current state. Create a trigger that updates this value whenever a related order is changed. Instead of re-calculating the value, update it with the changes made!</p>
+<details class="example"><summary>Solution</summary><p>The key in the solution is recognizing which table the trigger should be placed on. We are interested in changes in order, but the total value actually depends on the items registered for an order; thus the trigger should react to changes in the order items.</p>
+<p>The exercise is complicated because the <code>inserted</code> and <code>deleted</code> tables may contain multiple records, possibly even related to multiple customers. A solution for overcoming this obstacle is to use a cursor to process all changes; another option, as below, is aggregating the changes by customer.</p>
+<p><strong>Trigger</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span> <span class="k">or</span> <span class="k">alter</span> <span class="k">trigger</span> <span class="n">CustomerTotalUpdate</span>
+<span class="k">on</span> <span class="n">OrderItem</span>
+<span class="k">for</span> <span class="k">insert</span><span class="p">,</span> <span class="k">update</span><span class="p">,</span> <span class="k">delete</span>
+<span class="k">as</span>
+
+<span class="k">update</span> <span class="n">Customer</span>
+<span class="k">set</span> <span class="n">Total</span><span class="o">=</span><span class="k">isnull</span><span class="p">(</span><span class="n">Total</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">TotalChange</span>
+<span class="k">from</span> <span class="n">Customer</span>
+<span class="k">inner</span> <span class="k">join</span>
+    <span class="p">(</span><span class="k">select</span> <span class="n">s</span><span class="p">.</span><span class="n">CustomerId</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">Amount</span> <span class="o">*</span> <span class="n">Price</span><span class="p">)</span> <span class="k">as</span> <span class="n">TotalChange</span>
+    <span class="k">from</span> <span class="n">CustomerSite</span> <span class="n">s</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="n">o</span> <span class="k">on</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSiteID</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="n">ID</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">inserted</span> <span class="n">i</span> <span class="k">on</span> <span class="n">i</span><span class="p">.</span><span class="n">OrderID</span><span class="o">=</span><span class="n">o</span><span class="p">.</span><span class="n">ID</span>
+    <span class="k">group</span> <span class="k">by</span> <span class="n">s</span><span class="p">.</span><span class="n">CustomerId</span><span class="p">)</span> <span class="n">CustomerChange</span> <span class="k">on</span> <span class="n">Customer</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">CustomerChange</span><span class="p">.</span><span class="n">CustomerId</span>
+
+<span class="k">update</span> <span class="n">Customer</span>
+<span class="k">set</span> <span class="n">Total</span><span class="o">=</span><span class="k">isnull</span><span class="p">(</span><span class="n">Total</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">TotalChange</span>
+<span class="k">from</span> <span class="n">Customer</span>
+<span class="k">inner</span> <span class="k">join</span>
+    <span class="p">(</span><span class="k">select</span> <span class="n">s</span><span class="p">.</span><span class="n">CustomerId</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">Amount</span> <span class="o">*</span> <span class="n">Price</span><span class="p">)</span> <span class="k">as</span> <span class="n">TotalChange</span>
+    <span class="k">from</span> <span class="n">CustomerSite</span> <span class="n">s</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="p">[</span><span class="k">Order</span><span class="p">]</span> <span class="n">o</span> <span class="k">on</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSiteID</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="n">ID</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">deleted</span> <span class="n">d</span> <span class="k">on</span> <span class="n">d</span><span class="p">.</span><span class="n">OrderID</span><span class="o">=</span><span class="n">o</span><span class="p">.</span><span class="n">ID</span>
+    <span class="k">group</span> <span class="k">by</span> <span class="n">s</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">)</span> <span class="n">CustomerChange</span> <span class="k">on</span> <span class="n">Customer</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">CustomerChange</span><span class="p">.</span><span class="n">CustomerId</span>
+</code></pre></div>
+
+<p><strong>Testing</strong></p>
+<p>Let us remember the total for the customers.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">ID</span><span class="p">,</span> <span class="n">Total</span>
+<span class="k">from</span> <span class="n">Customer</span>
+</code></pre></div>
+
+<p>Change the ordered amount.</p>
+<div class="highlight"><pre><span></span><code><span class="k">update</span> <span class="n">OrderItem</span>
+<span class="k">set</span> <span class="n">Amount</span><span class="o">=</span><span class="mi">3</span>
+<span class="k">where</span> <span class="n">ID</span><span class="o">=</span><span class="mi">1</span>
+</code></pre></div>
+
+<p>Check the totals again, should have changed.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">ID</span><span class="p">,</span> <span class="n">Total</span>
+<span class="k">from</span> <span class="n">Customer</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+  <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+
+      <!-- Link to previous page -->
+      
+      <a href="../transactions/" title="Transactions"
+        class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </div>
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Previous
+            </span>
+            Transactions
+          </div>
+        </div>
+      </a>
+      
+
+      <!-- Link to next page -->
+      
+      <a href="../ef/" title="Entity Framework"
+        class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Next
+            </span>
+            Entity Framework
+          </div>
+        </div>
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+        </div>
+      </a>
+      
+    </nav>
+  </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+        <div class="md-footer-copyright__highlight">
+          Copyright &copy; BME AUT
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

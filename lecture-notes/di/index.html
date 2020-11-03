@@ -1,0 +1,1669 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>Dependency Injection ASP.NET Core environment - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dependency-injection-aspnet-core-environment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Dependency Injection ASP.NET Core environment
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Data-driven systems
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../db/" class="md-tabs__link">
+          Database
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../architecture/" class="md-tabs__link md-tabs__link--active">
+          Lecture notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../seminar/transactions/" class="md-tabs__link">
+          Seminars
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../homework/" class="md-tabs__link">
+          Homework
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Data-driven systems" class="md-nav__link">
+      Data-driven systems
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Database
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Database" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Database
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/" title="Sample database scheme" class="md-nav__link">
+      Sample database scheme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mssql/" title="Using Microsoft SQL Server" class="md-nav__link">
+      Using Microsoft SQL Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../db/mongodb/" title="Using MongoDB" class="md-nav__link">
+      Using MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" title="Sample database: mssql.sql" class="md-nav__link">
+      Sample database: mssql.sql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" title="Sample database: mongo.js" class="md-nav__link">
+      Sample database: mongo.js
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Lecture notes
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Lecture notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/" title="Data-driven systems and the thee- or multi-tier architecture" class="md-nav__link">
+      Data-driven systems and the thee- or multi-tier architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Transactions in databases" class="md-nav__link">
+      Transactions in databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mssql/sql/" title="SQL language, MSSQL platform-specific SQL" class="md-nav__link">
+      SQL language, MSSQL platform-specific SQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mssql/server-side-programming/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linq/" title="LINQ: Language Integrated Query" class="md-nav__link">
+      LINQ: Language Integrated Query
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mongodb/" title="MongoDB operations and the MongoDB .NET Driver" class="md-nav__link">
+      MongoDB operations and the MongoDB .NET Driver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Dependency Injection ASP.NET Core environment
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Dependency Injection ASP.NET Core environment" class="md-nav__link md-nav__link--active">
+      Dependency Injection ASP.NET Core environment
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-phase-1-service-class-with-wired-in-dependencies" class="md-nav__link">
+    Example phase 1 - service class with wired in dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-phase-2-service-class-with-manual-dependency-injection" class="md-nav__link">
+    Example phase 2 - service class with manual dependency injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-phase-3-dependency-injection-based-on-net-core-dependency-injection" class="md-nav__link">
+    Example phase 3 - dependency injection based on .NET Core Dependency Injection
+  </a>
+  
+    <nav class="md-nav" aria-label="Example phase 3 - dependency injection based on .NET Core Dependency Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-register-step-registering-dependencies" class="md-nav__link">
+    1) REGISTER step (registering dependencies)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resolve-step-resolving-dependencies" class="md-nav__link">
+    2) RESOLVE step (resolving dependencies)
+  </a>
+  
+    <nav class="md-nav" aria-label="2) RESOLVE step (resolving dependencies)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-basics" class="md-nav__link">
+    The basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-graph-resolution-autowiring" class="md-nav__link">
+    Object graph resolution, autowiring
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-resolution-for-aspnet-web-api-classes" class="md-nav__link">
+    Dependency resolution  for ASP.NET Web API classes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-framework-dbcontext-container-registration-and-resolution" class="md-nav__link">
+    Entity Framework DbContext container registration and resolution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-dependency-injection-registration-example" class="md-nav__link">
+    Advanced dependency injection registration example
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced dependency injection registration example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disposing-service-objects" class="md-nav__link">
+    Disposing service objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/rest-webapi-sample" title="REST and WebAPI sample app (GitHub)" class="md-nav__link">
+      REST and WebAPI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/todoapi-di-sample" title="ASP.NET Core DI sample app (GitHub)" class="md-nav__link">
+      ASP.NET Core DI sample app (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" title="Sample three-tier webapp (GitHub)" class="md-nav__link">
+      Sample three-tier webapp (GitHub)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Seminars
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Seminars
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/transactions/" title="Transactions" class="md-nav__link">
+      Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/mssql/" title="Microsoft SQL Server programming" class="md-nav__link">
+      Microsoft SQL Server programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/ef/" title="Entity Framework" class="md-nav__link">
+      Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/mongodb/" title="MongoDB" class="md-nav__link">
+      MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/jpa/" title="JPA & Spring Data" class="md-nav__link">
+      JPA & Spring Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../seminar/rest/" title="REST API & ASP.NET Web API" class="md-nav__link">
+      REST API & ASP.NET Web API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Homework
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Homework" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Homework
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/" title="Optional homework" class="md-nav__link">
+      Optional homework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mssql/" title="Exercise: MSSQL server-side programming" class="md-nav__link">
+      Exercise: MSSQL server-side programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/adonet/" title="Exercise: ADO.NET data access" class="md-nav__link">
+      Exercise: ADO.NET data access
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/ef/" title="Exercise: Entity Framework" class="md-nav__link">
+      Exercise: Entity Framework
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/mongodb/" title="Exercise: MongoDB" class="md-nav__link">
+      Exercise: MongoDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/rest/" title="Exercise: REST API and Web API" class="md-nav__link">
+      Exercise: REST API and Web API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub/" title="Submitting your work (GitHub)" class="md-nav__link">
+      Submitting your work (GitHub)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/GitHub-Actions/" title="Using GitHub Actions" class="md-nav__link">
+      Using GitHub Actions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../homework/VisualStudio/" title="Install Visual Studio" class="md-nav__link">
+      Install Visual Studio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-phase-1-service-class-with-wired-in-dependencies" class="md-nav__link">
+    Example phase 1 - service class with wired in dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-phase-2-service-class-with-manual-dependency-injection" class="md-nav__link">
+    Example phase 2 - service class with manual dependency injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-phase-3-dependency-injection-based-on-net-core-dependency-injection" class="md-nav__link">
+    Example phase 3 - dependency injection based on .NET Core Dependency Injection
+  </a>
+  
+    <nav class="md-nav" aria-label="Example phase 3 - dependency injection based on .NET Core Dependency Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-register-step-registering-dependencies" class="md-nav__link">
+    1) REGISTER step (registering dependencies)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resolve-step-resolving-dependencies" class="md-nav__link">
+    2) RESOLVE step (resolving dependencies)
+  </a>
+  
+    <nav class="md-nav" aria-label="2) RESOLVE step (resolving dependencies)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-basics" class="md-nav__link">
+    The basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-graph-resolution-autowiring" class="md-nav__link">
+    Object graph resolution, autowiring
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-resolution-for-aspnet-web-api-classes" class="md-nav__link">
+    Dependency resolution  for ASP.NET Web API classes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-framework-dbcontext-container-registration-and-resolution" class="md-nav__link">
+    Entity Framework DbContext container registration and resolution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-dependency-injection-registration-example" class="md-nav__link">
+    Advanced dependency injection registration example
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced dependency injection registration example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disposing-service-objects" class="md-nav__link">
+    Disposing service objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/lecture-notes/di/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="dependency-injection-aspnet-core-environment">Dependency Injection ASP.NET Core environment<a class="headerlink" href="#dependency-injection-aspnet-core-environment" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">Definition</p>
+<p><strong>Dependency Injection</strong> (DI) is programming technique that makes a class independent of its dependencies. It's a key enabler for decomposing an application into loosely coupled components. More precisely: <strong>Dependency Injection is a mechanism to decouple the creation of dependency graphs for a class from its class definition</strong>.</p>
+</div>
+<p>Of course, the above definition is very abstract, and based on the short definition it's hard to understand what problems DI is trying to solve, and how DI is trying to solve them.</p>
+<p>In the following chapters, we will use an example to put DI into context and to learn the basics of the DI related services build into ASP.NET Core.</p>
+<p>Goals of DI</p>
+<ul>
+<li>Facilitated extensibility and maintainability</li>
+<li>Improved unit testability</li>
+<li>Facilitated code reuse</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Sample application</p>
+<p>The sample C# code is available here: <a href="https://github.com/bmeviauac01/todoapi-di-sample">https://github.com/bmeviauac01/todoapi-di-sample</a></p>
+</div>
+<h2 id="example-phase-1-service-class-with-wired-in-dependencies">Example phase 1 - service class with wired in dependencies<a class="headerlink" href="#example-phase-1-service-class-with-wired-in-dependencies" title="Permanent link">&para;</a></h2>
+<p>In this example, based on code snippets we look at parts of a to-do list (TODO) application that sends to-do item related email notifications. Note: The code is minimalistic for succinctness.</p>
+<p>The "entry point" of our example is the <code>SendReminderIfNeeded</code> operation of the <code>ToDoService</code> class.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Class for managing todo items</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ToDoService</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">string</span> <span class="n">smtpAddress</span> <span class="p">=</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">;</span>
+
+    <span class="c1">// It checks the todoItem object received as a parameter and sends an e-mail</span>
+    <span class="c1">// notification about the to-do item to the contact person specified by the</span>
+    <span class="c1">// todo item.</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendReminderIfNeeded</span><span class="p">(</span><span class="n">TodoItem</span> <span class="n">todoItem</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">checkIfTodoReminderIsToBeSent</span><span class="p">(</span><span class="n">todoItem</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">NotificationService</span> <span class="n">notificationService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NotificationService</span><span class="p">(</span><span class="n">smtpAddress</span><span class="p">);</span>
+            <span class="n">notificationService</span><span class="p">.</span><span class="n">SendEmailReminder</span><span class="p">(</span><span class="n">todoItem</span><span class="p">.</span><span class="n">LinkedContactId</span><span class="p">,</span> <span class="n">todoItem</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="nf">checkIfTodoReminderIsToBeSent</span><span class="p">(</span><span class="n">TodoItem</span> <span class="n">todoItem</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">send</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="cm">/* ... */</span>
+        <span class="k">return</span> <span class="n">send</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Entity class, encapsulates information about a todo task</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TodoItem</span>
+<span class="p">{</span>
+    <span class="c1">// Database key</span>
+    <span class="k">public</span> <span class="kt">long</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">// Name/description of the task</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">// Indicates if the task has been completed</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsComplete</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">// It&#39;s possible to assign a contact person to a task: -1 indicated no contact</span>
+    <span class="c1">// person is assigned, otherwise the id of the contact person</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">LinkedContactId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In the code above (<code>ToDoService.SendReminderIfNeeded</code>) we see that the essential logic of sending an e-mail is to be found in the <code>NotificationService</code> class. Indeed, this class is at the center of our investigation. The following code snippet describes the code for the <code>NotificationService</code> class and its dependencies:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Class for sending notifications</span>
+<span class="k">class</span> <span class="nc">NotificationService</span>
+<span class="p">{</span>
+    <span class="c1">// Dependencies of the class</span>
+    <span class="n">EMailSender</span> <span class="n">_emailSender</span><span class="p">;</span>
+    <span class="n">Logger</span> <span class="n">_logger</span><span class="p">;</span>
+    <span class="n">ContactRepository</span> <span class="n">_contactRepository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">NotificationService</span><span class="p">(</span><span class="kt">string</span> <span class="n">smtpAddress</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_logger</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Logger</span><span class="p">();</span>
+        <span class="n">_emailSender</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">_logger</span><span class="p">,</span> <span class="n">smtpAddress</span><span class="p">);</span>
+        <span class="n">_contactRepository</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ContactRepository</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Sends an email notification to the contact with the given ID</span>
+    <span class="c1">// (contactId is a key in the Contacts table)</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendEmailReminder</span><span class="p">(</span><span class="kt">int</span> <span class="n">contactId</span><span class="p">,</span> <span class="kt">string</span> <span class="n">todoMessage</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">string</span> <span class="n">emailTo</span> <span class="p">=</span> <span class="n">_contactRepository</span><span class="p">.</span><span class="n">GetContactEMailAddress</span><span class="p">(</span><span class="n">contactId</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">emailSubject</span> <span class="p">=</span> <span class="s">&quot;TODO reminder&quot;</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">emailMessage</span> <span class="p">=</span> <span class="s">&quot;Reminder about the following todo item: &quot;</span> <span class="p">+</span> <span class="n">todoMessage</span><span class="p">;</span>
+        <span class="n">_emailSender</span><span class="p">.</span><span class="n">SendMail</span><span class="p">(</span><span class="n">emailTo</span><span class="p">,</span> <span class="n">emailSubject</span><span class="p">,</span> <span class="n">emailMessage</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Class supporting loggin</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Logger</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">LogInformation</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ...*/</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">LogError</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ...*/</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Class for sending e-mail notifications</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EMailSender</span>
+<span class="p">{</span>
+    <span class="n">Logger</span> <span class="n">_logger</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="n">_smtpAddress</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">EMailSender</span><span class="p">(</span><span class="n">Logger</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">string</span> <span class="n">smtpAddress</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+        <span class="n">_smtpAddress</span> <span class="p">=</span> <span class="n">smtpAddress</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendMail</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">subject</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;Sendding e-mail. To: {to} Subject: {subject} Body: {message}&quot;</span><span class="p">);</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Class for Contact entity persistence</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ContactRepository</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetContactEMailAddress</span><span class="p">(</span><span class="kt">int</span> <span class="n">contactId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>A few general thoughts:</p>
+<ul>
+<li>The <code>NotificationService</code> class has several dependencies (<code>EMailSender</code>, <code>Logger</code>, <code>ContactRepository</code> classes) and it implements its services based on these dependency classes.</li>
+<li>Dependency classes may have additional dependencies: <code>EMailSender</code> is a great example of this, it's dependent on the <code>Logger</code> class.</li>
+<li>Note: <code>NotificationService</code>, <code>EMailSender</code>, <code>Logger</code>, <code>ContactRepository</code> classes are considered <strong>service classes</strong> because they contain business logic, not just encapsulate data, such as <code>TodoItem</code>.</li>
+</ul>
+<p>As we could see the <code>SendEmailReminder</code> operation is actually served by an object graph, where <code>NotificationService</code> is the root object, it has three dependencies, and its dependencies have further dependencies. The following figure illustrates this object graph:</p>
+<p><img alt="Object graph 1" src="images/object-graph-1.svg" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One may ask why we considered <code>NotificationService</code>, and not <code>ToDoService</code> as the root object. Actually it just depends on our viewpoint: for simplicity we considered ToDoService as an entry point (a "client") for fulfilling a request, so that we have less classes to put under scrutiny. In a real life application we probably would consider <code>ToDoService</code> as part of the dependency graph as well.</p>
+</div>
+<p>Let's review the key features of this solution:</p>
+<ul>
+<li>The class instantiates its dependencies itself</li>
+<li>Class depends on the specific type of its dependencies (and not on interfaces, "abstractions")</li>
+</ul>
+<p>This approach has a couple of significant and rather painful drawbacks:</p>
+<ol>
+<li><strong>Rigidity, lack of extensibility</strong>. <code>NotificationService</code> (without modification) cannot work with other mailing, logging and contact repository implementations (but only with the the wired in <code>EMailSender</code>, <code>Logger</code> and <code>ContactRepository</code> classes). That is, e.g. we can't use it with any other logging component, or e.g. use it with a contact repository that operates via a different data source/storage mechanism.</li>
+<li><strong>Lack of unit testability</strong>. The <code>NotificationService</code> (without modification) cannot be unit tested. This would require replacing the <code>EMailSender</code>, <code>Logger</code> and <code>ContactRepository</code> dependencies with variants that provide fixed/expected responses  for a given input. Keep in mind that unit testing is about testing the behavior of a class independently from its dependencies. In our example, instead of using the database base ContactRepository, we would need a ContactRepository implementation that could serve requests very quickly from memory with values supporting the specific test cases.</li>
+<li>There is one more subtle inconvenience that is hard to notice at first sight. In our example we had to provide the <code>smtpAddress</code> parameter to the <code>NotificationService</code> constructor, so that it can forward it to its <code>EMailSender</code> dependency. However, <code>smtpAddress</code> is a parameter completely meaningless for <code>NotificationService</code>, it has nothing to do with this piece of information. Unfortunately, we are forced to pass <code>smtpAddress</code> thorough <code>NotificationService</code>, as <code>NotificationService</code> is the class instantiating the <code>EMailSender</code> object. <strong>We could eliminate this by somehow instantiating <code>EMailSender</code> independently of <code>NotificationService</code></strong>.</li>
+</ol>
+<p>In the next steps, we redesign our solution so that we can eliminate most of the downsides of the current rigid approach.</p>
+<h2 id="example-phase-2-service-class-with-manual-dependency-injection">Example phase 2 - service class with manual dependency injection<a class="headerlink" href="#example-phase-2-service-class-with-manual-dependency-injection" title="Permanent link">&para;</a></h2>
+<p>Redesign our former solution the functional requirements are unchanged.
+The most important principles of transformation are the following:</p>
+<ul>
+<li><strong>Dependencies will be based on abstractions/interfaces</strong></li>
+<li><strong>Classes will no longer instantiate their dependencies themselves</strong></li>
+</ul>
+<p>Let's jump right into the code of the improved solution and analyze the differences:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">ToDoService</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">string</span> <span class="n">smtpAddress</span> <span class="p">=</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">;</span>
+
+    <span class="c1">// Checks the todoItem object received as a parameter and sends an e-mail</span>
+    <span class="c1">// notification about the to-do item to the contact person specified by the</span>
+    <span class="c1">// todo item.</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendReminderIfNeeded</span><span class="p">(</span><span class="n">TodoItem</span> <span class="n">todoItem</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">checkIfTodoReminderIsToBeSent</span><span class="p">(</span><span class="n">todoItem</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">logger</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Logger</span><span class="p">();</span>
+            <span class="kt">var</span> <span class="n">emailSender</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">smtpAddress</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">contactRepository</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ContactRepository</span><span class="p">();</span>
+
+            <span class="n">NotificationService</span> <span class="n">notificationService</span>
+                <span class="p">=</span> <span class="k">new</span> <span class="n">NotificationService</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">emailSender</span><span class="p">,</span> <span class="n">contactRepository</span><span class="p">);</span>
+            <span class="n">notificationService</span><span class="p">.</span><span class="n">SendEmailReminder</span><span class="p">(</span><span class="n">todoItem</span><span class="p">.</span><span class="n">LinkedContactId</span><span class="p">,</span>
+                <span class="n">todoItem</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="nf">checkIfTodoReminderIsToBeSent</span><span class="p">(</span><span class="n">TodoItem</span> <span class="n">todoItem</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">send</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="cm">/* ... */</span>
+        <span class="k">return</span> <span class="n">send</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Class for sending notifications</span>
+<span class="k">class</span> <span class="nc">NotificationService</span>
+<span class="p">{</span>
+    <span class="c1">// Dependencies of the class</span>
+    <span class="n">IEMailSender</span> <span class="n">_emailSender</span><span class="p">;</span>
+    <span class="n">ILogger</span> <span class="n">_logger</span><span class="p">;</span>
+    <span class="n">IContactRepository</span> <span class="n">_contactRepository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">NotificationService</span><span class="p">(</span><span class="n">ILogger</span> <span class="n">logger</span><span class="p">,</span> <span class="n">IEMailSender</span> <span class="n">emailSender</span><span class="p">,</span>
+        <span class="n">IContactRepository</span> <span class="n">contactRepository</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+        <span class="n">_emailSender</span> <span class="p">=</span> <span class="n">emailSender</span><span class="p">;</span>
+        <span class="n">_contactRepository</span> <span class="p">=</span> <span class="n">contactRepository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Sends an email notification to the contact with the given ID</span>
+    <span class="c1">// (contactId is a key in the Contacts table)</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendEmailReminder</span><span class="p">(</span><span class="kt">int</span> <span class="n">contactId</span><span class="p">,</span> <span class="kt">string</span> <span class="n">todoMessage</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">string</span> <span class="n">emailTo</span> <span class="p">=</span> <span class="n">_contactRepository</span><span class="p">.</span><span class="n">GetContactEMailAddress</span><span class="p">(</span><span class="n">contactId</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">emailSubject</span> <span class="p">=</span> <span class="s">&quot;TODO reminder&quot;</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">emailMessage</span> <span class="p">=</span> <span class="s">&quot;Reminder about the following todo item: &quot;</span> <span class="p">+</span> <span class="n">todoMessage</span><span class="p">;</span>
+        <span class="n">_emailSender</span><span class="p">.</span><span class="n">SendMail</span><span class="p">(</span><span class="n">emailTo</span><span class="p">,</span> <span class="n">emailSubject</span><span class="p">,</span> <span class="n">emailMessage</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#region Contracts (abstractions)</span>
+
+<span class="c1">// Interface for logging</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="n">ILogger</span>
+<span class="p">{</span>
+    <span class="k">void</span> <span class="nf">LogInformation</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">);</span>
+    <span class="k">void</span> <span class="nf">LogError</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Interface for sending e-mail</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IEMailSender</span>
+<span class="p">{</span>
+    <span class="k">void</span> <span class="nf">SendMail</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">subject</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Interface for Contact entity persistence</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IContactRepository</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="nf">GetContactEMailAddress</span><span class="p">(</span><span class="kt">int</span> <span class="n">contactId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endregion</span>
+
+<span class="cp">#region Implementations</span>
+
+<span class="c1">// Class for logging</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Logger</span><span class="p">:</span> <span class="n">ILogger</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">LogInformation</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ...*/</span>  <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">LogError</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>  <span class="cm">/* ...*/</span>  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Class for sending e-mail</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EMailSender</span><span class="p">:</span> <span class="n">IEMailSender</span>
+<span class="p">{</span>
+    <span class="n">ILogger</span> <span class="n">_logger</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="n">_smtpAddress</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">EMailSender</span><span class="p">(</span><span class="n">ILogger</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">string</span> <span class="n">smtpAddress</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+        <span class="n">_smtpAddress</span> <span class="p">=</span> <span class="n">smtpAddress</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendMail</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">subject</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="err">$</span><span class="s">&quot;Sendding e-mail. To: {to} Subject: {subject} Body: {message}&quot;</span><span class="p">);</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Class for Contact entity persistence</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ContactRepository</span><span class="p">:</span> <span class="n">IContactRepository</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetContactEMailAddress</span><span class="p">(</span><span class="kt">int</span> <span class="n">contactId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="cp">#endregion</span>
+</code></pre></div>
+
+<p>We improved out previous solution in the following points:</p>
+<ul>
+<li>The <code>NotificationService</code> class no longer instantiates its dependencies itself, but receives them in constructor parameters.</li>
+<li>Interfaces (abstractions) have been introduced to manage dependencies</li>
+<li>The <code>NotificationService</code> class gets its dependencies in the form of interfaces. When a class receives its dependencies externally (e.g. via constructor parameters), it is called <strong>DEPENDENCY INJECTION</strong> (DI).</li>
+<li>In our case, the classes get their class dependencies in constructor parameters: this specific form of DI is called <strong>CONSTRUCTOR INJECTION</strong>. This is the most common - and most recommended - way to inject dependency. (Alternatively, for example, we could use property injection, which is based on a public property setter to set a specific dependency of a class).</li>
+</ul>
+<p>In our current solution, <code>NotificationService</code> dependencies are instantiated by the (direct) USER of the class (which is the <code>ToDoService</code> class). Primarily this is the reason why we are still facing with a few problems:</p>
+<ol>
+<li>The user of <code>NotificationService</code> objects, which is the <code>ToDoService</code> class, is still dependent on the implementation types (since it has to instantiate the <code>Logger</code>,<code>EMailSender</code> and <code>ContactRepository</code> classes).</li>
+<li>If we use the <code>Logger</code>, <code>EMailSender</code> and <code>ContactRepository</code> classes at multiple places in your application, we must instantiate them explicitly. In other words: at each and every place where have to create an <code>ILogger</code>, <code>IEMailSender</code> or <code>IContactRepository</code> implementation class, we have to make a decision which implementation to choose. This is essentially a special case of code duplication, the decision should appear only once in our code.<ul>
+<li>Our goal, in contrast, would be to determine <strong>at a single central location</strong> what type implementation to use for an abstraction (interface type) <strong>everywhere</strong> in the application (e.g. for <code>ILogger</code> create an <code>Logger</code> instance everywhere, for <code>IMailSender</code> create an <code>EMailSender</code> everywhere).</li>
+<li>This would allow us to easily review our abstraction-to-implementation mappings at one place.</li>
+<li>Moreover, if we want to change one of the mappings (e.g. using <code>AdvancedLogger</code> instead of <code>Logger</code> for <code>ILogger</code>) we could achieve that by making a single change at a central location.</li>
+</ul>
+</li>
+</ol>
+<h2 id="example-phase-3-dependency-injection-based-on-net-core-dependency-injection">Example phase 3 - dependency injection based on .NET Core Dependency Injection<a class="headerlink" href="#example-phase-3-dependency-injection-based-on-net-core-dependency-injection" title="Permanent link">&para;</a></h2>
+<p>We need some extra help from our framework to solve the two problems we concluded the previous chapter with: an <strong>Inversion of Control (IoC)</strong> container. <strong>Dependency Injection container</strong> is a widely used alternative name for the same tool/technique. In an IoC container we can store abstraction type -&gt; implementation type mappings, such as ILogger-&gt;Logger, IMailSender-&gt;EMailSender, etc. This is called the REGISTER step. And then based on these mappings create an implementation type for a specific abstraction type (e.g. <code>Logger</code> for an <code>ILogger</code>). This is called the RESOLVE step. In more detail:</p>
+<ol>
+<li><strong>REGISTER</strong>: Register dependency mappings (e.g. <code>ILogger</code>-&gt; <code>Logger</code>, <code>IMailSender</code>-&gt; <code>EMailSender</code>) into an IoC container, once, at a centralized location, at application startup. This is the <strong>REGISTER</strong> step of the DI process.</li>
+<li>Note: This solves "problem 2" pointed out at the end of the previous chapter: the mappings are centralized, and not scattered all over the application code base.</li>
+<li><strong>RESOLVE</strong>: When we need an implementation object at runtime in our application, we ask the container for an implementation by specifying the abstraction (interface) type (e.g., by providing <code>ILogger</code> as a key, the container returns an object of class <code>Logger</code>).<ul>
+<li>The resolve step is typically done at the "<strong>entry point</strong>" of the application (e.g. in case of WebApi on the receival of web requests, we will look into this later). The <strong>resolve step is performed only for the ROOT OBJECT</strong> (e.g. for the appropriate Controller class in case of WebApi). The container creates and returns a root object and all its dependencies and all its indirect dependencies: an entire object graph is generated. This process is called <strong>AUTOWIRING</strong>.</li>
+<li>Note: In case of Web API calls, the Resolve step is executed by the Asp.Net framework and is mostly hidden from the developer: all we see is that our controller class is automatically instantiated and all constructor parameters are automatically populated (with the help of the IoC container based on the mappings of the REGISTER step).</li>
+</ul>
+</li>
+</ol>
+<p>Fortunately, .NET Core has a built in IoC container based dependency injection service.
+Now we elucidate and illustrate the complete mechanism (register and resolve steps) using our enhanced e-mail notification solution as an example.</p>
+<h3 id="1-register-step-registering-dependencies">1) REGISTER step (registering dependencies)<a class="headerlink" href="#1-register-step-registering-dependencies" title="Permanent link">&para;</a></h3>
+<p>In an Asp.Net Core environment, dependencies are registered by the <code>ConfigureServices (IServiceCollection services)</code> function of our <code>Startup</code> class, namely by the <strong>AddSingleton</strong>, <strong>AddTransient</strong> and <strong>AddScoped</strong> operations of <code>IServiceCollection</code>. First, let's focus on the most exciting parts of <code>ConfigureServices</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">,</span> <span class="n">Logger</span><span class="p">&gt;();</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">,</span> <span class="n">NotificationService</span><span class="p">&gt;();</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IContactRepository</span><span class="p">,</span> <span class="n">ContactRepository</span><span class="p">&gt;();</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IEMailSender</span><span class="p">,</span> <span class="n">EMailSender</span><span class="p">&gt;(</span>
+            <span class="n">sp</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;(),</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">)</span> <span class="p">);</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<p><code>Startup.ConfigureServices</code> is called by the framework at application startup. We receive an <code>IServiceCollection services</code> object as parameter: this represents the IoC container created and initialized by the framework. We can register our own dependency mappings into this container. The</p>
+<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">,</span> <span class="n">Logger</span><span class="p">&gt;();</span>
+</code></pre></div>
+
+<p>line registers an <code>ILogger</code>-&gt; <code>Logger</code> type mapping, and the <code>Logger</code> is registered as a singleton, as we used the <strong>AddSingleton</strong> operation for registration. This means that if we later ask the container for an <code>ILogger</code> object (provide <code>ILogger</code> as key at the resolve step), we will get a <code>Logger</code> object from the container, and always <strong>the same instance</strong>. The</p>
+<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">,</span> <span class="n">NotificationService</span><span class="p">&gt;();</span>
+</code></pre></div>
+
+<p>line registers an <code>INotificationService</code>-&gt; <code>NotificationService</code> transient type mapping, as we used the <strong>AddTransient</strong> operation for registration. This means that if we later ask the container for an <code>INotificationService</code> object (provide <code>INotificationService</code> as key at the resolve step), we will get a <strong>separate newly created instance</strong> of <code>NotificationService</code> object from the container, for each query/resolve.</p>
+<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IContactRepository</span><span class="p">,</span> <span class="n">ContactRepository</span><span class="p">&gt;();</span>
+</code></pre></div>
+
+<p>line registers an <code>IContactRepository</code>-&gt; <code>ContactRepository</code> scoped type mapping, as we used the <strong>AddScoped</strong> operation for registration. This means that if we later ask the container for an <code>IContactRepository</code> object (provide <code>IContactRepository</code> as key at the resolve step), we will get a <code>NotificationService</code> object, which will be the  <strong>same instance for the same scope</strong>, and a different instance for different scopes. For a Web API based application one web request is handled within one scope. Consequently, we receive the same instance of a class turning to the container multiple times within the same web request, but different ones when the web requests are different.</p>
+<p>We can see additional registrations in the sample application's <code>Startup.ConfigureServices</code> method, which we will return to later.</p>
+<h3 id="2-resolve-step-resolving-dependencies">2) RESOLVE step (resolving dependencies)<a class="headerlink" href="#2-resolve-step-resolving-dependencies" title="Permanent link">&para;</a></h3>
+<h4 id="the-basics">The basics<a class="headerlink" href="#the-basics" title="Permanent link">&para;</a></h4>
+<p>Let's sum up where we are now: we have our abstraction to implementation type mappings registered into the ASP.NET Core IoC container at application startup. Our mappings are the following:</p>
+<ul>
+<li>ILogger -&gt; Logger as singleton</li>
+<li>INotificationService -&gt; NotificationService as transient</li>
+<li>IContactRepository -&gt; ContactRepository as scoped</li>
+<li>IEMailSender -&gt; EMailSender as singleton</li>
+</ul>
+<p>From now on, whenever we need an instance of an implementation type for an abstraction, we can ask the container for it using the abstraction type as the key. How do we specifically do it in a .NET Core application? .NET Core provides an <code>IServiceProvider</code> reference to us, and we can use different forms of the <code>GetService</code> operation of this interface. E.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="k">void</span> <span class="nf">SimpleResolve</span><span class="p">(</span><span class="n">IServiceProvider</span> <span class="n">sp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Returns an instance of the Logger class, as we have</span>
+    <span class="c1">// registered the Logger implementation type for our ILogger abstraction.</span>
+    <span class="kt">var</span> <span class="n">logger1</span> <span class="p">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">GetService</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">ILogger</span><span class="p">));</span>
+
+    <span class="c1">// Same as the previous example. The difference is that we have provided</span>
+    <span class="c1">// the type as a generic parameter. This is a more convenient approach.</span>
+    <span class="c1">// To use this we have to import the Microsoft.Extensions.DependencyInjection</span>
+    <span class="c1">// namespace via the using statement.</span>
+    <span class="c1">// Returns an instance of the Logger class, see explanation above.</span>
+    <span class="kt">var</span> <span class="n">logger2</span> <span class="p">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;();</span>
+    <span class="c1">// GetService returns null if no type mapping is found for the specific type (ILogger)</span>
+    <span class="c1">// GetRequiredService throws an exception instead.</span>
+    <span class="kt">var</span> <span class="n">logger3</span> <span class="p">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;();</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In the above example, code comments explain the behavior in detail. In each case, an abstraction type is to be provided for the <code>GetService</code>/<code>GetRequiredService</code> operation (either via the <code>typeof</code> operator, or via a generic parameter), and the operation returns with an instance of an implementation type based on the type mappings registered in the container.</p>
+<h4 id="object-graph-resolution-autowiring">Object graph resolution, autowiring<a class="headerlink" href="#object-graph-resolution-autowiring" title="Permanent link">&para;</a></h4>
+<p>In the previous example, the container was able to instantiate the <code>Logger</code> class at the resolve step without any major 'headaches', since it has no additional dependencies: it has a single default constructor. Now consider the resolution of <code>INotificationService</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">void</span> <span class="nf">ObjectGraphResolve</span><span class="p">(</span><span class="n">IServiceProvider</span> <span class="n">sp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">notifService</span> <span class="p">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">&gt;();</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>At the resolve step (GetService call), the container must create a <code>NotificationService</code> object. In doing so, it has to provide valid values for its constructor parameters, which actually means that has to resolve the class's direct and indirect dependencies, recursively:</p>
+<ul>
+<li>The NotificationService class has a three-parameter constructor (that is, it has three dependencies): <code>NotificationService (ILogger logger, IEMailSender emailSender, IContactRepository contactRepository)</code>. The <code>GetService</code> resolves constructor parameters one by one based on IoC container mapping registrations:<ul>
+<li><code>ILogger</code> logger: a <code>Logger</code> object is provided by the container, always the same instance (as ILogger-&gt;Logger mapping is registered as singleton)</li>
+<li><code>IEMailSender</code> emailSender: an <code>EMailSender</code> object is provided by the container, a different instance in each case (as mapping is registered as transient)<ul>
+<li>The <code>EMailSender</code> constructor has an <code>ILogger logger</code> parameter, that has to be resolved as well: a <code>Logger</code> object is provided by the container, always the same instance (as registered as singleton)</li>
+</ul>
+</li>
+<li><code>IContactRepository</code> contactRepository: a <code>ContactRepository</code> object is provided by the container, a different instance for different scopes (Web API e.g. for different Web API calls), as mapping is registered as scoped.</li>
+</ul>
+</li>
+</ul>
+<p>Summing up: the <code>GetService&lt;INotificationService&gt;()</code> call above creates a fully parameterized <code>NotificationService</code> object with all of its direct and indirect dependencies, the call returns an <strong>object graph</strong> for us:</p>
+<p><img alt="Object graph 2" src="images/object-graph-2.svg" /></p>
+<p>As we have seen in this example, IoC containers/DI frameworks are capable of determining the dependency requirements of objects (by examining at their constructor parameters), and then creating entire object graphs based on upfront abstraction-&gt;implementation container type mappings. This process is called <strong>autowiring</strong>.</p>
+<h4 id="dependency-resolution-for-aspnet-web-api-classes">Dependency resolution  for ASP.NET Web API classes<a class="headerlink" href="#dependency-resolution-for-aspnet-web-api-classes" title="Permanent link">&para;</a></h4>
+<p>Besides making our solution IoC container based, we make a few further changes to our todo app. We eliminate our <code>ToDoService</code> class, and move its functionality in a slightly different form into  an Asp.Net Core based <code>ControllerBase</code> derived class. This controller class will serve as our entry point and also as a root object, bringing our solution very close to a real life example (let it be a Web API, Web MVC app or a Web Razor Pages app). We could also have kept <code>ToDoService</code> in the middle of our call/dependency chain, but we try to keep things as simple as possible for our demonstration purposes. Furthermore, we also introduce an Entity Framework <code>DbContext</code> derived class called <code>TodoContext</code> to be able to demonstrate how it can be injected into repository classes in a typical application. Our new object graph will look like this:</p>
+<p><img alt="Object graph 3" src="images/object-graph-3.svg" /></p>
+<p>In the previous two chapters, we have assumed that a <code>IServiceProvider</code> object is available to call <code>GetService</code>. If we create a container ourselves, then this assumption is valid. However, only in the rarest cases do we create a container directly. In a typical ASP.NET Web API application, the container is created by the framework and is not directly accessible to us. Consequently, access to `IServiceProvider ', with the exception of a few startup and configuration points, is not available. The good news is that actually we don't need access to the container. <strong>The core concept of DI is that we perform dependency resolution only at the application entry point for the "root object".</strong> In case of Web API apps, the entry point is a call to an operation of a Controller class serving the specific API request. When a request is received, the framework determines and creates the Controller / ControllerBase child class based on the Url and rooting rules. If the controller class has dependencies (has constructor parameters), they are also resolved based on the container registration mappings, including indirect dependencies. The complete object graph is created, <strong>the root object is the controller class</strong>.</p>
+<p>Let's take a look at this in practice by refining our previous example with the addition of a <code>TodoController</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="na">[Route(&quot;api/[controller]</span><span class="s">&quot;)]</span>
+<span class="na">[ApiController]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TodoController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+<span class="p">{</span>
+    <span class="c1">// Dependencies of the TodoController class</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">TodoContext</span> <span class="n">_context</span><span class="p">;</span> <span class="c1">// this is a DbContext</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">INotificationService</span> <span class="n">_notificationService</span><span class="p">;</span>
+
+    <span class="c1">// Dependencies are received as constructor parameters</span>
+    <span class="k">public</span> <span class="nf">TodoController</span><span class="p">(</span><span class="n">TodoContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">INotificationService</span> <span class="n">notificationService</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_context</span> <span class="p">=</span> <span class="n">context</span><span class="p">;</span>
+        <span class="n">_notificationService</span> <span class="p">=</span> <span class="n">notificationService</span><span class="p">;</span>
+
+        <span class="c1">// Fill wit some initial data</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_context</span><span class="p">.</span><span class="n">TodoItems</span><span class="p">.</span><span class="n">Count</span><span class="p">()</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_context</span><span class="p">.</span><span class="n">TodoItems</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">TodoItem</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Item1&quot;</span> <span class="p">});</span>
+            <span class="n">_context</span><span class="p">.</span><span class="n">TodoItems</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">TodoItem</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Item2&quot;</span><span class="p">,</span> <span class="n">LinkedContactId</span> <span class="p">=</span> <span class="m">2</span><span class="p">});</span>
+            <span class="n">_context</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// API call handling function for sending an e-mail notification</span>
+    <span class="c1">// Example for use: a http post request to this url (e.g. via using PostMan):</span>
+    <span class="c1">//     http://localhost:58922/api/todo/2/reminder</span>
+    <span class="c1">// , which sends an e-mail notif to the e-mail address appointed of the</span>
+    <span class="c1">// contact person referenced by the todo item.</span>
+<span class="na">    [HttpPost(&quot;{id}/reminder&quot;)]</span>
+    <span class="k">public</span> <span class="n">IActionResult</span> <span class="nf">ReminderMessageToLinkedContact</span><span class="p">(</span><span class="kt">long</span> <span class="n">id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Look up todo item</span>
+        <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">_context</span><span class="p">.</span><span class="n">TodoItems</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">item</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nf">NotFound</span><span class="p">();</span>
+
+        <span class="c1">// Rend reminder e-mail</span>
+        <span class="n">_notificationService</span><span class="p">.</span><span class="n">SendEmailReminder</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">LinkedContactId</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+
+        <span class="c1">// Actually we don&#39;t create anything here, simply return an OK</span>
+        <span class="k">return</span> <span class="nf">Ok</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ... further operations</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Requests under the <code>http://&lt;base_address&gt;/api/todo</code> url are routed to the <code>TodoController</code> class based on the routing rules. The mail sending request (<code>http://&lt;base_address&gt;/api/todo/&lt;todo-id&gt;/reminder</code>) is routed to its <code>TodoController.ReminderMessageToLinkedContact</code> operation. A <code>TodoController</code> object is instantiated by the framework, creating a new instance for each request. The <code>TodoController</code> class has two dependencies provided as constructor parameters. The first is a <code>TodoContext</code> object, which is a <code>DbContext</code> derived class. The other is an <code>INotificationService</code>, (which we already covered in our previous example). As we saw in the previous section, the DI framework can create these objects based on the container registered mappings (with all their indirect dependencies), and then pass them to the <code>TodoController</code> as constructor parameter, where they are stored in member variables. The entire object graph is created, with <code>TodoController</code> as the root object. This object graph is to serve the specific web API request.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resolution of <code>TodoContext</code> is only possible if it's pre-registered in the IoC container. We will discuss this in the next chapter.</p>
+</div>
+<h2 id="entity-framework-dbcontext-container-registration-and-resolution">Entity Framework DbContext container registration and resolution<a class="headerlink" href="#entity-framework-dbcontext-container-registration-and-resolution" title="Permanent link">&para;</a></h2>
+<p>In applications, especially in Asp.Net Core based ones, there are two ways to use DbContext:</p>
+<ul>
+<li>Each time it is needed, we create and dispose it with the help of a using block. This can result in the creation of multiple DbContext instances serving an incoming request (which is absolutely OK).</li>
+<li>We create one <code>DbContext</code>  for a specific incoming request and share it for the classes involved in serving the request. In this case, we think of the <code>DbContext</code> instance as a unit of work serving the request.</li>
+</ul>
+<p>To accomplish this latter approach, ASP.NET Core provides a handy built-in DI based solution: when we configure our container with the type mappings at startup, we also register our DbContext class, which is then later automatically injected for our <strong>Controller</strong> and other (typically repository) dependencies.</p>
+<p>Let's see how our <code>TodoContext</code> (<code>DbContext</code> derived) class is registered in our example. The place of the registration is the usual <code>Startup.ConfigureServices</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddDbContext</span><span class="p">&lt;</span><span class="n">TodoContext</span><span class="p">&gt;(</span><span class="n">opt</span> <span class="p">=&gt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">UseInMemoryDatabase</span><span class="p">(</span><span class="s">&quot;TodoList&quot;</span><span class="p">));</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>AddDbContext</code> is an extension method defined by the framework for the <code>IServiceCollection</code> interface. This allows convenient registration of our <code>DbContext</code> class. We do not see into the implementation of <code>AddDbContext</code>, but actually it simply performs a scoped registration of our context type into the container:</p>
+<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">TodoContext</span><span class="p">,</span> <span class="n">TodoContext</span><span class="p">&gt;();</span>
+</code></pre></div>
+
+<p>As shown in the example, <code>TodoContext</code> <strong>is not registered via an abstraction</strong> (no <code>ITodoContext</code> interface exists) <strong>, but via the TodoContext implementation type itself. DI frameworks / IoC containers support the key part of a mapping to be a specific type, e.g. the implementation type itself</strong>. Use this approach only when justified, e.g. when we don't need extensibility for the specific type, and introducing an abstraction (interface) would only complicate the solution.</p>
+<p>In an Asp.Net Core environment, we don't introduce an interface for our <code>DbContext</code> derived class: instead, we always register it with the type of its class to the IoC container (in our example <code>TodoContext</code>-&gt; <code>TodoContext</code> mapping). <code>DbContext</code> itself can work with many persistent providers (e.g. MSSQL, Oracle, in-memory, etc.), so in many cases it does not make sense to put it behind further abstractions. In those cases when we need to abstract data access, we do not introduce an interface to access <code>DbContext</code>. Instead, we use the Repository design pattern, and we introduce  interfaces for each repository implementations classes, and then register their mappings to the IoC container (e.g. <code>ITodoRepository</code>-&gt; <code>TodoRepository</code>). The repository classes either instantiate the <code>DbContext</code> objects themselves or the <code>DbContext</code> is injected as constructor parameter).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document does not intend to make a standpoint over the often disputed question, whether it makes or does not make sense introducing a repository layer in an Entity Framework based application. For illustration purposes, our TodoApi application uses a mixed solution in this sense: controller/service classes use DbContext directly to persist TodoItem objects, and use the Repository pattern to handle Contacts. Don't mix the two approaches in a real-life application.</p>
+</div>
+<p>The example above also shows that you can also provide a lambda expression when registering <code>DbContext</code> (in case <code>TodoContext</code>) using <code>AddDbContext</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">opt</span> <span class="p">=&gt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">UseInMemoryDatabase</span><span class="p">(</span><span class="s">&quot;TodoList&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This lambda expression is called by the container later at the resolve step - that is, every time when a <code>TodoContext</code> is instantiated. An option object is provided as a parameter (in this example, the <code>opt</code> argument): this allows us to configurate the instance created by the container. In our example, calling the <code>UseInMemoryDatabase</code> operation creates an in-memory based database called "TodoList".</p>
+<h2 id="advanced-dependency-injection-registration-example">Advanced dependency injection registration example<a class="headerlink" href="#advanced-dependency-injection-registration-example" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p>Not compulsory material.</p>
+</div>
+<p>Let's cover code parts of <code>Startup.ConfigureServices</code> we skipped previously.</p>
+<p>The registration of <code>EMailSender</code> looks quite tricky:</p>
+<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IEMailSender</span><span class="p">,</span> <span class="n">EMailSender</span><span class="p">&gt;(</span>
+    <span class="n">sp</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;(),</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">)</span> <span class="p">);</span>
+</code></pre></div>
+
+<p>Let's take a look at the constructor of <code>EMailSender</code> to be able to better understand the situation:</p>
+<p>```csharp
+ public EMailSender(ILogger logger, string smtpAddress)
+{
+    _logger = logger;
+    _smtpAddress = smtpAddress;
+}
+<div class="highlight"><pre><span></span><code>`EMailSender` will need to be instantiated by the container when resolving `IEMailSender`, and the constructor parameters must be specified appropriately. The logger parameter is completely &quot;OK&quot;, and the container can resolve it based on the ILogger-&gt; Logger container mapping registration. However, there is no way to find out the value of the `smtpAddress` parameter. To solve this problem, ASP.NET Core proposes an &quot;options&quot; mechanism for the framework, which allows us to retrieve the value from some configuration. Covering the &quot;options&quot; topic would be a far-reaching thread for us, so for simplification we applied another approach. The `AddSingleton` (and other Add ... operations) have an overload in which we can specify a lambda expression. This lambda is called by the container later at the resolve step (that is, when we ask the container for an `IEMailSender` implementation) for each instance. With the help of this lambda we manually create the `EMailSender` object, so we have the chance to provide the necessary constructor parameters. In fact, the container is really &quot;helpful&quot; with us:  it provides an `IServiceCollection` object as the lambda parameter for us (in this example it&#39;s called `sp`), and based on container registrations we can conveniently resolve types with the help of the already covered `GetRequiredService` and `GetService` calls.
+
+## Further topics
+
+### Dependency Injection/IoC containers in general
+
+The particularities of the DI container built in ASP.NET Core:
+
+* It provides basic services required by most applications (e.g., does not support property injection).
+    * If you need more DI related functionality, you can use another IoC container Asp.Net Core can work with.
+    * Several Dependecy Injection / IoC container class libraries exist that can be used with .NET Core, with .NET Framework, or with both. A few examples: AutoFac, DryIoc, LightInject, Castle Windsor, Ninject, StructureMap, SimpleInjector, MEF, ...
+* It&#39;s implemented in the __Microsoft.Extensions.DependencyInjection__ NuGet package.
+    * For Asp.Net Core applications, it is automatically installed when the Asp.Net project is created. In fact, as we have seen, Asp.Net Core middleware heavily relies on it, it&#39;s a key pillar of runtime configuration and extensibility.
+    * For other .NET Core applications (e.g. a simple .NET Core based console app), you need to add it manually by installing the Microsoft.Extensions.DependencyInjection NuGet package for the project.
+    * Note: the NuGet package can be used with the (full) .NET Framework as well as it supports .NET Standard.
+
+### The Service Locator antipattern
+
+Dependency injection is not the only way of using an IoC container. Another technique called __Service Locator__ exists. Dependency Injection is based on the mechanism of passing the dependencies of a class as constructor parameters. Service Locator uses another approach: the classes directly access the IoC container in their methods to resolve their dependencies. Keep in mind that this approach is considered an __anti-pattern__. The reason is simple: every time time a class needs a dependency, it has to turn to a container, so much of our code will depend on the container itself! In contrast, when dependency injection is used, dependency resolution is performed &quot;once&quot; at the application entry point for &quot;root objects&quot; (e.g. for the controller class in case of a Web API call), the rest of our code is completely independent of the container. Note that in our previous example, in our TodoController, NotificationService, EMailSender, Logger, and ContactRepository classes, we did not refer the container (neither via an IServiceProvider, nor by any other means).
+
+### Asp.Net Core framework services
+
+Asp.Net Core has several built in services. E.g. it has support for Web API, and support for Razor Pages or MVC based web applications. These all rely on the DI services of Asp.Net Core.
+
+The `Startup.ConfigureServices` method of an Asp.Net Web API application has to have this piece of code:
+
+```csharp
+services.AddMvc()
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+</code></pre></div></p>
+<p><code>AddMvc</code> is a built in extension method for the <code>IServiceProvider</code> interface, which registers numerous (far more than 100!) service and configuration classes into the container required by the internals of the Web API middleware/pipeline.</p>
+<p>Starting from .NET Core 3.0 the situation is different: instead of calling AddMvc() we typically call AddControllers(), which is a more lightweight option, resulting in significantly less container registrations.</p>
+<h3 id="disposing-service-objects">Disposing service objects<a class="headerlink" href="#disposing-service-objects" title="Permanent link">&para;</a></h3>
+<p>The container calls <code>Dispose</code> for the objects it creates if the object implements the <code>IDisposable</code> interface.</p>
+<h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection">https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection</a></li>
+<li><a href="https://stackify.com/net-core-dependency-injection/amp">https://stackify.com/net-core-dependency-injection/amp</a></li>
+<li><a href="https://medium.com/volosoft/asp-net-core-dependency-injection-best-practices-tips-tricks-c6e9c67f9d96">https://medium.com/volosoft/asp-net-core-dependency-injection-best-practices-tips-tricks-c6e9c67f9d96</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+  <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+
+      <!-- Link to previous page -->
+      
+      <a href="../mongodb/" title="MongoDB operations and the MongoDB .NET Driver"
+        class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </div>
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Previous
+            </span>
+            MongoDB operations and the MongoDB .NET Driver
+          </div>
+        </div>
+      </a>
+      
+
+      <!-- Link to next page -->
+      
+      <a href="../../seminar/transactions/" title="Transactions"
+        class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+        <div class="md-footer-nav__title">
+          <div class="md-ellipsis">
+            <span class="md-footer-nav__direction">
+              Next
+            </span>
+            Transactions
+          </div>
+        </div>
+        <div class="md-footer-nav__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+        </div>
+      </a>
+      
+    </nav>
+  </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+        <div class="md-footer-copyright__highlight">
+          Copyright &copy; BME AUT
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
