@@ -1150,6 +1150,7 @@
 <span class="p">}</span>
 </code></pre></div></li>
 </ul>
+<p>Note: In our case the JSON data is deserialized into a newly introduced (see later) <code>Models.NewProduct</code> object. As the property setters are private in this class, JSON field names are mapped to the constructor parameter names of this class (in a case insensitive manner): therefore, it’s important how we name the constuctor parameters in this class.</p>
 <p><strong>Updating</strong> a product you will need the following settings:</p>
 <ul>
 <li>PUT request to the correct URL</li>
@@ -1163,6 +1164,7 @@
 <span class="p">}</span>
 </code></pre></div></li>
 </ul>
+<p>Note: In our case the JSON data is deserialized into a <code>Models.Product</code> object. As the property setters are private in this class, JSON field names are mapped to the constructor parameter names of this class (in a case insensitive manner): therefore, it’s important how we name the constuctor parameters in this class.</p>
 <p><img alt="Postman PUT query" src="images/postman-put-query.png" /></p>
 <p>Make sure to check the headers of the response too! Update and insert should add the <em>Location</em> header. This header should contain the URL to fetch the record.</p>
 <details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="c1">// *********************************</span>
