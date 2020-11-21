@@ -1281,7 +1281,11 @@
     <span class="k">public</span> <span class="k">class</span> <span class="nc">NewProduct</span>
     <span class="p">{</span>
         <span class="c1">// ...</span>
-        <span class="c1">// need to extend the constructor</span>
+        <span class="c1">// Also extend the constructor!</span>
+        <span class="c1">// Important note: It&#39;s important how constructor parameters are named.</span>
+        <span class="c1">// Our properties have private setters, and thanks to this json deserialization </span>
+        <span class="c1">// maps JSON object field names to constructor parameter names (in a case</span>
+        <span class="c1">// insensitive manner).</span>
 
         <span class="k">public</span> <span class="kt">int</span> <span class="n">VATPercentage</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
         <span class="k">public</span> <span class="kt">string</span> <span class="n">CategoryName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
