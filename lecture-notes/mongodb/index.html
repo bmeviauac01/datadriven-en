@@ -17,7 +17,7 @@
     
     
       
-        <title>MongoDB operations and the MongoDB .NET Driver - BMEVIAUAC01 Data-driven systems</title>
+        <title>MongoDB basics, operations, and the MongoDB .NET Driver - BMEVIAUAC01 Data-driven systems</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mongodb-operations-and-the-mongodb-net-driver" class="md-skip">
+        <a href="#mongodb-basics-operations-and-the-mongodb-net-driver" class="md-skip">
           Skip to content
         </a>
       
@@ -89,7 +89,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              MongoDB operations and the MongoDB .NET Driver
+              MongoDB basics, operations, and the MongoDB .NET Driver
             
           </span>
         </div>
@@ -460,14 +460,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        MongoDB operations and the MongoDB .NET Driver
+        MongoDB basics, operations, and the MongoDB .NET Driver
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="MongoDB operations and the MongoDB .NET Driver" class="md-nav__link md-nav__link--active">
-      MongoDB operations and the MongoDB .NET Driver
+    <a href="./" title="MongoDB basics, operations, and the MongoDB .NET Driver" class="md-nav__link md-nav__link--active">
+      MongoDB basics, operations, and the MongoDB .NET Driver
     </a>
     
       
@@ -484,6 +484,74 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nosql-databases" class="md-nav__link">
+    NoSQL databases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-concepts-of-mongodb" class="md-nav__link">
+    Basic concepts of MongoDB
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic concepts of MongoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-structure" class="md-nav__link">
+    Logical structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Logical structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document" class="md-nav__link">
+    Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collection" class="md-nav__link">
+    Collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    Database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mongodb-operations-and-the-mongodb-net-driver" class="md-nav__link">
+    MongoDB operations and the MongoDB .NET Driver
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#establishing-a-connection" class="md-nav__link">
@@ -1042,6 +1110,74 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#nosql-databases" class="md-nav__link">
+    NoSQL databases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-concepts-of-mongodb" class="md-nav__link">
+    Basic concepts of MongoDB
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic concepts of MongoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-structure" class="md-nav__link">
+    Logical structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Logical structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document" class="md-nav__link">
+    Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collection" class="md-nav__link">
+    Collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    Database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    Key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mongodb-operations-and-the-mongodb-net-driver" class="md-nav__link">
+    MongoDB operations and the MongoDB .NET Driver
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#establishing-a-connection" class="md-nav__link">
     Establishing a connection
   </a>
@@ -1292,7 +1428,38 @@
                   
                 
                 
-                <h1 id="mongodb-operations-and-the-mongodb-net-driver">MongoDB operations and the MongoDB .NET Driver<a class="headerlink" href="#mongodb-operations-and-the-mongodb-net-driver" title="Permanent link">&para;</a></h1>
+                <h1 id="mongodb-basics-operations-and-the-mongodb-net-driver">MongoDB basics, operations, and the MongoDB .NET Driver<a class="headerlink" href="#mongodb-basics-operations-and-the-mongodb-net-driver" title="Permanent link">&para;</a></h1>
+<h2 id="nosql-databases">NoSQL databases<a class="headerlink" href="#nosql-databases" title="Permanent link">&para;</a></h2>
+<p>NoSQL databases are data management systems that do not work with the relational data model. The NoSQL name can be a little misleading, as the concept has little to do with the SQL language - the main difference is rather the representation of the data. Why do we need such new databases when we already have the relational model and relational databases? A small database with a simple schema can be easily described in the relational model. But our applications evolve: new functionalities are added, making the schema more complex. More and more data is added to the database making the maintenance inefficient.</p>
+<p>Relational databases need constant schema changes and updates, which can be cumbersome. Constant data migrations can be a pain. Furthermore, relational databases can be bottlenecks from the scalability perspective - but we will not discuss this aspect in more detail.</p>
+<p>NoSQL databases offer a solution to these problems. <strong>Instead of the rigid schema</strong>, NoSQL databases have <strong>a flexible schema</strong>. In other words, we will require less consistency regarding the data.</p>
+<h2 id="basic-concepts-of-mongodb">Basic concepts of MongoDB<a class="headerlink" href="#basic-concepts-of-mongodb" title="Permanent link">&para;</a></h2>
+<p>MongoDB is a client-server database system that has a non-relational schema. The <em>mongod</em> (Mongo daemon) process on the right is the database server. The other side is our application, where a client connects to the database using a network connection. This connection uses the so-called <em>wire protocol</em>, which is a MongoDB proprietary communication protocol. The protocol transmits data and queries in JSON format represented in a binary fashion as BSON.</p>
+<p><img alt="MongoDb architecture" src="images/mongodb_architecture.png" /></p>
+<h3 id="logical-structure">Logical structure<a class="headerlink" href="#logical-structure" title="Permanent link">&para;</a></h3>
+<p>The top layer of a MongoDB database system is the so-called <em>cluster</em>. The servers are organized into these clusters. We will not discuss clusters here; these are tools for enabling scalability. The databases are the <em>mongod</em> processes, which host the databases. A MongoDB server/cluster stores multiple databases. And the databases contain <em>collections</em>. If we want to map these concepts to a relational model, then the collections correspond to the tables, and the rows/records in a table correspond to the <em>documents</em> of the collection.</p>
+<p>Let us investigate these further.</p>
+<h4 id="document">Document<a class="headerlink" href="#document" title="Permanent link">&para;</a></h4>
+<p>The document is the unit of storage in MongoDB. A document is a JSON (-like) file: it contains key-value pairs. MongoDB itself stores it as a BSON in binary format.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;sue&quot;</span><span class="p">,</span>
+    <span class="n">age</span><span class="p">:</span> <span class="m">26</span><span class="p">,</span>
+    <span class="n">status</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span>
+    <span class="n">groups</span><span class="p">:</span> <span class="p">[</span> <span class="s">&quot;news&quot;</span><span class="p">,</span> <span class="s">&quot;sports&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The keys can have arbitrary names with a few limitations, such that they have to be unique and cannot begin with the <code>$</code> character. The names are case sensitive. Values can be string, number, date, binary, embedded document, <code>null</code>, or even as the <code>groups</code> in the example shows, an array - a relational database cannot represent an array so simple.</p>
+<p>Mapping to the object-oriented world, a document is an object. MongoDB documents have a maximum size of 16MB and this is not a configurable parameter.</p>
+<h4 id="collection">Collection<a class="headerlink" href="#collection" title="Permanent link">&para;</a></h4>
+<p>Collections are analogous to relational database tables, but without a schema. Collections need no definition; the system creates them upon first use. Collections are a place for "similar" documents. Although there is no schema, <em>indexes</em> can still be defined on the collections to support fast searching. Since there is no schema, there are no domain integrity requirements enforced either.</p>
+<h4 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h4>
+<p>The database has the same purpose as in the relational model. It gathers all data of our application. Access management is also configured on the database level. The name of databases is case sensitive and lowercase by convention.</p>
+<h4 id="key">Key<a class="headerlink" href="#key" title="Permanent link">&para;</a></h4>
+<p>The <code>_id</code> field is the unambiguous identifier of each document. Other keys cannot be defined. This field does not need to be specified during insert; the client driver or the server can generate a new value (a 12 byte <code>ObjectId</code> by default).</p>
+<p>Uniqueness can be guaranteed with the use of indices. We can define an index and mark it as unique to create a key-like field. These unique indices can contain multiple fields too.</p>
+<p>There are no references to keys in MongoDB. A document can reference another document by copying it's key, but the system has no consistency guarantees for these (e.g., the referenced document can be deleted).</p>
+<h2 id="mongodb-operations-and-the-mongodb-net-driver">MongoDB operations and the MongoDB .NET Driver<a class="headerlink" href="#mongodb-operations-and-the-mongodb-net-driver" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p>The following code snippets use the official Nuget package <a href="https://www.nuget.org/packages/mongodb.driver">MongoDB.Driver</a>.</p>
 </div>
