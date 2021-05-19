@@ -1,0 +1,1421 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Asynchronous queries and DTOs (sample WebAPI application) - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ef5552">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#asynchronous-queries-and-dtos-sample-webapi-application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Asynchronous queries and DTOs (sample WebAPI application)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Data-driven systems
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../db/" class="md-tabs__link">
+        Database
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link md-tabs__link--active">
+        Lecture notes
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../seminar/transactions/" class="md-tabs__link">
+        Seminars
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../homework/" class="md-tabs__link">
+        Homework
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Data-driven systems
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Database
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Database" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/" class="md-nav__link">
+        Sample database scheme
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/mssql/" class="md-nav__link">
+        Using Microsoft SQL Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/mongodb/" class="md-nav__link">
+        Using MongoDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" class="md-nav__link">
+        Sample database: mssql.sql
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" class="md-nav__link">
+        Sample database: mongo.js
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Lecture notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lecture notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Data-driven systems and the thee- or multi-tier architecture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transactions/" class="md-nav__link">
+        Transactions in databases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mssql/sql/" class="md-nav__link">
+        SQL language, MSSQL platform-specific SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mssql/server-side-programming/" class="md-nav__link">
+        Microsoft SQL Server programming
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linq/" class="md-nav__link">
+        LINQ: Language Integrated Query
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongodb/" class="md-nav__link">
+        MongoDB basics, operations, and the MongoDB .NET Driver
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../di/" class="md-nav__link">
+        Dependency Injection ASP.NET Core environment
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Asynchronous queries and DTOs (sample WebAPI application)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Asynchronous queries and DTOs (sample WebAPI application)
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-execution" class="md-nav__link">
+    Asynchronous execution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-database-of-the-sample-application" class="md-nav__link">
+    The database of the sample application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-application" class="md-nav__link">
+    Server application
+  </a>
+  
+    <nav class="md-nav" aria-label="Server application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-c-model-of-the-database-tables" class="md-nav__link">
+    Create the C# model of the database tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-database-context" class="md-nav__link">
+    Create the database context
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-data-transfer-objects" class="md-nav__link">
+    Defining Data Transfer Objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-webapi-controller" class="md-nav__link">
+    Creating the WebApi controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/bmeviauac01/rest-webapi-sample" class="md-nav__link">
+        REST and WebAPI sample app (GitHub)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/bmeviauac01/todoapi-di-sample" class="md-nav__link">
+        ASP.NET Core DI sample app (GitHub)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" class="md-nav__link">
+        Sample three-tier webapp (GitHub)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Seminars
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Seminars
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/transactions/" class="md-nav__link">
+        Transactions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/mssql/" class="md-nav__link">
+        Microsoft SQL Server programming
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/ef/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/mongodb/" class="md-nav__link">
+        MongoDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/jpa/" class="md-nav__link">
+        JPA & Spring Data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/rest/" class="md-nav__link">
+        REST API & ASP.NET Web API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Homework
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Homework" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Homework
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/" class="md-nav__link">
+        Optional homework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/mssql/" class="md-nav__link">
+        Exercise: MSSQL server-side programming
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/adonet/" class="md-nav__link">
+        Exercise: ADO.NET data access
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/ef/" class="md-nav__link">
+        Exercise: Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/mongodb/" class="md-nav__link">
+        Exercise: MongoDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/rest/" class="md-nav__link">
+        Exercise: REST API and Web API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/GitHub/" class="md-nav__link">
+        Submitting your work (GitHub)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/GitHub-Actions/" class="md-nav__link">
+        Using GitHub Actions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/VisualStudio/" class="md-nav__link">
+        Install Visual Studio
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-execution" class="md-nav__link">
+    Asynchronous execution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-database-of-the-sample-application" class="md-nav__link">
+    The database of the sample application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-application" class="md-nav__link">
+    Server application
+  </a>
+  
+    <nav class="md-nav" aria-label="Server application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-c-model-of-the-database-tables" class="md-nav__link">
+    Create the C# model of the database tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-database-context" class="md-nav__link">
+    Create the database context
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-data-transfer-objects" class="md-nav__link">
+    Defining Data Transfer Objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-webapi-controller" class="md-nav__link">
+    Creating the WebApi controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-code" class="md-nav__link">
+    Sample code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/lecture-notes/async/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="asynchronous-queries-and-dtos-sample-webapi-application">Asynchronous queries and DTOs (sample WebAPI application)<a class="headerlink" href="#asynchronous-queries-and-dtos-sample-webapi-application" title="Permanent link">&para;</a></h1>
+<p>This topic discusses <strong>server-side asynchronous queries</strong> and the use of <strong>DTOs (Data Transfer Objects)</strong> through an example application. The web application is an ASP.NET Core WebApi server using Entity Framework data access. The functionality discussed here is the management of a webshop cart.</p>
+<div class="admonition quote">
+<p class="admonition-title">Author</p>
+<p>The original author of this lecture note in Hungarian is Máté ZERGI.</p>
+</div>
+<h2 id="asynchronous-execution">Asynchronous execution<a class="headerlink" href="#asynchronous-execution" title="Permanent link">&para;</a></h2>
+<p>Most of our web applications use a database. When communicating with the database, we have to be aware that:</p>
+<ul>
+<li>the database might not always be available,</li>
+<li>the connection might not be stable and fast,</li>
+<li>and the database might be slow to respond.</li>
+</ul>
+<p>Therefore, we need to prepare to wait for the results queried from the database in our application. Using <strong>asynchronous</strong> techniques in the web application, we can make sure that the resources, such as the web server's threads, are used efficiently even while waiting for the database.</p>
+<div class="admonition warning">
+<p class="admonition-title">Asynchronous execution vs. concurrent execution</p>
+<p>Asynchronous execution is <strong>not the same</strong> as concurrent execution. A web server always processes incoming requests concurrently (i.e., multiple requests are in the system at all times). On the other hand, asynchronous execution is about handling a single request efficiently by not blocking any thread for waiting to complete an I/O operation (such as database access, file access, or network communication).</p>
+</div>
+<h2 id="the-database-of-the-sample-application">The database of the sample application<a class="headerlink" href="#the-database-of-the-sample-application" title="Permanent link">&para;</a></h2>
+<p>The sample application presented here uses a simplified database structure as follows.</p>
+<p><img alt="Database structure" src="images/dbdiagram.png" /></p>
+<div class="admonition note">
+<p>For simplicity, the <em>UserId</em> of the carts is not a foreign key to a <em>Users</em> table, but a fixed constant of 1. Obviously, in a real-life example, <em>UserId</em> would be a foreign key.</p>
+</div>
+<p>The <em>Products</em> stores the things the webshop sells; the <em>Manufactureres</em> contain the producers of these products; finally, <em>OrderItems</em> stores the content of the cart.</p>
+<h2 id="server-application">Server application<a class="headerlink" href="#server-application" title="Permanent link">&para;</a></h2>
+<p>We would like to create a REST-compatible service for managing the webshop cart using ASP.NET Core WebApi and Entity Framework. Let us follow these steps:</p>
+<ol>
+<li>Create the C# model of the database tables,</li>
+<li>Create the database context,</li>
+<li>Create Data Transfer Objects that represent the information queried by the client in a format convenient for the client,</li>
+<li>Create WebApi controllers</li>
+</ol>
+<p>We will go through each of these steps.</p>
+<h3 id="create-the-c-model-of-the-database-tables">Create the C# model of the database tables<a class="headerlink" href="#create-the-c-model-of-the-database-tables" title="Permanent link">&para;</a></h3>
+<p>The C# classes that map the database tables are usually placed into a folder often called <em>Models</em> in ASP.NET Core.</p>
+<p>The following is the class for the <em>Products</em> table.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Product</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ManufacturerID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following is the class for the <em>Manufacturers</em> table.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Manufacturer</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following is the class for the <em>OrderItems</em> table.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">OrderItem</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ProductID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">CartID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Pieces</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following is the class for the <em>Carts</em> table.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Cart</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">UserID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note, that the sole purpose of these classes is to map the data exactly as in the database.</p>
+<h3 id="create-the-database-context">Create the database context<a class="headerlink" href="#create-the-database-context" title="Permanent link">&para;</a></h3>
+<p>After mapping the tables, we can now create the class that will represent our database: the <em>DbContext</em> class. This class must inherit from the Entity Framework Core <em>DbContext</em> class.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">WebshopContext</span> <span class="p">:</span> <span class="n">DbContext</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">WebshopContext</span><span class="p">(</span><span class="n">DbContextOptions</span><span class="p">&lt;</span><span class="n">WebshopContext</span><span class="p">&gt;</span> <span class="n">options</span><span class="p">)</span>
+            <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;</span> <span class="n">Products</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">Manufacturer</span><span class="p">&gt;</span> <span class="n">Manufacturers</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">Cart</span><span class="p">&gt;</span> <span class="n">Carts</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">OrderItem</span><span class="p">&gt;</span> <span class="n">OrderItems</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Each table in the database corresponds to a <em>DbSet</em> property as defined above. Each <em>DbSet</em> specified the type of the entity it stores; e.g., <code>DbSet&lt;Products&gt;</code> will store entities of type <code>Product</code>.</p>
+<p>The <code>DbContextOptions</code> configures the access to the database, such as the connection string. This is usually configured in the <code>Startup</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="c1">// This method is called by the runtime to populate the services of the DI container</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddDbContext</span><span class="p">&lt;</span><span class="n">WebshopContext</span><span class="p">&gt;(</span><span class="n">opt</span> <span class="p">=&gt;</span> 
+                <span class="n">opt</span><span class="p">.</span><span class="n">UseSqlServer</span><span class="p">(</span><span class="s">@&quot;Data Source=(localdb)\mssqllocaldb;Initial Catalog=Webshop;Integrated Security=True&quot;</span><span class="p">));</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="defining-data-transfer-objects">Defining Data Transfer Objects<a class="headerlink" href="#defining-data-transfer-objects" title="Permanent link">&para;</a></h3>
+<p>We have the direct mapping of the database into C# classes. Let us now consider how does the cart of the webshop usually look like: it may contain multiple items. While the <code>OrderItem</code> class can represent a single item, our cart is a list of items. This list of items is what we shall describe with a so-called <em>Data Transfer Object</em>: it is a class that gathers data <strong>for the client</strong>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Definition: Data Transfer Object</p>
+<p>A container object that transfers data between application (here: between the client and the server).</p>
+</div>
+<p>With the use of DTOs, we can pack all necessary information into one object, making it not only more convenient for the client, but also better in terms of performance:</p>
+<ul>
+<li>We only send information to the client that it really needs.</li>
+<li>Furthermore, a DTO can gather various information and send them all in one go.</li>
+</ul>
+<p>Let us consider, what information do we need to display the cart in the client: the products, the amount in the cart for each, and the total number of items.</p>
+<ol>
+<li>
+<p>Class <code>OrderItem</code> has superfluous data that the client does not need: <code>CartID</code> and <code>ID</code>. Removing these properties we can arrive at a class very similar to <code>OrderItem</code>; but it is still just <strong>one</strong> item of the cart. The class we can create this way is called <code>CartItem</code>.</p>
+</li>
+<li>
+<p>This <code>CartItem</code> has a<code>Product</code> that also stores some unnecessary data, and some properties that might need <strong>adding</strong>. For example, the manufacturer of the <code>Product</code> should contain the name of the manufacturer and not the <code>ManufacturerID</code>. Let us, therefore, create a new <code>Product</code> class, and our <code>CartItem</code> should store this class instead.</p>
+</li>
+<li>
+<p>These <code>CartItem</code> objects are gathered in a <strong>list</strong>, and let us add the total number of items in the cart. This will give us our last DTO, the <code>UserCart</code>. An instance of this <code>UserCart</code> is what that the client will receive.</p>
+</li>
+</ol>
+<p>The DTO classes are usually separated from the database entities. Let us put these classes in a <em>DTOs</em> folder.</p>
+<p><code>CartItem</code> class contains the data from an <code>OrderItem</code> without the unnecessary properties.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.DTOs</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">CartItem</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">Product</span> <span class="n">Product</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// This is the product that no longer has the ID of the manufacturer, but the name instead</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Amount</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// The amount in the cart</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The the matching Product DTO:</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.DTOs</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Product</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">ProductName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// The product name, e.g., AB123 Full HD TV</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Manufacturer</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// A !!name!! of the manufacturer, e.g., BMETV</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Price of the product</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// ID of the product</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Why is there an ID here?</p>
+<p>We might be curious why there is an <code>ID</code> here. An item in the cart is identified by the product itself. E.g., further details of the product in the cart can be queried by knowing this ID. We could create a new identifier for the item in the cart; but the product's ID is sufficient.</p>
+</div>
+<p><code>UserCart</code> collects all items, and adds a total number.</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nn">WebshopApi.DTOs</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">UserCart</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">List</span> <span class="p">&lt;</span><span class="n">CartItem</span><span class="p">&gt;</span> <span class="n">CartPieces</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">NumberOfItems</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p>By storing the <code>CartItem</code>s in a list, we make the job of the client easier. When rendering the contents of the cart the client code only needs to iterate through the array contents.</p>
+</div>
+<p>This <code>UserCart</code> is created by gathering the required information, such as the product details, then adding up the number of items.</p>
+<h3 id="creating-the-webapi-controller">Creating the WebApi controller<a class="headerlink" href="#creating-the-webapi-controller" title="Permanent link">&para;</a></h3>
+<p>The controllers are usually placed into the <em>Controllers</em> folder. Here, we have a single controller that uses the <code>WebshopDbContext</code> directly and handles the HTTP queries.</p>
+<p>This is where we can introduce asynchronous queries. Let us see an example right away:</p>
+<p>The following is a GET query to fetch all carts.</p>
+<div class="highlight"><pre><span></span><code><span class="na">[HttpGet]</span>
+<span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Cart</span><span class="p">&gt;&gt;&gt;</span> <span class="n">GetCarts</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">carts</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">Carts</span><span class="p">.</span><span class="n">ToListAsync</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">carts</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Let us note the <code>async</code> keyword in the declaration and the <code>Task</code> return type, along with the <code>await</code> instruction in the body. Together, these are called <strong>async-await</strong>. Let us make sense of all these:</p>
+<ol>
+<li>The method returns a list of <code>Cart</code> instances, that is, <code>IEnumerable&lt;Cart&gt;</code>;</li>
+<li>Which, according to WebApi controller conventions, is wrapped in an <code>ActionResult</code>;</li>
+<li>And this whole thing is wrapped in a <code>Task</code>. This one is due to the asynchronous behavior.</li>
+</ol>
+<p>Although this seems complicated, every part of this is for a different reason. Let us examine the asynchronous behavior: the <code>Task</code> type, and the <code>await</code> keyword. This definition of the method yields a so-called <em>promise</em> (some languages use this terminology) that represents the result of a task that will be completed in the future.</p>
+<p>Why do we need this? Because this makes the execution of the controller method asynchronous. When the execution arrives at an <code>await</code> keyword, the thread that processes the request, will stop further processing of this query and will start processing a new query instead. Ok, but again, why? Because we know that the operation "behind" the <code>await</code> will take time: it has to go to the database and fetch data from there. If the thread stopped here to wait for the result, it would be wasting resources. Instead of having the thread wait for the result, the task is handed off to a system in the background (the operating system and the .NET asynchronous I/O subsystem - will not go into details here), and we request notification when the results are available. Once this happens (the results from the database are, in fact, ready), the processing of the query will continue.</p>
+<p>In other words, the threads used by our application will always do useful work instead of waiting (or being suspended due to waiting). Consequently, this means that serving the HTTP requests need fewer operating system threads, therefore making better use of available computational resources.</p>
+<p>The previous method can be simplified in syntax by getting rid of the local variable and returning the <code>Task</code> directly. Functionally, this implementation works (almost) identically, but the one above makes the explanation easier.</p>
+<div class="highlight"><pre><span></span><code><span class="na">[HttpGet]</span>
+<span class="k">public</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Carts</span><span class="p">&gt;&gt;&gt;</span> <span class="n">GetCarts</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">_context</span><span class="p">.</span><span class="n">Carts</span><span class="p">.</span><span class="n">ToListAsync</span><span class="p">();</span> <span class="c1">// no await and the method declaration has no async</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">The ***Async methods</p>
+<p>The methods to fetch data from the database (e.g., <code>ToList</code>, <code>First</code>, <code>All</code>, <code>Find</code>, etc.) all have their <code>...Async</code> pairs. These methods provide the basis for asynchronous execution.</p>
+<p>We will not discuss the execution in more details. What we need to remember, is that in order for our controller method to be asynchronous, there must be an asynchronous operation "underneath" (here: in Entity Framework).</p>
+</div>
+<p>Let us also see a complex example: gather all data of the cart:</p>
+<div class="highlight"><pre><span></span><code><span class="na">[HttpGet(&quot;{id}&quot;)]</span>
+<span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&lt;</span><span class="n">UserCart</span><span class="p">&gt;&gt;</span> <span class="n">GetCart</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// asynchronous query to find the cart</span>
+    <span class="kt">var</span> <span class="n">cartRecord</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">Carts</span><span class="p">.</span><span class="n">FindAsync</span><span class="p">(</span><span class="n">id</span><span class="p">);</span> 
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">cartRecord</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">NotFound</span><span class="p">();</span>
+
+    <span class="c1">// build the query</span>
+    <span class="kt">var</span> <span class="n">productsquery</span> <span class="p">=</span>
+        <span class="k">from</span> <span class="n">p1</span> <span class="k">in</span> <span class="n">_context</span><span class="p">.</span><span class="n">Products</span>
+        <span class="k">join</span> <span class="n">m1</span> <span class="k">in</span> <span class="n">_context</span><span class="p">.</span><span class="n">Manufacturers</span> <span class="k">on</span> <span class="n">p1</span><span class="p">.</span><span class="n">ManufacturerID</span> <span class="k">equals</span> <span class="n">m1</span><span class="p">.</span><span class="n">ID</span>
+        <span class="k">select</span> <span class="k">new</span> <span class="nf">Product</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">m1</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span> <span class="c1">// create the Product DTO</span>
+    <span class="c1">// asynchronous evaluation</span>
+    <span class="kt">var</span> <span class="n">products</span> <span class="p">=</span> <span class="k">await</span> <span class="n">productsquery</span><span class="p">.</span><span class="n">ToListAsync</span><span class="p">().</span><span class="n">ConfigureAwait</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+    <span class="c1">// asynchronous request to get order items</span>
+    <span class="kt">var</span> <span class="n">orderitemsquery</span> <span class="p">=</span> <span class="k">from</span> <span class="n">oi</span> <span class="k">in</span> <span class="n">_context</span><span class="p">.</span><span class="n">OrderItems</span>
+                          <span class="k">where</span> <span class="n">oi</span><span class="p">.</span><span class="n">CartID</span> <span class="p">==</span> <span class="n">cartRecord</span><span class="p">.</span><span class="n">ID</span>
+                          <span class="k">select</span> <span class="n">oi</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">orderitems</span> <span class="p">=</span> <span class="k">await</span> <span class="n">orderitemsquery</span><span class="p">.</span><span class="n">ToListAsync</span><span class="p">().</span><span class="n">ConfigureAwait</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+    <span class="c1">// further operations are synchronous, as every result in in memory already</span>
+
+    <span class="c1">// Find the products in the cart </span>
+    <span class="c1">// match them to the order items and crate a CartItem DTO</span>
+    <span class="kt">var</span> <span class="n">cartitems</span> <span class="p">=</span> <span class="n">products</span><span class="p">.</span><span class="n">Join</span><span class="p">(</span><span class="n">orderitems</span><span class="p">,</span> <span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">oi</span> <span class="p">=&gt;</span> <span class="n">oi</span><span class="p">.</span><span class="n">ProductID</span><span class="p">,</span>
+                                  <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">CartItem</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">Pieces</span><span class="p">)).</span><span class="n">ToList</span><span class="p">();</span>
+
+    <span class="c1">// Finally, the result is a UserCart DTO</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">UserCart</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">CartPieces</span> <span class="p">=</span> <span class="n">cartitems</span><span class="p">,</span>
+        <span class="n">NumberOfItems</span> <span class="p">=</span> <span class="n">cartitems</span><span class="p">.</span><span class="n">Count</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note, how all asynchronous method calls are <code>await</code>-ed! But once we have all the data from the database, we can continue in a synchronous fashion.</p>
+<div class="admonition info">
+<p class="admonition-title">The <code>ConfigureAwait</code> method</p>
+<p>The <code>ConfigureAwait(false)</code> gives us further options regarding performance optimization. With this option we signal that the <code>await</code>-ed result set can be processed by <em>any</em> available thread, not just the one that started the processing originally. In server-side applications this is usually the correct behavior, however, this is not true for all asynchronous operations (e.g., UI threads are usually special and in that case not any thread can continue). For more details, see: <a href="https://devblogs.microsoft.com/dotnet/configureawait-faq/">https://devblogs.microsoft.com/dotnet/configureawait-faq/</a>.</p>
+</div>
+<p>Finally, let us see an example using <code>FirstOrDefaultAsync</code> to process a POST query that alters the contents of the cart (adds or removed items):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// DTO describing the inputs of the operation</span>
+<span class="k">namespace</span> <span class="nn">WebshopApi.Models</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">PostCartItemArgs</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">CartId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">ProductId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Amount</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//////////////////////////////////////////////////////////////////////////////</span>
+
+<span class="c1">// The HTTP handler in the controller</span>
+<span class="na">[HttpPost]</span>
+<span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">PostCartItem</span><span class="p">([</span><span class="n">FromBody</span><span class="p">]</span> <span class="n">PostCartItemArgs</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// find the cart by ID</span>
+    <span class="kt">var</span> <span class="n">cart</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">Carts</span><span class="p">.</span><span class="n">FindAsync</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">CartId</span><span class="p">).</span><span class="n">ConfigureAwait</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">cart</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">NotFound</span><span class="p">();</span>
+
+    <span class="c1">// find the order items in this cart matching the provided product</span>
+    <span class="kt">var</span> <span class="n">orderitemquery</span> <span class="p">=</span> <span class="k">from</span> <span class="n">oi</span> <span class="k">in</span> <span class="n">_context</span><span class="p">.</span><span class="n">OrderItems</span>
+                         <span class="k">where</span> <span class="p">(</span><span class="n">oi</span><span class="p">.</span><span class="n">CartID</span> <span class="p">==</span> <span class="n">data</span><span class="p">.</span><span class="n">Id</span> <span class="p">&amp;&amp;</span> <span class="n">oi</span><span class="p">.</span><span class="n">ProductID</span> <span class="p">==</span> <span class="n">data</span><span class="p">.</span><span class="n">ProductId</span><span class="p">)</span>
+                         <span class="k">select</span> <span class="n">oi</span><span class="p">;</span>
+
+    <span class="c1">// FirstOrDefault so that if there is no match, the result is null</span>
+    <span class="kt">var</span> <span class="n">orderitem</span> <span class="p">=</span> <span class="k">await</span> <span class="n">orderitemquery</span><span class="p">.</span><span class="n">FirstOrDefaultAsync</span><span class="p">().</span><span class="n">ConfigureAwait</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">orderitem</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// If there was no such item in the cart, add a new OrderItem</span>
+        <span class="n">_context</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">OrderItems</span> <span class="p">{</span> <span class="n">CartID</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">Amount</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">Amount</span><span class="p">,</span> <span class="n">ProductID</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">ProductId</span> <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// If there is an item in the cart</span>
+        <span class="n">orderitem</span><span class="p">.</span><span class="n">Amount</span> <span class="p">+=</span> <span class="n">data</span><span class="p">.</span><span class="n">Amount</span><span class="p">;</span>
+
+        <span class="c1">// If the amount is zero, it means, removed from the cart</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">orderitem</span><span class="p">.</span><span class="n">Amount</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+            <span class="n">_context</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">orderitem</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">();</span> <span class="c1">// await here too, since this will need to go to the database</span>
+    <span class="k">return</span> <span class="nf">NoContent</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Who waits for the <code>Task</code> result of the controller?</p>
+<p>Every <code>async</code> method has to be <code>await</code>-ed somewhere. When it comes to a WebApi controller, it will be the ASP.NET Core framework that invokes this method, and it will "wait" for the result before serializing it to JSON to send to the client.</p>
+</div>
+<h2 id="sample-code">Sample code<a class="headerlink" href="#sample-code" title="Permanent link">&para;</a></h2>
+<p>The source of the sample application is available here: <a href="https://github.com/mzergi/WebshopApi/">https://github.com/mzergi/WebshopApi/</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="Footer"
+    >
+
+      <!-- Link to previous page -->
+      
+        <a
+          href="../di/"
+          class="md-footer__link md-footer__link--prev"
+          rel="prev"
+        >
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Dependency Injection ASP.NET Core environment
+            </div>
+          </div>
+        </a>
+      
+
+      <!-- Link to next page -->
+      
+        <a
+          href="../../seminar/transactions/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Transactions
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+      </div>
+
+      <!-- Social links -->
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>
