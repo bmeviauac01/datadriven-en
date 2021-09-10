@@ -1279,7 +1279,7 @@
 <p>This concurrency issue is analogous to the mutual exclusion problem known in operating systems and the various programming languages and frameworks. Concurrent data access in these scenarios usually involve mutual access to shared memory space, and the solution is ensuring mutual exclusion using some kind of guard.</p>
 <p>In database management systems, concurrency is related to the records (rows) of database tables, and the guards are transactions.</p>
 <h2 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h2>
-<div class="admonition quote">
+<div class="admonition abstract">
 <p class="admonition-title">Definition</p>
 <p>A transaction is a logical unit of a process, a series of operations that only make sense together.</p>
 </div>
@@ -1327,8 +1327,8 @@
 <p>The transaction that read the record in the second step is now working with invalid, non-existent data. It should not have read it.</p>
 <p><img alt="Dirty read" src="images/dirty-read.png" /></p>
 <div class="admonition quote">
-<p class="admonition-title">Source of images</p>
-<p><a href="https://vladmihalcea.com/2014/01/05/a-beginners-guide-to-acid-and-database-transactions/">https://vladmihalcea.com/2014/01/05/a-beginners-guide-to-acid-and-database-transactions/</a></p>
+<p class="admonition-title">Source</p>
+<p>Source of images: <a href="https://vladmihalcea.com/2014/01/05/a-beginners-guide-to-acid-and-database-transactions/">https://vladmihalcea.com/2014/01/05/a-beginners-guide-to-acid-and-database-transactions/</a></p>
 </div>
 <div class="admonition note">
 <p>Dirty read should almost always be avoided.</p>
