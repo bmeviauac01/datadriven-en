@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.5">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.be71726b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.802231af.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -781,13 +781,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-tools" class="md-nav__link">
-    Required tools
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#exercise-0-neptun-code" class="md-nav__link">
     Exercise 0: Neptun code
   </a>
@@ -908,13 +901,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-tools" class="md-nav__link">
-    Required tools
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#exercise-0-neptun-code" class="md-nav__link">
     Exercise 0: Neptun code
   </a>
@@ -955,35 +941,11 @@
                 <h1 id="exercise-entity-framework">Exercise: Entity Framework<a class="headerlink" href="#exercise-entity-framework" title="Permanent link">&para;</a></h1>
 <p>This exercise is optional. You may earn <strong>2+2 points</strong> by completing this exercise.</p>
 <p>Use GitHub Classroom to get your git repository. You can find the <strong>invitation link in Moodle</strong>. Clone the repository created via the link. It contains a skeleton and the expected structure of your submission. After completing the exercises and verifying them, commit and push your submission.</p>
+<p>Check the required software and tools <a href="../#required-tools">here</a>. This homework uses MSSQL database.</p>
 <div class="admonition warning">
 <p class="admonition-title">Entity Framework <em>Core</em></p>
 <p>We are using Entity Framework <strong>Core</strong> in this exercise. This is different from Entity Framework used in the seminar exercises; this is a platform-independent technology.</p>
 </div>
-<h2 id="required-tools">Required tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Windows, Linux, or macOS: All tools are platform-independent, or a platform-independent alternative is available.</li>
-<li>Microsoft SQL Server<ul>
-<li>The free Express version is sufficient, or you may also use <em>localdb</em> installed with Visual Studio</li>
-<li>A <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup">Linux version</a> is also available.</li>
-<li>On macOS, you can use Docker.</li>
-</ul>
-</li>
-<li><a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms">SQL Server Management Studio</a>, or you may also use the platform-independent <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download">Azure Data Studio</a> is</li>
-<li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
-<li>GitHub account and a git client</li>
-<li>Microsoft Visual Studio 2019 <a href="../VisualStudio/">with the settings here</a><ul>
-<li>When using Linux or macOS, you can use Visual Studio Code, the .NET Core SDK, and <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/">dotnet CLI</a>.</li>
-</ul>
-</li>
-<li>
-<p><a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">.NET Core <strong>3.1</strong> SDK</a></p>
-<div class="admonition warning">
-<p class="admonition-title">.NET Core 3.1</p>
-<p>Mind the version! You need .NET Core SDK version <strong>3.1</strong> to solve these exercises.</p>
-<p>On Windows, it might already be installed along with Visual Studio (see <a href="../VisualStudio/#check-and-install-net-core-sdk">here</a> how to check it); if not, use the link above to install (the SDK and <em>not</em> the runtime). You need to install it manually when using Linux or macOS.</p>
-</div>
-</li>
-</ul>
 <h2 id="exercise-0-neptun-code">Exercise 0: Neptun code<a class="headerlink" href="#exercise-0-neptun-code" title="Permanent link">&para;</a></h2>
 <p>Your very first task is to type your Neptun code into <code>neptun.txt</code> in the root of the repository.</p>
 <h2 id="exercise-1-database-mapping-using-code-first-model-and-queries-2-points">Exercise 1: Database mapping using Code First model and queries (2 points)<a class="headerlink" href="#exercise-1-database-mapping-using-code-first-model-and-queries-2-points" title="Permanent link">&para;</a></h2>
@@ -1047,7 +1009,8 @@
 <p>Implement the methods of class `ProductRepository.</p>
 <ul>
 <li><code>List</code> shall return all products mapped to instances of <code>Model.Product</code>.</li>
-<li><code>Insert</code> shall insert a new product into the database. This method shall find the matching <code>VAT</code> record in the database based on the tax percentage value in the model class; if there is no match, it shall insert a new VAT record too!</li>
+<li><code>Insert</code> shall insert a new product into the database. This method shall find the matching <code>VAT</code> record in the database based on the tax percentage value in the model class; if there is no match, it shall insert a new VAT record too! The method shall return the ID of the newly inserted ID (as generated by the database).</li>
+<li><code>Delete</code> should delete a product record matched by the ID. You should only delete the product record - no referenced records shall be removed. If delete is blocked by foreign keys, let the caller handle the error. The return value of the method should be <em>false</em> if no record with the specified ID exist; a <em>true</em> return value shall indicate successful deletion.</li>
 <li>Do not change the definition of class <code>ProductRepository</code> (do not change the name of the class, nor the constructor or method declarations); only write the method bodies.</li>
 <li>In the repository code use <code>ProductRepository.createDbContext()</code> to instantiate the <em>DbContext</em>  (do <strong>not</strong> use <code>TestConnectionStringHelper</code> here).</li>
 </ul>
@@ -1177,7 +1140,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56a63758.min.js"></script>
+      <script src="../../assets/javascripts/bundle.756773cc.min.js"></script>
       
     
   </body>
