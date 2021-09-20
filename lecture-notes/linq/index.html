@@ -653,8 +653,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#linq-expressions-and-iqueryable" class="md-nav__link">
-    LINQ expressions and IQueryable
+  <a href="#linq-expressions-and-ienumerableiqueryable" class="md-nav__link">
+    LINQ expressions and IEnumerable/IQueryable
   </a>
   
 </li>
@@ -1142,8 +1142,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#linq-expressions-and-iqueryable" class="md-nav__link">
-    LINQ expressions and IQueryable
+  <a href="#linq-expressions-and-ienumerableiqueryable" class="md-nav__link">
+    LINQ expressions and IEnumerable/IQueryable
   </a>
   
 </li>
@@ -1296,9 +1296,8 @@
 <span class="k">join</span> <span class="n">v</span> <span class="k">in</span> <span class="n">vat</span> <span class="k">on</span> <span class="n">p</span><span class="p">.</span><span class="n">VATID</span> <span class="k">equals</span> <span class="n">v</span><span class="p">.</span><span class="n">Id</span>
 <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">FullPrice</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">*</span> <span class="n">v</span><span class="p">.</span><span class="n">Percentage</span> <span class="p">}</span>
 </code></pre></div>
-<h2 id="linq-expressions-and-iqueryable">LINQ expressions and IQueryable<a class="headerlink" href="#linq-expressions-and-iqueryable" title="Permanent link">&para;</a></h2>
-<p>Let us consider a simple expression: <code>products.Where(p =&gt; p.Price &lt; 1000)</code>. This expression is not yet a result set as it <strong>has not yet been evaluated</strong>. The result of a LINQ queries are represented as an <code>IQueryable&lt;T&gt;</code> generic interface, which does not hold the result, only the descriptor of the query.</p>
-<p>This is called <em>deferred execution</em>, as the execution will only happen when the result is effectively used:</p>
+<h2 id="linq-expressions-and-ienumerableiqueryable">LINQ expressions and IEnumerable/IQueryable<a class="headerlink" href="#linq-expressions-and-ienumerableiqueryable" title="Permanent link">&para;</a></h2>
+<p>Depending on the data source we are using Linq on the result of a query, such as <code>products.Where(p =&gt; p.Price &lt; 1000)</code> yields a variable of type <code>IEnumerable&lt;T&gt;</code> or <code>IQueryable&lt;T&gt;</code>. Neither of these contain the result sets; they are only descriptors, that is, the operation <strong>has not yet been evaluated yet</strong>. This is called <em>deferred execution</em>, as the execution will only happen when the result is effectively used:</p>
 <ul>
 <li>when the result set is iterated (e.g. <code>foreach</code>),</li>
 <li>when a specific item is accessed (see later, e.g. <code>.First()</code>),</li>
