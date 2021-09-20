@@ -529,13 +529,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#linq-expressions-and-iqueryable" class="md-nav__link">
-    LINQ expressions and IQueryable
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#linq-operations" class="md-nav__link">
     LINQ operations
   </a>
@@ -656,6 +649,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linq-expressions-and-iqueryable" class="md-nav__link">
+    LINQ expressions and IQueryable
+  </a>
   
 </li>
       
@@ -1018,13 +1018,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#linq-expressions-and-iqueryable" class="md-nav__link">
-    LINQ expressions and IQueryable
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#linq-operations" class="md-nav__link">
     LINQ operations
   </a>
@@ -1149,6 +1142,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linq-expressions-and-iqueryable" class="md-nav__link">
+    LINQ expressions and IQueryable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#more-information-and-further-examples" class="md-nav__link">
     More information and further examples
   </a>
@@ -1191,29 +1191,11 @@
 <span class="n">List</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;</span> <span class="n">products</span> <span class="p">=</span> <span class="p">...</span>
 <span class="n">List</span><span class="p">&lt;</span><span class="n">VAT</span><span class="p">&gt;</span> <span class="n">vat</span> <span class="p">=</span> <span class="p">...</span>
 </code></pre></div>
-<h2 id="linq-expressions-and-iqueryable">LINQ expressions and IQueryable<a class="headerlink" href="#linq-expressions-and-iqueryable" title="Permanent link">&para;</a></h2>
-<p>Let us consider a simple expression: <code>products.Where(p =&gt; p.Price &lt; 1000)</code>. This expression is not yet a result set as it <strong>has not yet been evaluated</strong>. The result of a LINQ queries are represented as an <code>IQueryable&lt;T&gt;</code> generic interface, which does not hold the result, only the descriptor of the query.</p>
-<p>This is called <em>deferred execution</em>, as the execution will only happen when the result is effectively used:</p>
-<ul>
-<li>when the result set is iterated (e.g. <code>foreach</code>),</li>
-<li>when a specific item is accessed (see later, e.g. <code>.First()</code>),</li>
-<li>when we as for a list instead (<code>.ToList()</code>).</li>
-</ul>
-<p>This operation is useful, because this allows us to chain LINQ operations after each other, such as:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">l</span> <span class="p">=</span> <span class="n">products</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">&lt;</span> <span class="m">1000</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="sc">&#39;s&#39;</span><span class="p">))</span>
-                <span class="p">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
-<span class="p">...</span>
-
-<span class="c1">// variable l does not contain the result</span>
-
-<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">x</span> <span class="k">in</span> <span class="n">l</span><span class="p">)</span> <span class="c1">// this is when the execution will happen</span>
-   <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<div class="admonition important">
+<p class="admonition-title"><code>System.Linq</code></p>
+<p>To access Linq functionality we need the <code>System.Linq</code> namespace:</p>
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Force evaluation</p>
-<p>If we want to force the execution at any given moment, we usually use <code>.ToList()</code>. But this has to be considered first and only used when necessary.</p>
 </div>
 <h2 id="linq-operations">LINQ operations<a class="headerlink" href="#linq-operations" title="Permanent link">&para;</a></h2>
 <p>The examples below, when available, show both syntaxes.</p>
@@ -1314,6 +1296,30 @@
 <span class="k">join</span> <span class="n">v</span> <span class="k">in</span> <span class="n">vat</span> <span class="k">on</span> <span class="n">p</span><span class="p">.</span><span class="n">VATID</span> <span class="k">equals</span> <span class="n">v</span><span class="p">.</span><span class="n">Id</span>
 <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">FullPrice</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">*</span> <span class="n">v</span><span class="p">.</span><span class="n">Percentage</span> <span class="p">}</span>
 </code></pre></div>
+<h2 id="linq-expressions-and-iqueryable">LINQ expressions and IQueryable<a class="headerlink" href="#linq-expressions-and-iqueryable" title="Permanent link">&para;</a></h2>
+<p>Let us consider a simple expression: <code>products.Where(p =&gt; p.Price &lt; 1000)</code>. This expression is not yet a result set as it <strong>has not yet been evaluated</strong>. The result of a LINQ queries are represented as an <code>IQueryable&lt;T&gt;</code> generic interface, which does not hold the result, only the descriptor of the query.</p>
+<p>This is called <em>deferred execution</em>, as the execution will only happen when the result is effectively used:</p>
+<ul>
+<li>when the result set is iterated (e.g. <code>foreach</code>),</li>
+<li>when a specific item is accessed (see later, e.g. <code>.First()</code>),</li>
+<li>when we as for a list instead (<code>.ToList()</code>).</li>
+</ul>
+<p>This operation is useful, because this allows us to chain LINQ operations after each other, such as:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">l</span> <span class="p">=</span> <span class="n">products</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">&lt;</span> <span class="m">1000</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="sc">&#39;s&#39;</span><span class="p">))</span>
+                <span class="p">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
+<span class="p">...</span>
+
+<span class="c1">// variable l does not contain the result</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">x</span> <span class="k">in</span> <span class="n">l</span><span class="p">)</span> <span class="c1">// this is when the execution will happen</span>
+   <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Force evaluation</p>
+<p>If we want to force the execution at any given moment, we usually use <code>.ToList()</code>. But this has to be considered first and only used when necessary.</p>
+</div>
 <h2 id="more-information-and-further-examples">More information and further examples<a class="headerlink" href="#more-information-and-further-examples" title="Permanent link">&para;</a></h2>
 <p>Lambda expressions: <a href="https://www.tutorialsteacher.com/linq/linq-lambda-expression">https://www.tutorialsteacher.com/linq/linq-lambda-expression</a></p>
 <p>Linq: <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/">https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/</a></p>
