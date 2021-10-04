@@ -857,8 +857,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upsert-replacing-a-non-existent-document" class="md-nav__link">
-    Upsert: replacing a non-existent document
+  <a href="#upsert-updating-or-inserting-a-document" class="md-nav__link">
+    Upsert: updating or inserting a document
   </a>
   
 </li>
@@ -1544,8 +1544,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upsert-replacing-a-non-existent-document" class="md-nav__link">
-    Upsert: replacing a non-existent document
+  <a href="#upsert-updating-or-inserting-a-document" class="md-nav__link">
+    Upsert: updating or inserting a document
   </a>
   
 </li>
@@ -1959,8 +1959,8 @@
                                    <span class="p">.</span><span class="n">AddToSet</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Categories</span><span class="p">,</span> <span class="s">&quot;On sale&quot;</span><span class="p">));</span>
 </code></pre></div>
 <p>Update operators change the documents atomically. Using them can eliminate some of the problems caused by concurrent data access.</p>
-<h4 id="upsert-replacing-a-non-existent-document"><em>Upsert</em>: replacing a non-existent document<a class="headerlink" href="#upsert-replacing-a-non-existent-document" title="Permanent link">&para;</a></h4>
-<p>During update operations, we have the option <em>upsert (update/insert)</em>. This means that either an insertion or an update is made, depending on whether the item was in the database. The default behavior is <em>not</em> to upsert, we must request it explicitly.</p>
+<h4 id="upsert-updating-or-inserting-a-document"><em>Upsert</em>: updating or inserting a document<a class="headerlink" href="#upsert-updating-or-inserting-a-document" title="Permanent link">&para;</a></h4>
+<p>During update operations, we have the option to <em>upsert (update/insert)</em>. This means that either an insertion or an update is made, depending on whether the item was in the database. The default behavior is <em>not</em> to upsert, we must request it explicitly.</p>
 <div class="highlight"><pre><span></span><code><span class="n">collection</span><span class="p">.</span><span class="n">ReplaceOne</span><span class="p">(</span>
     <span class="n">filter</span><span class="p">:</span> <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Id</span> <span class="p">==</span> <span class="k">new</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&quot;...&quot;</span><span class="p">),</span>
     <span class="n">replacement</span><span class="p">:</span> <span class="n">replacementObject</span><span class="p">,</span>
