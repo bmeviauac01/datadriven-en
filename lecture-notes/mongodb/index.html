@@ -794,8 +794,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#number-documents" class="md-nav__link">
-    Number documents
+  <a href="#number-of-documents" class="md-nav__link">
+    Number of documents
   </a>
   
 </li>
@@ -1481,8 +1481,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#number-documents" class="md-nav__link">
-    Number documents
+  <a href="#number-of-documents" class="md-nav__link">
+    Number of documents
   </a>
   
 </li>
@@ -1853,7 +1853,7 @@
 <p class="admonition-title">Paging issue</p>
 <p>The above paging mechanism is still not entirely correct. For example, if a product is deleted in between the query of the first and second pages, the products will shift by one, and there may be a product that will be skipped. This is, in fact, not a problem just with MongoDB. Consider how you would solve this problem.</p>
 </div>
-<h4 id="number-documents">Number documents<a class="headerlink" href="#number-documents" title="Permanent link">&para;</a></h4>
+<h4 id="number-of-documents">Number of documents<a class="headerlink" href="#number-of-documents" title="Permanent link">&para;</a></h4>
 <p>There are two ways to query the number of documents that match a query:</p>
 <div class="highlight"><pre><span></span><code><span class="n">collection</span><span class="p">.</span><span class="n">CountDocuments</span><span class="p">(</span><span class="n">Builders</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;.</span><span class="n">Filter</span><span class="p">.</span><span class="n">AnyEq</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Categories</span><span class="p">,</span> <span class="s">&quot;Balls&quot;</span><span class="p">));</span>
 
