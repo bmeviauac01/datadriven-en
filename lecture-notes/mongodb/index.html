@@ -1597,7 +1597,7 @@
     <span class="n">groups</span><span class="p">:</span> <span class="p">[</span> <span class="s">&quot;news&quot;</span><span class="p">,</span> <span class="s">&quot;sports&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The keys can have arbitrary names with a few limitations, such that they have to be unique and cannot begin with the <code>$</code> character. The names are case sensitive. Values can be string, number, date, binary, embedded document, <code>null</code>, or even as the <code>groups</code> in the example shows, an array - a relational database cannot represent an array so simple.</p>
+<p>The keys can have arbitrary names with a few limitations, such that they have to be unique and cannot begin with the <code>$</code> character. The names are case sensitive. Values can be string, number, date, binary, embedded document, <code>null</code>, or even as the <code>groups</code> in the example shows, an array - a relational database cannot represent an array in such a simple way.</p>
 <p>Mapping to the object-oriented world, a document is an object. MongoDB documents have a maximum size of 16MB and this is not a configurable parameter.</p>
 <h4 id="collection">Collection<a class="headerlink" href="#collection" title="Permanent link">&para;</a></h4>
 <p>Collections are analogous to relational database tables, but without a schema. Collections need no definition; the system creates them upon first use. Collections are a place for "similar" documents. Although there is no schema, <em>indexes</em> can still be defined on the collections to support fast searching. Since there is no schema, there are no domain integrity requirements enforced either.</p>
@@ -1625,7 +1625,7 @@
 </code></pre></div>
 <p>The database does not need to exist in advance. The above call will automatically create if the database does not already exist.</p>
 <h2 id="managing-collections">Managing collections<a class="headerlink" href="#managing-collections" title="Permanent link">&para;</a></h2>
-<p>Unlike a relational database, <strong>in MongoDB, our operations are always performed on a single collection</strong>, so the selection of a collection is not part of the issued command (like <code>where</code> in SQL), but a prerequisite for the operation. You can get a specific collection by calling <code>GetCollection</code>; its generic parameter is the C# class implementing the document type.</p>
+<p>Unlike a relational database, <strong>in MongoDB, our operations are always performed on a single collection</strong>, so the selection of a collection is not part of the issued command (as in the <code>from</code> in SQL), but a prerequisite for the operation. You can get a specific collection by calling <code>GetCollection</code>; its generic parameter is the C# class implementing the document type.</p>
 <div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">collection</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">GetCollection</span><span class="p">&lt;</span><span class="n">BsonDocument</span><span class="p">&gt;(</span><span class="s">&quot;products&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>The basic concept of the .NET MongoDB driver is to map every document to a .NET object. This is also called <em>ODM (Object Document Mapping)</em>. ODM is the equivalent of ORM in the NoSQL database world.</p>
