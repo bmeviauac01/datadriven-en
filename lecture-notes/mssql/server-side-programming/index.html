@@ -1773,7 +1773,7 @@
 <p>When inserting, the inserted records can be found in the database table (but there, we do not "see" that they have been newly inserted), and they are also available in the <code>inserted</code> table. In the case of deletion, <code>deleted</code> contains the rows already deleted from the table. Finally, in the case of <code>update</code>, we see the states before and after the change in the two log tables. We need to work with these log tables as tables; we should always expect to have more than one record in them.</p>
 <div class="admonition warning">
 <p class="admonition-title">The <code>inserted</code> and <code>deleted</code> are tables</p>
-<p>The <code>inserted</code> and <code>deleted</code> tables can only be treated as tables! For example, <code>inserted.Column</code> does not exist.</p>
+<p>The <code>inserted</code> and <code>deleted</code> tables can only be treated as tables! For example, it does not make sense to use <code>select @id=inserted.ID</code>; instead, we can use a cursor on these tables or <code>join</code> them.</p>
 </div>
 <p>We have already seen an example of audit logging implemented with a trigger. Let us look at other use-cases. Let us have a table with an email address column. When inserting and modifying, we need to check the email address value, and we must not accept text that does not look like an email address. Here <strong>we validate a rule of consistency</strong> with the trigger.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">-- Create a function to check the email address</span>
