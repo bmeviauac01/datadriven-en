@@ -763,8 +763,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-for-using-eclipse" class="md-nav__link">
-    Tips for using Eclipse
+  <a href="#tips-for-using-the-ide" class="md-nav__link">
+    Tips for using the IDE
   </a>
   
 </li>
@@ -777,8 +777,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-1-start-eclipse" class="md-nav__link">
-    Exercise 1: Start Eclipse
+  <a href="#exercise-1-start-the-ide" class="md-nav__link">
+    Exercise 1: Start the IDE
   </a>
   
 </li>
@@ -1060,8 +1060,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-for-using-eclipse" class="md-nav__link">
-    Tips for using Eclipse
+  <a href="#tips-for-using-the-ide" class="md-nav__link">
+    Tips for using the IDE
   </a>
   
 </li>
@@ -1074,8 +1074,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-1-start-eclipse" class="md-nav__link">
-    Exercise 1: Start Eclipse
+  <a href="#exercise-1-start-the-ide" class="md-nav__link">
+    Exercise 1: Start the IDE
   </a>
   
 </li>
@@ -1150,7 +1150,7 @@
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
 <p>Required tools to complete the tasks:</p>
 <ul>
-<li>Eclipse for Java EE</li>
+<li>Spring Tool Suite (an IDE based on Eclipse)</li>
 <li>Microsoft SQL Server Express edition (localdb does <strong>not</strong> work here)</li>
 <li>SQL Server Management Studio</li>
 <li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
@@ -1166,7 +1166,7 @@
 <div class="admonition info">
 <p>This guide summarizes and explains the behavior. Before looking at these provided answers, we should think first!</p>
 </div>
-<h2 id="tips-for-using-eclipse">Tips for using Eclipse<a class="headerlink" href="#tips-for-using-eclipse" title="Permanent link">&para;</a></h2>
+<h2 id="tips-for-using-the-ide">Tips for using the IDE<a class="headerlink" href="#tips-for-using-the-ide" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Search Type(class, interface, enum): Ctrl+Shift+T (instead of opening folders in Project explorer)</li>
 <li>Search file: Ctrl+Shift+R</li>
@@ -1192,10 +1192,10 @@
 <p>Run the database initialization script on this database. If the database exists on this machine, run the script anyway to reset any changes made in the schema.</p>
 </li>
 </ol>
-<h2 id="exercise-1-start-eclipse">Exercise 1: Start Eclipse<a class="headerlink" href="#exercise-1-start-eclipse" title="Permanent link">&para;</a></h2>
+<h2 id="exercise-1-start-the-ide">Exercise 1: Start the IDE<a class="headerlink" href="#exercise-1-start-the-ide" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Start Eclipse from here: <code>C:\work\javaee\eclipse\eclipse.exe</code>. (There might be a <code>D:\eclipse</code> folder too, but do <em>not</em> use that one.)</li>
-<li>It will ask for a workspace, select: <code>C:\work\javaee\workspaces\adatvez</code></li>
+<li>Start Spring Tool Suite from here: <code>c:\Work\hatteralkalmazasok\sts-4.5.1.RELEASE\SpringToolSuite4.exe</code>.</li>
+<li>It will ask for a workspace, select: <code>c:\Work\hatteralkalmazasok\workspaces\adatvez</code></li>
 <li>If there is a <strong>webshop</strong> project in the Project Explorer already, delete it: right-click the project / <em>Delete</em>, and check <em>Delete project contents on disk</em></li>
 </ol>
 <h2 id="exercise-2-import-project">Exercise 2: Import project<a class="headerlink" href="#exercise-2-import-project" title="Permanent link">&para;</a></h2>
@@ -1208,26 +1208,16 @@
 </li>
 <li>Import the downloaded project into the workspace:<ul>
 <li>Open <em>File / Import...</em></li>
-<li>Start typing <em>Existing projects into workspace</em> and choose it</li>
+<li>Start typing <em>Existing Maven Projects</em> and choose it</li>
 <li>Locate the downloaded webshop project (the <code>webshop</code> folder in the checked-out repository), OK, check the webshop project in the dialog</li>
 <li>Finish</li>
 </ul>
 </li>
-<li>
-<p>Overview of the projects</p>
-<ul>
+<li>Overview of the projects<ul>
 <li>It is a <em>maven</em> based project. Maven is a command-line build tool that can be integrated with IDEs as well. It can download the libraries our projects depend on from public repositories. After opening the <code>pom.xml</code> file, the maven project's config file, you can see some dependency tags that will transitively download Hibernate, our JPA implementation, Spring Boot, Spring Data, Spring MVC and Thymeleaf.</li>
-<li>The application.properties file contains some basic settings. <strong>Let us verify the user name and password for the DB access here.</strong> The JNDI name of the database is set up via this line: <code>spring.datasource.jndi-name=jdbc/termekDB</code>. In classic Java EE web applications, this name should be defined in the <code>persistence.xml</code>, but Spring Boot supports XML-less configuration.</li>
-<li>The <code>ConnectionProperties</code> class is a Java representation of the user name/password pair in the previous config file.</li>
-<li>
-<p><code>WebshopApplication</code> is the entry point and configuration of the Spring Boot application. A traditional web application should be deployed to a web container (e.g., Tomcat, Jetty) running in a separate process. In the case of Spring Boot, however, Spring Boot itself will start an embedded web container (Tomcat, by default). The JDBC driver and JDBC URL is registered in the <code>tomcatFactory</code> method with the jdbc/ProductDB JNDI name so that JPA can find it.</p>
-<div class="admonition note">
-<p>If the database name was changed, edit the JDBC URL: resource.setProperty("url", "jdbc:sqlserver://localhost;database=<strong>adatvez</strong>");</p>
-</div>
-</li>
-<li>
-<p>The web interface is one page: <code>src\main\resources\templates\testPage.html</code>. We will not modify it. It contains standard HTML and some Thymeleaf attributes.</p>
-</li>
+<li>The application.properties file contains some basic settings. <strong>Let us verify the database name (spring.datasource.url), the user name (spring.datasource.username) and password (spring.datasource.password) for the DB access here.</strong> In classic Java EE web applications, this JNDI name of the database should be defined in the <code>persistence.xml</code>, but Spring Boot supports XML-less configuration.</li>
+<li><code>WebshopApplication</code> is the entry point and configuration of the Spring Boot application. A traditional web application should be deployed to a web container (e.g., Tomcat, Jetty) running in a separate process. In the case of Spring Boot, however, Spring Boot itself will start an embedded web container (Tomcat, by default).</li>
+<li>The web interface is one page: <code>src\main\resources\templates\testPage.html</code>. We will not modify it. It contains standard HTML and some Thymeleaf attributes.</li>
 <li><code>WebshopController</code>: the controller class implementing the web layer (its methods handle the HTTP requests). These methods typically call a query implemented in a repository or a service method and put the result into the model with a name that we can reference via Thymeleaf. You should call the methods implementing the tasks at the <code>//TODO</code> comments.</li>
 </ul>
 </li>
@@ -1248,7 +1238,7 @@
 <p><strong>c)</strong> List the data of the most expensive product! Method: Named query, called from Spring Data repository or with an injected EntityManager.</p>
 <p>When running the application, the SQL statements generated by Hibernate can be observed in the Console view of Eclipse, due to this config line in application.properties: <code>spring.jpa.show-sql=true</code></p>
 <h3 id="running-the-application">Running the application<a class="headerlink" href="#running-the-application" title="Permanent link">&para;</a></h3>
-<p>The project contains the configuration file <strong>webshop run.launch</strong>. Right-click on it &gt; Debug As &gt; webshop run. This starts the Spring Boot maven plugin in debug mode, which starts an embedded web container, and the application is available at <a href="http://localhost:9080">http://localhost:9080</a> from a browser. Having done this once, we can do it more easily: Click on the Debug icon on the toolbar, and you will see the webshop run there.</p>
+<p>Right-click on the <em>webshop</em> project in the Project Explorer &gt; Debug As &gt; Spring Boot App. This starts the application in debug mode, which starts an embedded web container, and the application is available at <a href="http://localhost:9080">http://localhost:9080</a> from a browser. Having done this once, we can do it more easily: Click on the Debug icon on the toolbar, and you will see the webshop run there.</p>
 <p><img alt="Eclipse run" src="images/eclipse-run.png" /></p>
 <p>If under the <em>Debug</em> icon you find <em>webshop run</em>, the method above is unnecessary.</p>
 <p>The running application can be stopped with the red <em>Terminate</em> icon in the Console view. If we run the application twice, without terminating the first run, the second run will report a port collision on the port 9080 and stop. This second execution will be visible in the <em>Console</em> view, and the <em>Terminate</em> command will be inactive, as this copy has been terminated already. Click on the gray double C icon next to <em>Terminate</em> to close this view, and only the active running process will be visible.</p>
