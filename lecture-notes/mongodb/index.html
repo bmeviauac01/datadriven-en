@@ -1686,14 +1686,14 @@
 <span class="na">    [BsonElement(&quot;price&quot;)]</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">TotalPrice</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-    <span class="c1">// properties can be ignores</span>
+    <span class="c1">// properties can be ignored</span>
 <span class="na">    [BsonIgnore]</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">DoNotSace</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">DoNotSave</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Our other option is to register so-called <em>convention packs</em> at a higher level. The convention pack describes the rules of mapping. (A set of conventions also defines the default behavior.)</p>
 <p>For example, you can specify the following to map the field names to camel case and exclude data members with a default value (defined in the C# language) from the document.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// defince convention pack</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// define convention pack</span>
 <span class="kt">var</span> <span class="n">pack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ConventionPack</span><span class="p">();</span>
 <span class="n">pack</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">CamelCaseElementNameConvention</span><span class="p">());</span>
 <span class="n">pack</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">IgnoreIfDefaultConvention</span><span class="p">(</span><span class="k">true</span><span class="p">));</span>
@@ -1836,7 +1836,7 @@
 <p>The <code>Any*</code> conditions look at every element of an array but match only once with respect to the document. So, if multiple elements of an array match a condition, we only get the document once in the result set.</p>
 </div>
 <h2 id="query-execution-pipeline">Query execution pipeline<a class="headerlink" href="#query-execution-pipeline" title="Permanent link">&para;</a></h2>
-<p>MongoDB queries executed through a pipeline. We won't go into details about this, but in addition to simple filtering, we'll see a few examples frequently used in queries.</p>
+<p>MongoDB queries are executed through a pipeline. We won't go into details about this, but in addition to simple filtering, we'll see a few examples frequently used in queries.</p>
 <h4 id="paging-sorting">Paging, sorting<a class="headerlink" href="#paging-sorting" title="Permanent link">&para;</a></h4>
 <p>For paging, we specify the maximum number of matching documents we request:</p>
 <div class="highlight"><pre><span></span><code><span class="n">collection</span><span class="p">.</span><span class="n">Find</span><span class="p">(...).</span><span class="n">Limit</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
