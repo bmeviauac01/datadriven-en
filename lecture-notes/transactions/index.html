@@ -696,6 +696,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#extracting-deadlock-information-from-mssql-database" class="md-nav__link">
+    Extracting deadlock information from MSSQL database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#questions-to-test-your-knowledge" class="md-nav__link">
     Questions to test your knowledge
   </a>
@@ -745,8 +752,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../adonet/" class="md-nav__link">
+        ADO.NET data access
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../linq/" class="md-nav__link">
         LINQ: Language Integrated Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ef/" class="md-nav__link">
+        Defining relationships in Entity Framework
       </a>
     </li>
   
@@ -1324,6 +1359,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#extracting-deadlock-information-from-mssql-database" class="md-nav__link">
+    Extracting deadlock information from MSSQL database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#questions-to-test-your-knowledge" class="md-nav__link">
     Questions to test your knowledge
   </a>
@@ -1869,7 +1911,128 @@
 <div class="admonition note">
 <p>Long-running transactions can significantly increase the size of the log. The larger the log is, the longer the purging process will take.</p>
 </div>
-<hr />
+<h2 id="extracting-deadlock-information-from-mssql-database">Extracting deadlock information from MSSQL database<a class="headerlink" href="#extracting-deadlock-information-from-mssql-database" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">Deadlock</p>
+<p>A deadlock in a system can occur if there are locks. A deadlock can occur if at least two transactions want to obtain the same locks simultaneously.</p>
+</div>
+<p>Let there be transactions <strong>A</strong> and <strong>B</strong> and resources <strong>a</strong> and <strong>b</strong>. Transaction <strong>A</strong> already locks resource <strong>a</strong>, while transaction <strong>B</strong> locks resource <strong>b</strong>. Then, let us assume that transaction <strong>A</strong> wants to lock resource <strong>b</strong> and transaction <strong>B</strong> also wants to lock resource <strong>a</strong>. In this case, a deadlock will occur.</p>
+<p>Let us take the previous example and see how we can diagnose the deadlock once it occurs in MSSQL. To do this, first, we need to cause the deadlock artificially.</p>
+<ol>
+<li>
+<p>Let us create two tables on which to generate the deadlock artificially.</p>
+<p>Create the first table called <code>Lefty</code>, which will have an attribute called <code>Numbers</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Lefty</span> <span class="p">(</span><span class="n">Numbers</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">CLUSTERED</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Lefty</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span> 
+</code></pre></div>
+<p>Create a second table called <code>Righty</code>, which will also have an attribute, <code>Numbers</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Righty</span> <span class="p">(</span><span class="n">Numbers</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">CLUSTERED</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Righty</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span> 
+</code></pre></div>
+</li>
+<li>
+<p>The two transactions must run simultaneously for a deadlock to occur. If we test manually, this is difficult to achieve, so the order of execution is:</p>
+<ol>
+<li>Execute the first <code>UPDATE</code> statement from the first transaction</li>
+<li>From the second transaction, executed both <code>UPDATE</code> statements</li>
+<li>Execute the second <code>UPDATE</code> statement from the first transaction</li>
+</ol>
+<p>First transaction:</p>
+<div class="highlight"><pre><span></span><code><span class="k">BEGIN</span> <span class="n">TRAN</span>
+<span class="k">UPDATE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Lefty</span>
+<span class="k">SET</span> <span class="n">Numbers</span> <span class="o">=</span> <span class="n">Numbers</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">GO</span>
+
+<span class="k">UPDATE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Righty</span>
+<span class="k">SET</span> <span class="n">Numbers</span> <span class="o">=</span> <span class="n">Numbers</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">GO</span>
+</code></pre></div>
+<p>Second transaction:</p>
+<div class="highlight"><pre><span></span><code><span class="k">BEGIN</span> <span class="n">TRAN</span>
+<span class="k">UPDATE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Righty</span>
+<span class="k">SET</span> <span class="n">Numbers</span> <span class="o">=</span> <span class="n">Numbers</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">GO</span>
+
+<span class="k">UPDATE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">Lefty</span>
+<span class="k">SET</span> <span class="n">Numbers</span> <span class="o">=</span> <span class="n">Numbers</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">GO</span>
+</code></pre></div>
+</li>
+</ol>
+<p>Now we have a deadlock. The system will automatically resolve this soon. Before that happens, we can check what we see in the system.</p>
+<p>The locks placed by the transactions can be queried in the database with the following query:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+    <span class="n">OBJECT_NAME</span><span class="p">(</span><span class="n">P</span><span class="p">.</span><span class="n">object_id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">TableName</span><span class="p">,</span>
+    <span class="n">Resource_type</span><span class="p">,</span> <span class="n">request_status</span><span class="p">,</span>  <span class="n">request_session_id</span>
+<span class="k">FROM</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">dm_tran_locks</span> <span class="n">dtl</span>
+    <span class="k">join</span> <span class="n">sys</span><span class="p">.</span><span class="n">partitions</span> <span class="n">P</span>
+<span class="k">ON</span> <span class="n">dtl</span><span class="p">.</span><span class="n">resource_associated_entity_id</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">hobt_id</span>
+</code></pre></div>
+<p>In our example, the result of this query is:</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">TableName</th>
+<th align="center">Resource_type</th>
+<th align="center">request_status</th>
+<th align="center">request_session_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">Righty</td>
+<td align="center">KEY</td>
+<td align="center">GRANT</td>
+<td align="center">54</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">Lefty</td>
+<td align="center">KEY</td>
+<td align="center">GRANT</td>
+<td align="center">53</td>
+</tr>
+</tbody>
+</table>
+<p>So the first transaction placed a lock on the <code>Lefty</code> table, while the second transaction placed it on table <code>Righty</code>.</p>
+<p>The database also provides information data about blocked transactions that we can query with the following SQL statement:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="n">blocking_session_id</span> <span class="k">AS</span> <span class="n">BlockingSessionID</span><span class="p">,</span>
+       <span class="n">session_id</span> <span class="k">AS</span> <span class="n">VictimSessionID</span><span class="p">,</span>
+       <span class="n">wait_time</span><span class="o">/</span><span class="mi">1000</span> <span class="k">AS</span> <span class="n">WaitDurationSecond</span>
+<span class="k">FROM</span> <span class="n">sys</span><span class="p">.</span><span class="n">dm_exec_requests</span>
+<span class="k">CROSS</span> <span class="n">APPLY</span> <span class="n">sys</span><span class="p">.</span><span class="n">dm_exec_sql_text</span><span class="p">([</span><span class="n">sql_handle</span><span class="p">])</span>
+<span class="k">WHERE</span> <span class="n">blocking_session_id</span> <span class="o">&gt;</span> <span class="mi">0</span> 
+</code></pre></div>
+<p>In our example, the result of this query is:</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">BlockingSessionID</th>
+<th align="center">VictimSessionID</th>
+<th align="center">WaitDurationSecond</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">54</td>
+<td align="center">53</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">53</td>
+<td align="center">54</td>
+<td align="center">72</td>
+</tr>
+</tbody>
+</table>
+<p>This means that the transaction with ID 53 waits for the transaction with ID 54, and the transaction with ID 54 waits for the transaction with ID 53.</p>
+<p>The deadlock is soon eliminated automatically by the database. If we want to intervene manually, we can do so with the <code>kill</code> command, selecting the transaction to stop (e.g., <code>kill 53</code>).</p>
 <h2 id="questions-to-test-your-knowledge">Questions to test your knowledge<a class="headerlink" href="#questions-to-test-your-knowledge" title="Permanent link">&para;</a></h2>
 <ul>
 <li>What type of concurrent data access problems do you know?</li>

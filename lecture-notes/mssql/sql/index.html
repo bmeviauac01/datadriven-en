@@ -609,6 +609,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#querying-xml-documents" class="md-nav__link">
+    Querying XML documents
+  </a>
+  
+    <nav class="md-nav" aria-label="Querying XML documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xpath" class="md-nav__link">
+    XPath
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    Queries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-queries" class="md-nav__link">
+    Manipulating queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -638,8 +672,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../adonet/" class="md-nav__link">
+        ADO.NET data access
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../linq/" class="md-nav__link">
         LINQ: Language Integrated Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ef/" class="md-nav__link">
+        Defining relationships in Entity Framework
       </a>
     </li>
   
@@ -1116,6 +1178,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#querying-xml-documents" class="md-nav__link">
+    Querying XML documents
+  </a>
+  
+    <nav class="md-nav" aria-label="Querying XML documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xpath" class="md-nav__link">
+    XPath
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    Queries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-queries" class="md-nav__link">
+    Manipulating queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1322,7 +1418,7 @@
 <span class="p">)</span>
 <span class="k">select</span> <span class="o">*</span>
 <span class="k">from</span> <span class="n">q1</span>
-<span class="k">where</span> <span class="n">q1</span><span class="p">.</span><span class="n">dr</span><span class="o">&lt;</span><span class="mi">3</span>
+<span class="k">where</span> <span class="n">q1</span><span class="p">.</span><span class="n">dr</span><span class="o">&lt;=</span><span class="mi">3</span>
 </code></pre></div>
 <p>How many pieces have been sold from the second most expensive product?</p>
 <div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">q</span>
@@ -1361,6 +1457,126 @@
 <span class="k">from</span> <span class="n">Product</span>
 <span class="k">order</span> <span class="k">by</span> <span class="n">Name</span>
 </code></pre></div>
+<h2 id="querying-xml-documents">Querying XML documents<a class="headerlink" href="#querying-xml-documents" title="Permanent link">&para;</a></h2>
+<p>In a relational database, in addition to relational data, semi-structured data (e.g., XML) can also be stored - but relational is the main content. For example, in the <a href="../../../db/">sample database</a>, the <code>Description</code> field of the <code>Product</code> table is XML.</p>
+<h3 id="xpath">XPath<a class="headerlink" href="#xpath" title="Permanent link">&para;</a></h3>
+<p>An XML document has a tree structure. The <a href="https://www.w3schools.com/xml/xpath_intro.asp"><strong>XPath</strong></a> language allows navigating this tree and selecting specific content. The following table illustrates the capabilities of the <em>XPath</em> language.</p>
+<table>
+<thead>
+<tr>
+<th><strong>XPath expression</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tagname</td>
+<td>Node with specified name</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Search starts from the root</td>
+</tr>
+<tr>
+<td>//</td>
+<td>In a descendend at any level</td>
+</tr>
+<tr>
+<td>.</td>
+<td>Current node</td>
+</tr>
+<tr>
+<td>..</td>
+<td>Parent node</td>
+</tr>
+<tr>
+<td>@name</td>
+<td>Specific attribute</td>
+</tr>
+<tr>
+<td>/library/book[k]</td>
+<td>The book at index k within the library node (indexes start at 1)</td>
+</tr>
+<tr>
+<td>/library/book[last()]</td>
+<td>Last child</td>
+</tr>
+<tr>
+<td>/library/book[position()&lt;k]</td>
+<td>The first k-1 child nodes</td>
+</tr>
+<tr>
+<td>//title[@lang="hu"]</td>
+<td>Title elements that have lang attribute with value "hu"</td>
+</tr>
+<tr>
+<td>//title[text()]</td>
+<td>The text content of the title nodes</td>
+</tr>
+<tr>
+<td>/library/book[price&gt;5000]</td>
+<td>Books within the library node that have a price more than 5000</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">XQuery and XPath</p>
+<p><em>XPath</em> has many other capabilities in addition to the ones above, including expressing more complex queries.</p>
+<p>In the following examples, we will specify the data to be queried using <a href="https://docs.microsoft.com/en-us/sql/t-sql/xml/xml-data-modification-language-xml-dml"><em>XQuery</em></a>. <em>XQuery</em> builds on <em>XPath</em> and adds additional functionality. Both <em>XPath</em> and <em>XQuery</em> are platform-independent languages ​​based on W3C standards.</p>
+</div>
+<h3 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h3>
+<p>Let us have a table with an XML column. In addition to querying the entire XML value, we can query content from within the XML document. In order to do this, we need to use T-SQL functions capable of working on the XML content: <a href="https://docs.microsoft.com/en-us/sql/t-sql/xml/query-method-xml-data-type"><code>query(XQuery)</code></a> , <a href="https://docs.microsoft.com/en-us/sql/t-sql/xml/value-method-xml-data-type"><code>value(XQuery, SQLType)</code></a> and <a href="https://docs.microsoft.com/en-us/sql/t-sql/xml/exist-method-xml-data-type"><code>exist(XQuery)</code></a>. Let's look at a few examples of these.</p>
+<p>Let us query how many packages the products consist of.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">Description</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;/product/package_parameters/number_of_packages&#39;</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">Product</span>
+</code></pre></div>
+<p>For example, this could yield:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;number_of_packages&gt;</span>1<span class="nt">&lt;/number_of_packages&gt;</span>
+</code></pre></div>
+<p>The function <code>query()</code> returns XML; if it is only the value that is needed, we can use the <code>value()</code> function. The <code>value()</code> function must also specify the type of data queried as a string literal.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">Description</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;(/product/package_parameters/number_of_packages)[1]&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">Product</span>
+</code></pre></div>
+<p>The result will be 1.</p>
+<div class="admonition info">
+<p class="admonition-title">SQLType</p>
+<p>The type passed as a parameter cannot be xml. Conversion to the specified type is performed with the T-SQL <a href="https://docs.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql"><code>CONVERT</code></a> function.</p>
+</div>
+<p>Let us query the names of the recommended products for ages 0-18 months.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">Name</span>
+<span class="k">from</span> <span class="n">Product</span>
+<span class="k">where</span> <span class="n">Description</span><span class="p">.</span><span class="n">exist</span><span class="p">(</span><span class="s1">&#39;(/product)[(./recommended_age)[1] eq &quot;0-18 m&quot;]&#39;</span><span class="p">)</span><span class="o">=</span><span class="mi">1</span>
+</code></pre></div>
+<p>Function <code>exist()</code> returns 1 if the <em>XQuery</em> expression evaluation yields a non-empty result; or 0 if the query result is empty.</p>
+<p>We can also use the <code>value()</code> method instead of <code>exist()</code> here.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="n">Name</span>
+<span class="k">from</span> <span class="n">Product</span>
+<span class="k">where</span> <span class="n">Description</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;(/product/recommended_age)[1]&#39;</span><span class="p">,</span> <span class="s1">&#39;varchar(max)&#39;</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;0-18 m&#39;</span>
+</code></pre></div>
+<h3 id="manipulating-queries">Manipulating queries<a class="headerlink" href="#manipulating-queries" title="Permanent link">&para;</a></h3>
+<p>We can not only query XML data, but also modify it in place. The modification in the database is performed in an atomic way, i.e., there is no need to fetch the XML into a client application, modify it and then write it back. Instead, following the philosophy of server-side programming, we bring the logic (here: modification) into the database. Data modification queries can be performed with the <a href="https://docs.microsoft.com/en-us/sql/t-sql/xml/modify-method-xml-data-type"><code>modify(XML_DML)</code></a> function, where we use the so-called <a href="https://docs.microsoft.com/en-us/sql/t-sql/xml/xml-data-modification-language-xml-dml">XML DML</a> language to describe the desired change. Let's look at a few examples.</p>
+<p>In the product called Lego City harbor, let us change the recommended age to 6-99 years.</p>
+<div class="highlight"><pre><span></span><code><span class="k">update</span> <span class="n">Product</span>
+<span class="k">set</span> <span class="n">Description</span><span class="p">.</span><span class="k">modify</span><span class="p">(</span>
+<span class="s1">&#39;replace value of (/product/recommended_age/text())[1]</span>
+<span class="s1">with &quot;6-99 y&quot;&#39;</span><span class="p">)</span>
+<span class="k">where</span> <span class="n">Name</span><span class="o">=</span><span class="s1">&#39;Lego City harbour&#39;</span>
+</code></pre></div>
+<p>The XML DML expression consists of two parts: in the first part (<code>replace value of</code>) the element to be modified is selected; in the second part (<code>with</code>) the new value is specified. Only one element can be modified within an XML, so the path must be specified to match only one element - thus the <code>[1]</code> at the end of the example.</p>
+<p>Let us insert a <code>weigth</code> tag into the XML description of product Lego City harbor after the <code>package_size</code> tag.</p>
+<div class="highlight"><pre><span></span><code><span class="k">update</span> <span class="n">Product</span>
+<span class="k">set</span> <span class="n">Description</span><span class="p">.</span><span class="k">modify</span><span class="p">(</span>
+<span class="s1">&#39;insert &lt;weight&gt;2.28&lt;/weight&gt;</span>
+<span class="s1">after (/product/package_parameters/package_size)[1]&#39;</span><span class="p">)</span>
+<span class="k">where</span> <span class="n">Name</span><span class="o">=</span><span class="s1">&#39;Lego City harbour&#39;</span>
+</code></pre></div>
+<p>The expression has of two parts here too: the first one (<code>insert</code>) specifies the new element, and the second one describes where to insert the new element. The new item can be added as a sibling or child of the specified item.</p>
+<p>Let us remove the <code>description</code> tag(s) from the description of every product.</p>
+<div class="highlight"><pre><span></span><code><span class="k">update</span> <span class="n">Product</span>
+<span class="k">set</span> <span class="n">Description</span><span class="p">.</span><span class="k">modify</span><span class="p">(</span><span class="s1">&#39;delete /product/description&#39;</span><span class="p">)</span>
+<span class="k">where</span> <span class="n">Description</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span>
+</code></pre></div>
+<p>When deleting, we specify the path of the items to be deleted after <code>delete</code>.</p>
                 
               
               

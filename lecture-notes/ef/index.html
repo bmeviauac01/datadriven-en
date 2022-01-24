@@ -16,7 +16,7 @@
     
     
       
-        <title>Exercise: Entity Framework - BMEVIAUAC01 Data-driven systems</title>
+        <title>Defining relationships in Entity Framework - BMEVIAUAC01 Data-driven systems</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#exercise-entity-framework" class="md-skip">
+        <a href="#defining-relationships-in-entity-framework" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Exercise: Entity Framework
+              Defining relationships in Entity Framework
             
           </span>
         </div>
@@ -226,13 +226,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../lecture-notes/architecture/" class="md-tabs__link">
+      <a href="../architecture/" class="md-tabs__link md-tabs__link--active">
         Lecture notes
       </a>
     </li>
@@ -258,15 +260,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link md-tabs__link--active">
+      <a href="../../homework/" class="md-tabs__link">
         Homework
       </a>
     </li>
@@ -442,12 +442,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -470,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         Data-driven systems and the three- or multi-tier architecture
       </a>
     </li>
@@ -484,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/transactions/" class="md-nav__link">
+      <a href="../transactions/" class="md-nav__link">
         Transactions in databases
       </a>
     </li>
@@ -498,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/mssql/sql/" class="md-nav__link">
+      <a href="../mssql/sql/" class="md-nav__link">
         SQL language, MSSQL platform-specific SQL
       </a>
     </li>
@@ -512,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/mssql/server-side-programming/" class="md-nav__link">
+      <a href="../mssql/server-side-programming/" class="md-nav__link">
         Microsoft SQL Server programming
       </a>
     </li>
@@ -526,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/adonet/" class="md-nav__link">
+      <a href="../adonet/" class="md-nav__link">
         ADO.NET data access
       </a>
     </li>
@@ -540,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/linq/" class="md-nav__link">
+      <a href="../linq/" class="md-nav__link">
         LINQ: Language Integrated Query
       </a>
     </li>
@@ -552,11 +554,78 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../lecture-notes/ef/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Defining relationships in Entity Framework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Defining relationships in Entity Framework
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defining-relationships" class="md-nav__link">
+    Defining relationships
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-joining" class="md-nav__link">
+    Explicit joining
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation-property" class="md-nav__link">
+    Navigation property
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigation property">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#include" class="md-nav__link">
+    Include
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -568,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/mongodb/" class="md-nav__link">
+      <a href="../mongodb/" class="md-nav__link">
         MongoDB basics, operations, and the MongoDB .NET Driver
       </a>
     </li>
@@ -582,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/di/" class="md-nav__link">
+      <a href="../di/" class="md-nav__link">
         Dependency Injection ASP.NET Core environment
       </a>
     </li>
@@ -596,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lecture-notes/async/" class="md-nav__link">
+      <a href="../async/" class="md-nav__link">
         Asynchronous queries and DTOs (sample WebAPI application)
       </a>
     </li>
@@ -776,14 +845,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -806,7 +873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../homework/" class="md-nav__link">
         Optional homework
       </a>
     </li>
@@ -820,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mssql/" class="md-nav__link">
+      <a href="../../homework/mssql/" class="md-nav__link">
         Exercise: MSSQL server-side programming
       </a>
     </li>
@@ -834,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../adonet/" class="md-nav__link">
+      <a href="../../homework/adonet/" class="md-nav__link">
         Exercise: ADO.NET data access
       </a>
     </li>
@@ -846,65 +913,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Exercise: Entity Framework
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../homework/ef/" class="md-nav__link">
         Exercise: Entity Framework
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-0-neptun-code" class="md-nav__link">
-    Exercise 0: Neptun code
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-1-database-mapping-using-code-first-model-and-queries-2-points" class="md-nav__link">
-    Exercise 1: Database mapping using Code First model and queries (2 points)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-2-repository-implementation-using-entity-framework-2-points" class="md-nav__link">
-    Exercise 2: Repository implementation using Entity Framework (2 points)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -916,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mongodb/" class="md-nav__link">
+      <a href="../../homework/mongodb/" class="md-nav__link">
         Exercise: MongoDB
       </a>
     </li>
@@ -930,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rest/" class="md-nav__link">
+      <a href="../../homework/rest/" class="md-nav__link">
         Exercise: REST API and Web API
       </a>
     </li>
@@ -944,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../GitHub/" class="md-nav__link">
+      <a href="../../homework/GitHub/" class="md-nav__link">
         Submitting your work (GitHub)
       </a>
     </li>
@@ -958,7 +971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../GitHub-Actions/" class="md-nav__link">
+      <a href="../../homework/GitHub-Actions/" class="md-nav__link">
         Using GitHub Actions
       </a>
     </li>
@@ -972,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../VisualStudio/" class="md-nav__link">
+      <a href="../../homework/VisualStudio/" class="md-nav__link">
         Install Visual Studio & .NET Core SDK
       </a>
     </li>
@@ -1012,23 +1025,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#exercise-0-neptun-code" class="md-nav__link">
-    Exercise 0: Neptun code
+  <a href="#defining-relationships" class="md-nav__link">
+    Defining relationships
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-1-database-mapping-using-code-first-model-and-queries-2-points" class="md-nav__link">
-    Exercise 1: Database mapping using Code First model and queries (2 points)
+  <a href="#explicit-joining" class="md-nav__link">
+    Explicit joining
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-2-repository-implementation-using-entity-framework-2-points" class="md-nav__link">
-    Exercise 2: Repository implementation using Entity Framework (2 points)
+  <a href="#navigation-property" class="md-nav__link">
+    Navigation property
   </a>
+  
+    <nav class="md-nav" aria-label="Navigation property">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#include" class="md-nav__link">
+    Include
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1044,90 +1070,116 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/homework/ef/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/lecture-notes/ef/index.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="exercise-entity-framework">Exercise: Entity Framework<a class="headerlink" href="#exercise-entity-framework" title="Permanent link">&para;</a></h1>
-<p>This exercise is optional. You may earn <strong>2+2 points</strong> by completing this exercise.</p>
-<p>Use GitHub Classroom to get your git repository. You can find the <strong>invitation link in Moodle</strong>. Clone the repository created via the link. It contains a skeleton and the expected structure of your submission. After completing the exercises and verifying them, commit and push your submission.</p>
-<p>Check the required software and tools <a href="../#required-tools">here</a>. This homework uses MSSQL database.</p>
-<div class="admonition warning">
-<p class="admonition-title">Entity Framework <em>Core</em></p>
-<p>We are using Entity Framework <strong>Core</strong> in this exercise. This is different from Entity Framework used in the seminar exercises; this is a platform-independent technology.</p>
+                <h1 id="defining-relationships-in-entity-framework">Defining relationships in Entity Framework<a class="headerlink" href="#defining-relationships-in-entity-framework" title="Permanent link">&para;</a></h1>
+<p>We store both entities and the relationships that connect them in relational databases. This allows us to query related entities through joining tables, expressed with the <code>join</code> SQL command. Entity Framework, which is an ORM framework, provides us with built-in support for conveniently managing these relationships.</p>
+<h2 id="defining-relationships">Defining relationships<a class="headerlink" href="#defining-relationships" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Convention-based mapping</p>
+<p>Entity Framework has <a href="https://docs.microsoft.com/en-us/ef/core/modeling/relationships#conventions">conventions</a> that enable mapping relationships automatically without explicit configuration. We will not rely on this feature here; instead will define the relationships explicitly.</p>
 </div>
-<h2 id="exercise-0-neptun-code">Exercise 0: Neptun code<a class="headerlink" href="#exercise-0-neptun-code" title="Permanent link">&para;</a></h2>
-<p>Your very first task is to type your Neptun code into <code>neptun.txt</code> in the root of the repository.</p>
-<h2 id="exercise-1-database-mapping-using-code-first-model-and-queries-2-points">Exercise 1: Database mapping using Code First model and queries (2 points)<a class="headerlink" href="#exercise-1-database-mapping-using-code-first-model-and-queries-2-points" title="Permanent link">&para;</a></h2>
-<p>Prepare the (partial) mapping of the database using Entity Framework <em>Code First</em> modeling. The Entity Framework Core package is part of the project, so you can start coding. The central class for database access is the DbContext. This class already exists with the name <code>ProductDBContext</code>.</p>
-<ol>
-<li>
-<p>Map the product entity. Create a new class with the name <code>DbProduct</code> with the following code. (The <em>Db</em> prefix indicates that this class is within the scope of the database. This will be relevant in the next exercise.) We rely on conventions as much as possible: use property names that match the column names to make mapping automatic.</p>
-<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="nn">System.ComponentModel.DataAnnotations.Schema</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">ef</span>
+<p>Let us look at our example classes and the relationship among them:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Product</span>
 <span class="p">{</span>
-<span class="na">    [Table(&quot;Product&quot;)]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">DbProduct</span>
-    <span class="p">{</span>
-<span class="na">        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]</span>
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="k">public</span> <span class="kt">double</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">Stock</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Price</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">VATID</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">VAT</span> <span class="n">VAT</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">VAT</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Percentage</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;</span> <span class="n">Product</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Open the source code of class <code>ProductDbContext</code> and uncomment the <code>Products</code> property.</p>
-</li>
-<li>
-<p>Create a new class with the name <code>DbVat</code> in namespace <code>ef</code> for mapping the <code>VAT</code> database table similarly as seen before. Do not forget to add a new DbSet property into <code>ProductContext</code> with the name <code>Vat</code>.</p>
-</li>
-<li>
-<p>Map the Product - VAT connection.</p>
-<p>Add a new get-set property into class <code>DbProduct</code> with name <code>Vat</code> and type <code>DbVat</code>. Use the <code>ForeignKey</code> <a href="https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=data-annotations%2Cdata-annotations-simple-key%2Csimple-key#foreign-key">attribute on this property</a>, to indicate the foreign key used to store the relationship ("VatID").</p>
-<p>Create the “other side” of this one-to-many connection from class <code>DbVat</code> to <code>DbProduct</code>. This should be a new property of type <code>System.Collections.Generic.List</code> with name <code>Products</code>. (See an example in the link above.)</p>
-</li>
-</ol>
-<p>There are unit tests available in the solution. The test codes are commented out because it does not compile until you write the code. Select the whole test code and use <em>Edit / Advanced / Uncomment Selection</em>. You can <a href="https://docs.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2019">run the unit tests in Visual Studio</a>, or if you are using another IDE (e.g., VS Code, or <code>dotnet cli</code>), then <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test">run the tests using the cli</a>. You may update the database connection string in class <code>TestConnectionStringHelper</code> if needed.</p>
+<p>We can set up the configuration in the <code>OnModelCreating</code> function inherited from the <code>DBContext</code> base class. We can use the following functions for configuring an entity:</p>
+<div class="highlight"><pre><span></span><code><span class="n">modelBuilder</span><span class="p">.</span><span class="n">Entity</span><span class="p">&lt;</span><span class="n">Example</span><span class="p">&gt;</span>
+    <span class="p">.</span><span class="n">HasOne</span><span class="p">()/.</span><span class="n">HasMany</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">WithOne</span><span class="p">()/.</span><span class="n">WithMany</span><span class="p">()</span>
+</code></pre></div>
+<p>In the example above, we can see a one-to-many connections, which can be described as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">modelBuilder</span><span class="p">.</span><span class="n">Entity</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;()</span>
+            <span class="p">.</span><span class="n">HasOne</span><span class="p">(</span><span class="n">d</span> <span class="p">=&gt;</span> <span class="n">d</span><span class="p">.</span><span class="n">VAT</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">WithMany</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Product</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">HasForeignKey</span><span class="p">(</span><span class="n">d</span> <span class="p">=&gt;</span> <span class="n">d</span><span class="p">.</span><span class="n">VatId</span><span class="p">);</span>
+</code></pre></div>
+<p>The connection between the two entities is provided by the foreign key of the <code>Product</code> table pointing to <code>VAT</code> table (which foreign key, naturally, also appears in the database as a column). In the C# code, a <code>VAT</code> object reference appears in class <code>Product</code>. Similarly, <code>VAT</code> objects have a list of connected <code>Product</code> instances. These C# properties are called <em>navigation properties</em>.</p>
+<h2 id="explicit-joining">Explicit joining<a class="headerlink" href="#explicit-joining" title="Permanent link">&para;</a></h2>
+<p>The <code>DBContext</code> offers the tables as <code>DBSets</code>, on which we can perform LINQ operations. One such operation is the <code>join</code> function. Two <code>DBSets</code> can be joined via the appropriate foreign key. Similar to it's SQL equivalent, the following LINQ expression declaratively describes what we want to get.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> 
+    <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span>
+    <span class="k">join</span> <span class="n">v</span> <span class="k">in</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Vat</span> <span class="k">on</span> <span class="n">p</span><span class="p">.</span><span class="n">VatId</span> <span class="k">equals</span> <span class="n">v</span><span class="p">.</span><span class="n">Id</span>
+    <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>
+    <span class="k">select</span> <span class="n">v</span><span class="p">.</span><span class="n">Percentage</span><span class="p">;</span>
+
+<span class="c1">// Displays the generated SQL query</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">query</span><span class="p">.</span><span class="n">ToQueryString</span><span class="p">());</span>    
+</code></pre></div>
+<p>The generated SQL query will look similar to this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">Percentage</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Product</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">VAT</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">ON</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">VatId</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">ID</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Name</span><span class="p">]</span> <span class="k">LIKE</span> <span class="n">N</span><span class="s1">&#39;%test%&#39;</span>
+</code></pre></div>
+<p>We rarely need to use explicit joins. As a matter of fact, we should avoid using them when <em>navigation properties</em> are available.</p>
+<h2 id="navigation-property">Navigation property<a class="headerlink" href="#navigation-property" title="Permanent link">&para;</a></h2>
+<p>Since we have configured the relationship between the <code>Product</code> and <code>VAT</code> EF entities in our <code>DbContext</code>, we can use the <code>VAT</code> property in the <code>Product</code> class: this is the <em>navigation property</em>. The joining "behind" the <em>navigation property</em> is handled automatically by EF without us having to define it in the query. This simplifies our previous query to:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">query</span> <span class="p">=</span>
+    <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span>
+    <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>
+    <span class="k">select</span> <span class="n">p</span><span class="p">.</span><span class="n">VAT</span><span class="p">.</span><span class="n">Percentage</span><span class="p">;</span>
+
+<span class="c1">// Displays the generated SQL query</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">query</span><span class="p">.</span><span class="n">ToQueryString</span><span class="p">());</span>
+</code></pre></div>
+<p>Below we can see the generated SQL query, which differs from the previous one only in the type of join, but otherwise, we get to the same solution.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">Percentage</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Product</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">VAT</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">ON</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">VatId</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">ID</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Name</span><span class="p">]</span> <span class="k">LIKE</span> <span class="n">N</span><span class="s1">&#39;%test%&#39;</span>
+</code></pre></div>
 <div class="admonition important">
-<p class="admonition-title">Tests</p>
-<p>The tests presume that the database is in its initial state. Re-run the database initialization script to restore this state.</p>
-<p>Do <strong>NOT</strong> change the unit tests. You may temporarily alter the unit tests if you need to, but make sure to reset your changes before committing.</p>
+<p class="admonition-title">Prefer <em>navigation properties</em></p>
+<p>In EF, we should always strive to use the <em>navigation properties</em> when possible. We should avoid performing explicit joins.</p>
 </div>
-<div class="admonition danger">
-<p class="admonition-title">If the tests do not compile</p>
-<p>If the test code does not compile, you may have used slightly different property names. Fix these in <strong>your code and not in the tests</strong>!</p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title"><code>OnConfiguring</code></p>
-<p>You need no connection string in the <em>DbContext</em>. The constructor handles the connection to the database. Do not create <code>OnConfiguring</code> method in this class!</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">SUBMISSION</p>
-<p>Upload the changed C# source code.</p>
-<p>Create a screenshot displaying the successfully executed unit tests. You can run the tests in Visual Studio or using <code>dotnet cli</code>. Make sure that the screenshot includes the <strong>source code of the DbContext</strong> and the <strong>test execution outcome</strong>! Save the screenshot as <code>f1.png</code> and upload as part of your submission!</p>
-<p>If you are using <code>dotnet cli</code> to run the tests, make sure to display the test names too. Use the <code>-v n</code> command line switch to set detailed logging.</p>
-<p>The image does not need to show the exact same source code that you submit; there can be some minor changes here and there. That is, if the tests run successfully and you create the screenshot, then later you make some <strong>minor</strong> change to the source, there is no need for you to update the screenshot.</p>
-</div>
-<h2 id="exercise-2-repository-implementation-using-entity-framework-2-points">Exercise 2: Repository implementation using Entity Framework (2 points)<a class="headerlink" href="#exercise-2-repository-implementation-using-entity-framework-2-points" title="Permanent link">&para;</a></h2>
+<h3 id="include">Include<a class="headerlink" href="#include" title="Permanent link">&para;</a></h3>
+<p>In the previous example, only one scalar result was queried. But what happens to the <em>navigation properties</em> when we query an entire entity? For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">prod</span> <span class="p">=</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)).</span><span class="n">First</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">prod</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span> <span class="c1">// this works, it will print the name</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">prod</span><span class="p">.</span><span class="n">VAT</span><span class="p">.</span><span class="n">Percentage</span><span class="p">);</span> <span class="c1">// accessing the referenced entity via the navigation property</span>
+</code></pre></div>
+<p>In this example, we would get a runtime error in the last line. Why is that? Despite the <em>navigation property</em> being configured, EF does not load referenced entities by default. We can work with them in queries (as we wrote <code>p.VAT.Percentage</code> in a previous query), but if we query a <code>Product</code> entity, it does not include the referenced <code>VAT</code> entity. The referenced record(s) could be fetched. But it is up to the developer to decide if they really need them. Just consider, if all the referenced entities were fetched automatically (even transitively), the database would have to look up hundreds or thousands or records to get a single entity and all of it's referenced data via navigation properties. This is unnecessary in most cases.</p>
+<p>If we really need the referenced entities, the we need to specify this in the code using <code>Include</code> as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">query</span> <span class="p">=</span>
+    <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">dbContext</span><span class="p">.</span><span class="n">Products</span><span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">VAT</span><span class="p">)</span>
+    <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>
+    <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
+
+<span class="c1">// or an anternative syntax for the same:</span>
+<span class="c1">// var query = products</span>
+<span class="c1">//               .Include(p =&gt; p.VAT)</span>
+<span class="c1">//               .Where(p =&gt; p.Name.Contains(&quot;test&quot;));</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">query</span><span class="p">.</span><span class="n">ToQueryString</span><span class="p">());</span>
+</code></pre></div>
+<p>If we look at the generated SQL statement, it shows both the appropriate <code>join</code> and the required data appearing within the <code>select</code> statement.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Id</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryId</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Description</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Name</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Price</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Stock</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">VatId</span><span class="p">],</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">ID</span><span class="p">],</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">Percentage</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Product</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">VAT</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">ON</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">VatId</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">].[</span><span class="n">ID</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Name</span><span class="p">]</span> <span class="k">LIKE</span> <span class="n">N</span><span class="s1">&#39;%test%&#39;</span>
+</code></pre></div>
 <div class="admonition note">
-<p>In the evaluation, you will see the text “imsc” in the exercise title; this is meant for the Hungarian students. Please ignore that.</p>
-</div>
-<p>The Entity Framework DbContext created above has some drawbacks. For example, we need to trigger loading related entities using <code>Include</code> in every query, and the mapped entities are bound to precisely match the database schema. In complex applications, the DbContext is frequently wrapped in a repository that handles all peculiarities of the data access layer.</p>
-<p>Implement class <code>ProductRepository</code> that helps with listing and inserting products. You are provided with a so-called <em>model</em> class representing the product entity, only in a more user-friendly way: it contains the tax percentage value directly. An instance of this class is built from database entities, but represents all information in one instance instead of having to handle a product and a VAT record separately. Class <code>Model.Product</code> contains most properties of class <code>DbProduct</code>, but <em>instead of</em> the navigation property to <code>DbVat</code> it contains the referenced percentage value (<code>VAT.Percentage</code>) directly.</p>
-<p>Implement the methods of class `ProductRepository.</p>
-<ul>
-<li><code>List</code> shall return all products mapped to instances of <code>Model.Product</code>.</li>
-<li><code>Insert</code> shall insert a new product into the database. This method shall find the matching <code>VAT</code> record in the database based on the tax percentage value in the model class; if there is no match, it shall insert a new VAT record too! The method shall return the ID of the newly inserted ID (as generated by the database).</li>
-<li><code>Delete</code> should delete a product record matched by the ID. You should only delete the product record - no referenced records shall be removed. If delete is blocked by foreign keys, let the caller handle the error. The return value of the method should be <em>false</em> if no record with the specified ID exist; a <em>true</em> return value shall indicate successful deletion.</li>
-<li>Do not change the definition of class <code>ProductRepository</code> (do not change the name of the class, nor the constructor or method declarations); only write the method bodies.</li>
-<li>In the repository code use <code>ProductRepository.createDbContext()</code> to instantiate the <em>DbContext</em>  (do <strong>not</strong> use <code>TestConnectionStringHelper</code> here).</li>
-</ul>
-<div class="admonition example">
-<p class="admonition-title">SUBMISSION</p>
-<p>Upload the changed C# source code.</p>
+<p class="admonition-title">Automatic <em>lazy loading</em> of referenced entities</p>
+<p>In Entity Framework, it is possible to turn on <a href="https://docs.microsoft.com/en-us/ef/core/querying/related-data/lazy"><em>lazy loading</em></a>, which causes entities to be loaded through <em>navigation properties</em> on demand. The loading is performed in a <em>lazy</em> way (that is, only when needed) without an explicit <code>Include</code>. While this solution is convenient for the developer, it comes at a price: loading data when needed (when the code reaches a statement referencing the property) will typically result in several separate database queries. In the <code>Include</code> solution, you can see above that a single query loads both the <code>Product</code> and <code>VAT</code> data. If we used <em>lazy loading</em>, there would be a query for the <code>Product</code> data and another one for the referenced <code>VAT</code> properties at a later time. Thus, lazy loading is usually worse in terms of performance.</p>
 </div>
                 
               
@@ -1153,7 +1205,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../adonet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Exercise: ADO.NET data access" rel="prev">
+        <a href="../linq/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LINQ: Language Integrated Query" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1162,20 +1214,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Exercise: ADO.NET data access
+              LINQ: Language Integrated Query
             </div>
           </div>
         </a>
       
       
         
-        <a href="../mongodb/" class="md-footer__link md-footer__link--next" aria-label="Next: Exercise: MongoDB" rel="next">
+        <a href="../mongodb/" class="md-footer__link md-footer__link--next" aria-label="Next: MongoDB basics, operations, and the MongoDB .NET Driver" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Exercise: MongoDB
+              MongoDB basics, operations, and the MongoDB .NET Driver
             </div>
           </div>
           <div class="md-footer__button md-icon">

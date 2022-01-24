@@ -528,8 +528,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../adonet/" class="md-nav__link">
+        ADO.NET data access
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../linq/" class="md-nav__link">
         LINQ: Language Integrated Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ef/" class="md-nav__link">
+        Defining relationships in Entity Framework
       </a>
     </li>
   
@@ -801,8 +829,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#grouping" class="md-nav__link">
-    Grouping
+  <a href="#aggregation-pipeline" class="md-nav__link">
+    Aggregation pipeline
   </a>
   
 </li>
@@ -1488,8 +1516,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#grouping" class="md-nav__link">
-    Grouping
+  <a href="#aggregation-pipeline" class="md-nav__link">
+    Aggregation pipeline
   </a>
   
 </li>
@@ -1859,8 +1887,22 @@
 
 <span class="n">collection</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">Builders</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;.</span><span class="n">Filter</span><span class="p">.</span><span class="n">AnyEq</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Categories</span><span class="p">,</span> <span class="s">&quot;Balls&quot;</span><span class="p">)).</span><span class="n">CountDocuments</span><span class="p">();</span>
 </code></pre></div>
-<h4 id="grouping">Grouping<a class="headerlink" href="#grouping" title="Permanent link">&para;</a></h4>
-<p>Grouping is a syntactically complex operation. For grouping, we need to define an aggregation pipeline. We will not discuss this in more detail, but the following example shows its use.</p>
+<h4 id="aggregation-pipeline">Aggregation pipeline<a class="headerlink" href="#aggregation-pipeline" title="Permanent link">&para;</a></h4>
+<p>Aggregation operations process multiple documents and return some calculated results from them. MongoDB provides three ways to perform aggregation operations:</p>
+<ul>
+<li>Aggregation pipelines,</li>
+<li>Single Purpose Aggregation Operations,</li>
+<li>and Map-reduce functions.</li>
+</ul>
+<p>Since MongoDB version 5.0, <strong>Map-reduce</strong> is an obsolete method because the aggregation pipeline is better in terms of usability and speed.</p>
+<p>For <strong>Single Purpose Aggregation Operations</strong>, MongoDB provides us with <code>IMongoCollection&lt;TDocument&gt;.EstimatedDocumentCount()</code>, <code>IMongoCollection&lt;TDocument&gt;.Count()</code> and <code>IMongoCollection&lt;TDocument&gt;.Distinct()</code> functions, which all perform simple aggregation on a single collection.</p>
+<p><img alt="Single Purpose Aggregation Operation" src="images/mongodb_spao.svg" /></p>
+<div class="admonition citation">
+<p class="admonition-title">Source</p>
+<p><a href="https://docs.mongodb.com/manual/images/distinct.bakedsvg.svg">https://docs.mongodb.com/manual/images/distinct.bakedsvg.svg</a></p>
+</div>
+<p>General aggregations can be performed by defining a pipeline manually. An <strong>aggregation pipeline</strong> is built up from stages, each serving a specific action <em>(filter, group, count, calculate, etc.)</em> on its input documents. A pipeline can also return multiple results from a set of documents <em>(e.g., total, average, maximum, or minimum values)</em>.</p>
+<p>Let's look at this through an example of grouping.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// products in the &quot;Balls&quot; category grouped by VAT percentage</span>
 <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">g</span> <span class="k">in</span> <span class="n">collection</span><span class="p">.</span><span class="n">Aggregate</span><span class="p">()</span>
                             <span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="n">Builders</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;.</span><span class="n">Filter</span><span class="p">.</span><span class="n">AnyEq</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Categories</span><span class="p">,</span> <span class="s">&quot;Balls&quot;</span><span class="p">))</span> <span class="c1">// filtering</span>
@@ -1998,7 +2040,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../linq/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LINQ: Language Integrated Query" rel="prev">
+        <a href="../ef/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Defining relationships in Entity Framework" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2007,7 +2049,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              LINQ: Language Integrated Query
+              Defining relationships in Entity Framework
             </div>
           </div>
         </a>

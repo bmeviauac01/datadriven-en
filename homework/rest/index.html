@@ -526,8 +526,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../lecture-notes/adonet/" class="md-nav__link">
+        ADO.NET data access
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../lecture-notes/linq/" class="md-nav__link">
         LINQ: Language Integrated Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lecture-notes/ef/" class="md-nav__link">
+        Defining relationships in Entity Framework
       </a>
     </li>
   
@@ -1054,7 +1082,7 @@
 <p>Create a new API endpoint that deletes a <code>Product</code> specified by its ID; the query is a <code>DELETE</code> query at URL <code>/api/product/{id}</code> and the response should be either 204 with no content, or 404 when the product is not found.</p>
 </li>
 <li>
-<p>Create a new API endpoint for querying the total number of products. (Such an endpoint could be used, for example, by the UI for paging the list of products.) This should be a GET HTTP request to URL <code>/api/product/-/count</code>. The returned result should be a JSON serialized <code>CountResult</code> object with the correct count.</p>
+<p>Create a new API endpoint for querying the total number of products. (Such an endpoint could be used, for example, by the UI for paging the list of products.) This should be a <code>GET</code> HTTP request to URL <code>/api/product/-/count</code>. The returned result should be a JSON serialized <code>CountResult</code> object with the correct count.</p>
 <details class="question"><summary>Why is there a <code>/-</code> in the URL?</summary><p>In order to understand the need for this, let us consider what the URL should look like: we are querying products, so <code>/api/product</code> is the prefix, but what is the end of the URL? It could be <code>/api/product/count</code>. However, this clashes with <code>/api/product/123</code> where we can get a particular product. In practice, the two URLs could work side-by-side here since the product ID is an integer, and the framework would recognize that an URL ending in <code>/123</code> is to get a product and the <code>/count</code> is to get the counts. But this works only as long as the ID is an integer. If the product ID were a string, this would be more problematic. Our solution makes sure that the URLs do not clash. The <code>/-</code> is to indicate that there is <em>no</em> product ID.</p>
 <p>Note: the way URLs are matched to controller methods is more complicated. ASP.NET Core has a notion of priorities when trying to find a controller method for an URL. This priority can be modified on the <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute?view=aspnetcore-3.1#properties"><code>[Http*]</code> attributes by setting the <code>Order</code> property</a>.</p>
 </details>

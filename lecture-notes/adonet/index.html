@@ -1,0 +1,1622 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Dudás Ákos">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.0">
+    
+    
+      
+        <title>ADO.NET data access - BMEVIAUAC01 Data-driven systems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8b42a75e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adonet-data-access" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-header__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUAC01 Data-driven systems
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADO.NET data access
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to dark theme"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark theme" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent=""  aria-label="Switch to light theme"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light theme" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Data-driven systems
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../db/" class="md-tabs__link">
+        Database
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link md-tabs__link--active">
+        Lecture notes
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../seminar/transactions/" class="md-tabs__link">
+        Seminars
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../homework/" class="md-tabs__link">
+        Homework
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUAC01 Data-driven systems" class="md-nav__button md-logo" aria-label="BMEVIAUAC01 Data-driven systems" data-md-component="logo">
+      
+  <img src="../../img/logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUAC01 Data-driven systems
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/bmeviauac01/datadriven-en/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviauac01/datadriven-en
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Data-driven systems
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Database
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Database" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/" class="md-nav__link">
+        Sample database scheme
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/mssql/" class="md-nav__link">
+        Using Microsoft SQL Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/mongodb/" class="md-nav__link">
+        Using MongoDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql" class="md-nav__link">
+        Sample database: mssql.sql
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mongo.js" class="md-nav__link">
+        Sample database: mongo.js
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lecture notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lecture notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lecture notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Data-driven systems and the three- or multi-tier architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transactions/" class="md-nav__link">
+        Transactions in databases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mssql/sql/" class="md-nav__link">
+        SQL language, MSSQL platform-specific SQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mssql/server-side-programming/" class="md-nav__link">
+        Microsoft SQL Server programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ADO.NET data access
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ADO.NET data access
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-adonet" class="md-nav__link">
+    What is ADO.NET?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    Connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    Command
+  </a>
+  
+    <nav class="md-nav" aria-label="Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-command" class="md-nav__link">
+    Creating the command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    Execution
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-values" class="md-nav__link">
+    NULL values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-result" class="md-nav__link">
+    Query result
+  </a>
+  
+    <nav class="md-nav" aria-label="Query result">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datareader" class="md-nav__link">
+    DataReader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    DataSet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks" class="md-nav__link">
+    Risks
+  </a>
+  
+    <nav class="md-nav" aria-label="Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    SQL injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-string" class="md-nav__link">
+    Connection string
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-leak" class="md-nav__link">
+    Connection leak
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linq/" class="md-nav__link">
+        LINQ: Language Integrated Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ef/" class="md-nav__link">
+        Defining relationships in Entity Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongodb/" class="md-nav__link">
+        MongoDB basics, operations, and the MongoDB .NET Driver
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../di/" class="md-nav__link">
+        Dependency Injection ASP.NET Core environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../async/" class="md-nav__link">
+        Asynchronous queries and DTOs (sample WebAPI application)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/bmeviauac01/rest-webapi-sample" class="md-nav__link">
+        REST and WebAPI sample app (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/bmeviauac01/todoapi-di-sample" class="md-nav__link">
+        ASP.NET Core DI sample app (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/bmeviauac01/threelayered-aspnetcore-sample" class="md-nav__link">
+        Sample three-tier webapp (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Seminars
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Seminars" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Seminars
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/transactions/" class="md-nav__link">
+        Transactions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/mssql/" class="md-nav__link">
+        Microsoft SQL Server programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/ef/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/mongodb/" class="md-nav__link">
+        MongoDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/jpa/" class="md-nav__link">
+        JPA & Spring Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seminar/rest/" class="md-nav__link">
+        REST API & ASP.NET Web API
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Homework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Homework" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Homework
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/" class="md-nav__link">
+        Optional homework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/mssql/" class="md-nav__link">
+        Exercise: MSSQL server-side programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/adonet/" class="md-nav__link">
+        Exercise: ADO.NET data access
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/ef/" class="md-nav__link">
+        Exercise: Entity Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/mongodb/" class="md-nav__link">
+        Exercise: MongoDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/rest/" class="md-nav__link">
+        Exercise: REST API and Web API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/GitHub/" class="md-nav__link">
+        Submitting your work (GitHub)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/GitHub-Actions/" class="md-nav__link">
+        Using GitHub Actions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homework/VisualStudio/" class="md-nav__link">
+        Install Visual Studio & .NET Core SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-adonet" class="md-nav__link">
+    What is ADO.NET?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    Connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    Command
+  </a>
+  
+    <nav class="md-nav" aria-label="Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-command" class="md-nav__link">
+    Creating the command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    Execution
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-values" class="md-nav__link">
+    NULL values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-result" class="md-nav__link">
+    Query result
+  </a>
+  
+    <nav class="md-nav" aria-label="Query result">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datareader" class="md-nav__link">
+    DataReader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    DataSet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks" class="md-nav__link">
+    Risks
+  </a>
+  
+    <nav class="md-nav" aria-label="Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    SQL injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-string" class="md-nav__link">
+    Connection string
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-leak" class="md-nav__link">
+    Connection leak
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bmeviauac01/datadriven-en/edit/master/docs/lecture-notes/adonet/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="adonet-data-access">ADO.NET data access<a class="headerlink" href="#adonet-data-access" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-adonet">What is <strong>ADO.NET</strong>?<a class="headerlink" href="#what-is-adonet" title="Permanent link">&para;</a></h2>
+<p>In data-driven applications, it is important for the data access layer to <em>provide simple and convenient access</em> to the database, making it easier to create complex queries. And all this should be as independent of the <em>database engine itself</em> as possible.</p>
+<p>The <strong>ADO.NET</strong> (<em>ActiveX Data Object</em>) developed by Microsoft is a <strong>data access class library</strong> designed to meet these needs. As part of <strong>.NET</strong>, it provides a rich toolset for building data-driven applications, providing easy access to relational databases, <em>regardless of the specific type of database</em>.</p>
+<p><strong>ADO.NET</strong> is a powerful tool because it enables unified, database engine-independent access. The library contains interfaces and abstract classes that have many implementations (e.g., for <em>Microsoft SQL Server or OleDB</em>). And there are also third-party implementations compatible with ADO.NET for the databases that there is no built-in support.</p>
+<div class="admonition note">
+<p>The Entity Framework is also based on ADO.NET in the background.</p>
+</div>
+<p>The place of <strong>ADO.NET</strong> in a data-driven application architecture is as follows:</p>
+<p><img alt="Structure" src="images/adonet-arch.png" /></p>
+<p>ADO.NET provides services in the data access layer and handles communication with the database engine in the background using drivers installed on the system and operating system services (such as a network connection).</p>
+<p>The typical building blocks of data access libraries are:</p>
+<ul>
+<li><a href="#connection">Connection</a> - <em>the database specific connection to the server</em></li>
+<li><a href="#command">Command</a> - <em>injection-safe command sent to the server</em></li>
+<li><a href="#query-result">ResultSet</a> - <em>result set returned by the server</em></li>
+<li><strong>Exception</strong> - <em>errors thrown by the library</em></li>
+</ul>
+<p>These will be discussed in depth below.</p>
+<h2 id="connection">Connection<a class="headerlink" href="#connection" title="Permanent link">&para;</a></h2>
+<p>The <strong>ADO.NET</strong> library provides the <code>IDbConnection</code> interface to represent database connections. It contains the functions needed to manage the connection to the database, such as <code>Open()</code>, <code>Close()</code>, or <code>BeginTransaction()</code>. This interface is implemented by database engine-specific connection classes, such as the <code>SqlConnection</code> class, which implements the connection to Microsoft SQL Server.</p>
+<p>We need to know that setting up a new connection to a database is relatively expensive (opening a new network connection, negotiating protocols with the server, authentication, etc.). Therefore, we use <strong>connection pooling</strong>, where, after using and closing a connection, we do not discard it but put it back in a pool to reuse it later.</p>
+<p>The availability of <em>connection pool</em> depends on the implementation; it supported by the <em>MS SQL Server</em> and <em>OleDD</em> implementations. <em>Connection pools</em> are created for every <em>connection string</em> (so not per database). This is important if the application does not use a single static <em>connection string</em> (but connects on behalf of the user, for example).</p>
+<p>We also have to understand the problem of <a href="# connection-leak"><strong>connection leak</strong></a>, which means that a connection is left open after use (we do not call <code>Close()</code>), so it is not returned to the pool, which prohibits future reuse. If we do leak connections this way, the pool will soon run out of connections, and the application will stop working due to not being able to talk to the database. This problem must be avoided by closing or disposing of connections safely (see sample code later).</p>
+<p>We need the aforementioned <strong>connection string</strong> to connect to the database. It is a text variable that describes the parameters used to connect to the database, such as a username, password, or server address. <strong>Connection strings</strong> have <a href="https://www.connectionstrings.com/">database server-specific syntax</a> and may also be a point of <a href="#connection-string">attacks</a>.</p>
+<p>The <em>connection string</em> can be stored as text in the configuration file, or the application code can build it. Below is a <strong>sample code</strong> creating a connection and using a <code>ConnectionStringBuilder</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnectionStringBuilder</span><span class="p">();</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">UserID</span> <span class="p">=</span> <span class="s">&quot;User&quot;</span><span class="p">;</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">Password</span> <span class="p">=</span> <span class="s">&quot;Pw&quot;</span><span class="p">;</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">DataSource</span> <span class="p">=</span> <span class="s">&quot;database.server.hu&quot;</span><span class="p">;</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">InitialCatalog</span> <span class="p">=</span> <span class="s">&quot;datadriven&quot;</span><span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="n">ConnectionString</span><span class="p">);</span>
+
+<span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+<span class="p">...</span> <span class="c1">// queries</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span> <span class="c1">// must close at the end - see a better solution later</span>
+</code></pre></div>
+<h2 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h2>
+<p>After establishing the connection to the database, we want to run queries. To do this, <strong>ADO.NET</strong> provides the <code>IDbCommand</code> interface, which represents a command. The implementations of this interface, such as <code>SqlCommand</code>, just like the connection, are specific to the database server.</p>
+<h3 id="creating-the-command">Creating the command<a class="headerlink" href="#creating-the-command" title="Permanent link">&para;</a></h3>
+<p>By setting the following main <em>properties</em> of an <code>IDbCommand</code> we can configure how the given command will be interpreted:</p>
+<ul>
+<li><code>CommandType</code>: there are three types<ul>
+<li><em>StoredProcedure</em></li>
+<li>query the entire table (<em>TableDirect</em>)</li>
+<li>SQL query (<em>Text</em>) - default</li>
+</ul>
+</li>
+<li><code>CommandText</code>: the text of the command or the name of a stored procedure</li>
+<li><code>Connection</code>: database connection</li>
+<li><code>Transaction</code>: the transaction</li>
+<li><code>CommandTimeout</code>: timeout for waiting to the result (<em>30 seconds by default</em>)</li>
+<li><code>Parameters</code>: parameters to prevent <a href="#hazards">SQL injection attack</a></li>
+</ul>
+<p>Note that the command must specify the connection. Also note, that the transaction is also a property of the command. This is because it is up to the developer to decide whether to consider a particular command as part of a transaction.</p>
+<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
+<p>Once we have a command object, we execute it. Depending on the expected return value, we can choose from several options (methods on the command object):</p>
+<ul>
+<li><code>ExecuteReader</code>: query multiple records</li>
+<li><code>ExecuteScalar</code>: query a single scalar value</li>
+<li><code>ExecuteNonQuery</code>: a query that does not return a result (e.g., <code>INSERT</code>) - instead, it returns the number of rows affected, e.g., in case of deletion, it is possible to decide whether the operation was successful (whether the record to be deleted was found)</li>
+<li><code>ExecuteXmlReader</code> (MS SQL Server): returns an XML document (<code>XmlReader</code> object), the result is a single XML field of a record</li>
+</ul>
+<p>You can also reuse commands after calling <code>Command.Prepare()</code>. It prepares the command to run on the server-side, but it is only worth it if we run the same statement (possibly with different parameter values).</p>
+<p><strong>Sample code</strong> for using the command:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// establish the connection</span>
+<span class="p">...</span>
+<span class="kt">var</span> <span class="n">command</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">();</span>
+<span class="n">command</span><span class="p">.</span><span class="n">Connection</span> <span class="p">=</span> <span class="n">connection</span><span class="p">;</span>
+<span class="c1">// setting command.Connection it not enecessary if we use the connection to instantiate</span>
+<span class="c1">// the command as: command = connection.CreateCommand()</span>
+<span class="n">command</span><span class="p">.</span><span class="n">CommandType</span> <span class="p">=</span> <span class="n">CommandType</span><span class="p">.</span><span class="n">StoredProcedure</span><span class="p">;</span>
+<span class="n">command</span><span class="p">.</span><span class="n">CommandText</span> <span class="p">=</span> <span class="s">&quot;SalesByCategory&quot;</span><span class="p">;</span> <span class="c1">// name of the stored procedure</span>
+
+<span class="cm">/* equivalent syntax</span>
+<span class="cm">var command = new SqlCommand()</span>
+<span class="cm">{</span>
+<span class="cm">    Connection = connection,</span>
+<span class="cm">    CommandType = CommandType.StoredProcedure,</span>
+<span class="cm">    CommandText = &quot;SalesByCategory&quot;</span>
+<span class="cm">}*/</span>
+
+<span class="c1">// protection agains SQL injection</span>
+<span class="kt">var</span> <span class="n">parameter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">();</span>
+<span class="n">parameter</span><span class="p">.</span><span class="n">ParameterName</span> <span class="p">=</span> <span class="s">&quot;@CategoryName&quot;</span><span class="p">;</span> <span class="c1">// matches the stored procedures argument name</span>
+<span class="n">parameter</span><span class="p">.</span><span class="n">SqlDbType</span> <span class="p">=</span> <span class="n">SqlDbType</span><span class="p">.</span><span class="n">NVarChar</span><span class="p">;</span>
+<span class="n">parameter</span><span class="p">.</span><span class="n">Value</span> <span class="p">=</span> <span class="n">categoryName</span><span class="p">;</span> <span class="c1">// assign value from a C# variable</span>
+<span class="n">command</span><span class="p">.</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">parameter</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">reader</span> <span class="p">=</span> <span class="n">command</span><span class="p">.</span><span class="n">ExecuteReader</span><span class="p">();</span>
+<span class="c1">// see processing the results later</span>
+</code></pre></div>
+<h4 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h4>
+<p>Transactions in ADO.NET do not need to be initiated with the <code>begin tran</code> SQL statement. ADO.NET provides methods to create and manage the transaction, as shown in the code snippet below. Also, note the <code>using</code> blocks to properly and securely close resources.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ... creating the connection string</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">connectionString</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">connection</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span> <span class="c1">// let us not forget this, instantiation does not open the connection</span>
+
+    <span class="kt">var</span> <span class="n">transaction</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">BeginTransaction</span><span class="p">();</span>
+    <span class="c1">// parameter might include a name for the transaction and/or the isolation level</span>
+
+    <span class="kt">var</span> <span class="n">command</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Connection</span> <span class="p">=</span> <span class="n">connection</span><span class="p">,</span>
+        <span class="n">CommandText</span> <span class="p">=</span> <span class="s">&quot;INSERT into CarTable (Description) VALUES(&#39;...&#39;)&quot;</span><span class="p">,</span>
+        <span class="n">Transaction</span> <span class="p">=</span> <span class="n">transaction</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">command</span><span class="p">.</span><span class="n">ExecuteNonQuery</span><span class="p">();</span>
+        <span class="c1">// MUST commit a successful transaction</span>
+        <span class="n">transaction</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Transaction finished!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">commitException</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Commit Exception: &quot;</span><span class="p">,</span> <span class="n">commitException</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+
+        <span class="c1">// The rollback below is not necessary. The system performs it automatically</span>
+        <span class="c1">// for any non-committed transaction. The code below is only a possibility.</span>
+        <span class="k">try</span>
+        <span class="p">{</span>
+            <span class="n">transaction</span><span class="p">.</span><span class="n">RollBack</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">rollBackException</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Rollback Exception: &quot;</span><span class="p">,</span> <span class="n">rollBackException</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Transaction timeout</p>
+<p>The total time of all ADO.NET transactions is limited by the setting in the <a href="https://docs.microsoft.com/en-us/dotnet/api/system.transactions.configuration.machinesettingssection.maxtimeout?view=netframework-4.8">MachineConfig</a>. This is a system-wide setting that applies to <strong>all</strong> .NET applications running on a system, so it is not a good idea to change this setting. Long-running transactions are to be avoided anyway.</p>
+</div>
+<p>A transaction usually belongs to a single <code>Connection</code> object, but we can also create a transaction involving multiple persistent resource managers (other databases, message queues, anything that supports transactions). At this point, we would be talking about distributed transaction management, which requires an external transaction manager, such as the <strong>Microsoft Distributed Transaction Coordinator</strong> (<em>MS DTC</em>). Such cases should also be avoided generally.</p>
+<h3 id="null-values">NULL values<a class="headerlink" href="#null-values" title="Permanent link">&para;</a></h3>
+<p>How do we know that the result of our query is an empty set? And how do we know that a column contains no value? In .NET we usually check if a value equals <code>null</code>. However, a <code>NULL</code> value in a database is represented differently by ADO.NET ​​depending on the underlying type (int, string, etc.). So how do we check to see if there is a value in the query result?</p>
+<ul>
+<li>If we want to check if the result set of a query contains any records, we can do so by examining the <code>bool</code> property <code>DataReader.HasRows</code>.</li>
+<li>To examine the value of a particular column in the result set, we can use <code>reader["column name"].IsNull</code> or <code>reader.IsDbNull(index)</code>.</li>
+<li>And if we want to manually insert a value of <code>NULL</code> into a new record, we can use, for example, <code>SqlString.Null</code> or <code>DBNull.Value</code> in the C# code.</li>
+</ul>
+<h2 id="query-result">Query result<a class="headerlink" href="#query-result" title="Permanent link">&para;</a></h2>
+<p><strong>ADO.NET</strong> offers two ways of fetching data from a database and working with it: <code>DataReader</code> and <code>DataSet</code>. The main difference between the two solutions is how these use the database connection. These two models are, in general, called: <strong>connection-based</strong> (<code>DataReader</code>) and <strong>connection-less</strong> (<code>DataSet</code>) data access. In the connection-based model, the connection to the database is maintained throughout the queries as long as we work with the data. While in the connection-less model modifications are performed in a <code>DataSet</code>, which is synchronized with the database itself (establishing the connection only for the duration of the synchronization). Both options have advantages and disadvantages, which we will discuss in the following sections.</p>
+<h3 id="datareader">DataReader<a class="headerlink" href="#datareader" title="Permanent link">&para;</a></h3>
+<p>Here, we need a connection to the database to fetch the required data from the database. The connection remains open only for a short time, during with we query fresh data and usually convert it to some other internal representation.</p>
+<p><strong>Processing steps:</strong></p>
+<ol>
+<li>open the connection</li>
+<li>run command(s) to query data</li>
+<li>process the results (typically: convert the data to business entities)</li>
+<li>close the reader</li>
+<li>close the connection</li>
+</ol>
+<p>The flow of data using the <code>DataReader</code> is as follows:</p>
+<p><img alt="Flow of data" src="images/datareader.png" /></p>
+<p><strong>Sample code</strong> using a <code>DataReader</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">using</span><span class="p">(</span><span class="kt">var</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">connectionString</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">command</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">()</span>
+    <span class="p">{</span>
+      <span class="n">Connection</span> <span class="p">=</span> <span class="n">conn</span><span class="p">,</span>
+      <span class="n">CommandText</span> <span class="p">=</span> <span class="s">&quot;SELECT ID, NAME FROM Product&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+    <span class="n">using</span><span class="p">(</span><span class="kt">var</span> <span class="n">reader</span> <span class="p">=</span> <span class="n">command</span><span class="p">.</span><span class="n">ExecuteReader</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">reader</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;{0}\t{1}&quot;</span><span class="p">,</span> <span class="n">reader</span><span class="p">[</span><span class="s">&quot;ID&quot;</span><span class="p">],</span> <span class="n">reader</span><span class="p">[</span><span class="s">&quot;Name&quot;</span><span class="p">]);</span>
+            <span class="c1">// typically rather create a business entity and add it to a list in memory</span>
+        <span class="p">}</span>
+        <span class="c1">// no need for reader.Close() thanks to the using block</span>
+    <span class="p">}</span>
+    <span class="c1">// no need for conn.Close() thanks to the using block</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">There are a few things worth paying attention to!</p>
+<ul>
+<li>The value of <code>reader["ID"]</code> is an <code>object</code>, not a string or an int. We can use <code>reader.Get***(query_in_column_index)</code> instead, where we must specify the data type (<code>String</code>, <code>Int32</code>, etc.).</li>
+<li>If the types are not compatible (e.g., the column is <code>nvarchar</code> in the database, but we want to read it as <code>int32</code>), we will get a <strong>runtime exception</strong>.</li>
+<li>If there is a <code>NULL</code> value in the database, we will also get a <strong>runtime error</strong> when using the <code>reader.Get***</code> methods. Instead, we should use <code>reader.IsDBNull(query_in_column_index)</code> to verify, and if it is <code>true</code>, we can use the appropriate <code>null</code> value instead.</li>
+</ul>
+</div>
+<p><strong>Advantages</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> the data is fetched directly from the database; hence, it is up-to-date</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> less painful concurrency management, as fresh the data is fetched</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> needs less memory (compared to DataSets; see later)</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>needs an open network connection while operations are being performed - thus, it should not be too long</li>
+<li>poor scalability with the number of connections - therefore, the connections should be used only for a short time</li>
+</ul>
+<h3 id="dataset">DataSet<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
+<p>A <code>DataSet</code> can be considered as a kind of <em>cache</em>, or in-memory data storage. We use an <code>adapter</code> (such as <code>SqlDataAdapter</code>) to retrieve data from the database and store it in the <code>Dataset</code>, then we close the connection to the database. We can then make work with the data, event make changes to it within the <code>DataSet</code>, and then update the database with the changes using a new connection. It is worth noting that during the time between retrieval and update anyone can modify the same data in the database, thus the disadvantages of <code>DataSet</code> is having to manage conflicts and concurrent data access issues covered previously in transaction management.</p>
+<p><strong>The steps of working with a DataSet:</strong></p>
+<ol>
+<li>Open a connection</li>
+<li>Fill the <code>DataSet</code> with part of the database</li>
+<li>Close the connection</li>
+<li>Work with the <code>DataSet</code> (e.g., display and edit in a user interface) - this may take longer</li>
+<li>Open a new connection</li>
+<li>Synchronize changes</li>
+<li>Close the connection</li>
+</ol>
+<p>The operation of data access in this model using an <code>adapter</code> is shown in the figure below.</p>
+<p><img alt="Working with the data adapter" src="images/adapter.png" /></p>
+<p>The flow of data using the <code>DataSet</code> is as follows:</p>
+<p><img alt="Flow of data" src="images/dataset.png" /></p>
+<p><strong>Sample code</strong> for working with a <code>DataSet</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">dataSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataSet</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">adapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlDataAdapter</span><span class="p">();</span>
+
+<span class="c1">// open connection, populate the dataset, close the connection</span>
+<span class="n">using</span><span class="p">(</span><span class="kt">var</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">connectionString</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">adapter</span><span class="p">.</span><span class="n">SelectCommand</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Product&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+
+    <span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+    <span class="n">adapter</span><span class="p">.</span><span class="n">Fill</span><span class="p">(</span><span class="n">dataSet</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">-------------------------------------------------------</span>
+<span class="c1">// working with the data</span>
+<span class="c1">// typically uinvolves UI; this is just a sample</span>
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataSet</span><span class="p">.</span><span class="n">Tables</span><span class="p">[</span><span class="s">&quot;Product&quot;</span><span class="p">].</span><span class="n">Rows</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;{0}\t{1}&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s">&quot;ID&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s">&quot;Name&quot;</span><span class="p">]);</span>
+    <span class="n">row</span><span class="p">[</span><span class="s">&quot;Name&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;new value&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">-------------------------------------------------------</span>
+
+<span class="c1">// at a later point in time, such as after a &quot;Save&quot; button in clicked</span>
+<span class="c1">// open connection, synchronize data, close connection</span>
+<span class="n">using</span><span class="p">(</span><span class="kt">var</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">connectionString</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+    <span class="n">adapter</span><span class="p">.</span><span class="n">Update</span><span class="p">(</span><span class="n">dataSet</span><span class="p">);</span>
+    <span class="c1">//dataSet.AcceptChanges(); -- would only update the dataset, but not the database</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p>It is worth noting that the <code>adapter</code> only communicates with the database via <code>Command</code>s. An <code>adapter</code> can use multiple such <code>Command</code>s, so we can even work with multiple <code>Connections</code> towards multiple databases with the same <code>DataSet</code>.</p>
+</div>
+<p><strong>Advantages</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> does not need a long-running connection</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>there may be conflicts during saving the changes</li>
+<li>data in the <code>DataSet</code> may be stale</li>
+<li>has larger memory footprint - the reason why we do not use it in server applications</li>
+</ul>
+<h2 id="risks">Risks<a class="headerlink" href="#risks" title="Permanent link">&para;</a></h2>
+<h3 id="sql-injection">SQL injection<a class="headerlink" href="#sql-injection" title="Permanent link">&para;</a></h3>
+<p><strong>SQL injection</strong> is a <strong>severe error</strong> in an application when a query is created without sanitizing the values of parameters. Parameter values can come from the client side, with user-selected or user-specified data. This can cause a problem if a malicious user writes an SQL command into a field from which we would expect something else. For example, we would expect a username, but instead <code>Monkey92); DROP TABLE Users; -</code> value is received. If we were to include this text and insert it into our SQL statement, we would also execute <code>drop table</code>, thereby deleting an entire table. This is a <strong>serious mistake</strong>!</p>
+<div class="admonition important">
+<p class="admonition-title"><strong>SOLUTION</strong></p>
+<p>Using parameters (see the <a href="#command">Command section</a> for an example).</p>
+</div>
+<h3 id="connection-string">Connection string<a class="headerlink" href="#connection-string" title="Permanent link">&para;</a></h3>
+<p>Creating a <strong>connection string</strong> has a flaw similar to <strong>SQL injection</strong>. Suppose we ask the user for some kind of data (<em>e.g., username, password</em>). In this case, we do not know exactly what we will get. The <strong>connection string</strong> consists of key-value pairs and many databases apply the <em>last-wins</em> principle. In practice, this means that if more than one value is specified in a string for the same key, the last one takes effect. That is, if after the username and password a key-value pair is added that already appears in the string before, the new value overwrites the old one. This carries a risk, since a malicious user is able to inject specified parameters into the connection string.</p>
+<div class="admonition important">
+<p class="admonition-title"><strong>SOLUTION</strong></p>
+<p>Using <code>ConnectionStringBuilder</code> (see <a href="#connection">Connection section</a>).</p>
+</div>
+<h3 id="connection-leak">Connection leak<a class="headerlink" href="#connection-leak" title="Permanent link">&para;</a></h3>
+<p>If we do not close all <code>Connections</code>, any time the code containing the not closed connection is executed, we will retrieve a <code>Connection</code> from the pool without returning it. When the pool is emptied, the application will be stuck not being able to talk to the database at all. This is an error that is hard to spot because it "only" happens after the application running for a certain amount of time - and almost never on the developer's machine.</p>
+<div class="admonition important">
+<p class="admonition-title"><strong>SOLUTION</strong></p>
+<p><code>using</code> block to open the connection, as this will close the connection at the end of the block (see <a href="#transactions">Transaction section example</a>, or <a href="#datareader">DataReader</a>, or <a href="#dataset">DataSet</a>)</p>
+</div>
+<div class="admonition note">
+<p>A <code>DataReader</code> must be closed in the same way.</p>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../mssql/server-side-programming/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Microsoft SQL Server programming" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Microsoft SQL Server programming
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../linq/" class="md-footer__link md-footer__link--next" aria-label="Next: LINQ: Language Integrated Query" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              LINQ: Language Integrated Query
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; BME VIK AUT
+          </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      
+    
+  </body>
+</html>
