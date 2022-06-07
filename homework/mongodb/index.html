@@ -1122,7 +1122,7 @@
 <ul>
 <li>Use the information from <code>package_parameters</code> (and <strong>not</strong> from <code>product_size</code>).</li>
 <li>A product might have multiple packages; this information is available in <code>package_parameters.number_of_packages</code>. This number shall be used as a multiplicator. Each product has a single size, and if it has multiple packages, then all packages are of the same size.</li>
-<li>The final total: for all products Σ (product stock <em>number of packages</em> width <em>height</em> depth).</li>
+<li>The final total: for all products Σ (product stock * number of packages * width * height * depth).</li>
 <li>If a product does not have these information, it's volume should be calculated as 0.</li>
 <li>Mind, that the size also has a unit: either <em>cm</em> or <em>m</em>, but the final value is expected in cubic meter.</li>
 </ul>
