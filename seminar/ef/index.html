@@ -1001,7 +1001,7 @@
   
     <li class="md-nav__item">
       <a href="../../homework/VisualStudio/" class="md-nav__link">
-        Install Visual Studio & .NET Core SDK
+        Install Visual Studio & .NET SDK
       </a>
     </li>
   
@@ -1114,7 +1114,7 @@
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
 <p>Required tools to complete the tasks:</p>
 <ul>
-<li>Microsoft Visual Studio 2015/2017/2019 (<em>not</em> VS Code)</li>
+<li>Microsoft Visual Studio 2022 (<em>not</em> VS Code)</li>
 <li>Microsoft SQL Server (LocalDB or Express edition)</li>
 <li>SQL Server Management Studio</li>
 <li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
@@ -1132,12 +1132,8 @@
 <h2 id="exercise-0-createcheck-the-database">Exercise 0: Create/check the database<a class="headerlink" href="#exercise-0-createcheck-the-database" title="Permanent link">&para;</a></h2>
 <p>The database resides on each machine; thus, the database you created previously might not be available. First, check if your database exists, and if it does not, create and initialize it. (See the instructions <a href="../transactions/">in the first seminar material</a>.)</p>
 <h2 id="exercise-1-create-a-project-and-map-the-database">Exercise 1: Create a project and map the database<a class="headerlink" href="#exercise-1-create-a-project-and-map-the-database" title="Permanent link">&para;</a></h2>
-<p>Let us create a new C# console application in Visual Studio. In VS 2019 search for "console framework"; this will yield the project template we are looking for.</p>
+<p>Let us create a new C# console application in Visual Studio. In VS search for "console framework"; this will yield the project template we are looking for.</p>
 <p><img alt="VS projext type" src="images/vs-create-project.png" /></p>
-<div class="admonition important">
-<p>Do <strong>not</strong> create a .NET <em>Core</em> application because it does not support the visual <em>Database First</em> code generation we will use.</p>
-<p>Mind the project language: it shall be C#.</p>
-</div>
 <p>Create a new project; you may work in directory <code>c:\work</code>.</p>
 <ol>
 <li>
