@@ -779,22 +779,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-2-queries" class="md-nav__link">
-    Exercise 2: Queries
+  <a href="#task-2-queries" class="md-nav__link">
+    Task 2: Queries
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-3-data-modification" class="md-nav__link">
-    Exercise 3: Data modification
+  <a href="#task-3-data-changes" class="md-nav__link">
+    Task 3: Data changes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-4-using-stored-procedures" class="md-nav__link">
-    Exercise 4: Using stored procedures
+  <a href="#task-4-using-stored-procedures" class="md-nav__link">
+    Task 4: Using stored procedures
   </a>
   
 </li>
@@ -1072,22 +1072,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-2-queries" class="md-nav__link">
-    Exercise 2: Queries
+  <a href="#task-2-queries" class="md-nav__link">
+    Task 2: Queries
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-3-data-modification" class="md-nav__link">
-    Exercise 3: Data modification
+  <a href="#task-3-data-changes" class="md-nav__link">
+    Task 3: Data changes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-4-using-stored-procedures" class="md-nav__link">
-    Exercise 4: Using stored procedures
+  <a href="#task-4-using-stored-procedures" class="md-nav__link">
+    Task 4: Using stored procedures
   </a>
   
 </li>
@@ -1112,13 +1112,13 @@
                 <h1 id="entity-framework">Entity Framework<a class="headerlink" href="#entity-framework" title="Permanent link">&para;</a></h1>
 <p>The goal of the seminar is to practice writing Linq queries and working with Entity Framework.</p>
 <div class="admonition important">
-<p class="admonition-title">Entity Framework <del>Core</del></p>
-<p>In this seminar, we are using Entity Framework available in the .NET Framework and not the cross-platform Core version. The usage of Linq is very similar, if not identical in both technologies. The visual code generation technology, however, is only available in the .NET Framework and Entity Framework.</p>
+<p class="admonition-title">Entity Framework Core</p>
+<p>In this seminar, we are using .NET 6 (former .NET Core) available as a cross-platform .NET version for Windows, Linux and Mac.</p>
 </div>
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
 <p>Required tools to complete the tasks:</p>
 <ul>
-<li>Microsoft Visual Studio 2022 (<em>not</em> VS Code)</li>
+<li>Microsoft Visual Studio 2022</li>
 <li>Microsoft SQL Server (LocalDB or Express edition)</li>
 <li>SQL Server Management Studio</li>
 <li>Database initialization script: <a href="https://raw.githubusercontent.com/bmeviauac01/adatvezerelt/master/docs/db/mssql.sql">mssql.sql</a></li>
@@ -1126,7 +1126,7 @@
 <p>Recommended to review:</p>
 <ul>
 <li>C# language</li>
-<li>Entity Framework and Linq</li>
+<li>Entity Framework Core and LINQ</li>
 </ul>
 <h2 id="how-to-work-during-the-seminar">How to work during the seminar<a class="headerlink" href="#how-to-work-during-the-seminar" title="Permanent link">&para;</a></h2>
 <p>The exercises are solved together with the instructor. A few exercises we can try to solve by ourselves and then discuss the results. The final exercise is individual work if time permits.</p>
@@ -1136,329 +1136,397 @@
 <h2 id="exercise-0-createcheck-the-database">Exercise 0: Create/check the database<a class="headerlink" href="#exercise-0-createcheck-the-database" title="Permanent link">&para;</a></h2>
 <p>The database resides on each machine; thus, the database you created previously might not be available. First, check if your database exists, and if it does not, create and initialize it. (See the instructions <a href="../transactions/">in the first seminar material</a>.)</p>
 <h2 id="exercise-1-create-a-project-and-map-the-database">Exercise 1: Create a project and map the database<a class="headerlink" href="#exercise-1-create-a-project-and-map-the-database" title="Permanent link">&para;</a></h2>
-<p>Let us create a new C# console application in Visual Studio. In VS search for "console framework"; this will yield the project template we are looking for.</p>
+<p>Let us create a new C# .NET console application in Visual Studio. (NOT the ".NET Framework" version!)</p>
 <p><img alt="VS projext type" src="images/vs-create-project.png" /></p>
 <p>Create a new project; you may work in directory <code>c:\work</code>.</p>
 <ol>
 <li>
-<p>Add a new <em>ADO.NET Entity Data Model</em> to the project.</p>
+<p>Create the initial EF Core Code First model. We will do <em>Reverse Engineering Code First</em> as we already have a database and we generate C# Code-First model.</p>
 <ul>
-<li>In Solution Explorer right-click the project / <em>Add / New Item / Data / ADO.NET Entity Data Model</em>. At the bottom of the dialog, use the name <code>DataDrivenEntities</code>.</li>
-<li>The model shall be created based on an existing database: in the wizard, choose the "EF designer from database" option.</li>
-<li>Specify the connection to the database. Create a new connection and save the connection string into the app config file.<ul>
-<li><em>Data source</em>: Microsoft SQL Server</li>
-<li><em>Server name</em>: <code>(localdb)\mssqllocaldb</code></li>
-<li><em>Select or enter database name</em>: let us chose our database</li>
-<li><em>Save connection settings in App.Config</em>:<ul>
-<li>yes (check)</li>
-<li>use the name <code>DataDrivenEntities</code> (this will be the name of the DbContext class)</li>
+<li>Install the EF Core NuGet package from the UI or copy these lines in the project file:</li>
 </ul>
-</li>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ItemGroup&gt;</span>
+    <span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;Microsoft.EntityFrameworkCore.SqlServer&quot;</span> <span class="na">Version=</span><span class="s">&quot;6.0.8&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;Microsoft.EntityFrameworkCore.Design&quot;</span> <span class="na">Version=</span><span class="s">&quot;6.0.8&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;PrivateAssets&gt;</span>all<span class="nt">&lt;/PrivateAssets&gt;</span>
+        <span class="nt">&lt;IncludeAssets&gt;</span>runtime; build; native; contentfiles; analyzers; buildtransitive<span class="nt">&lt;/IncludeAssets&gt;</span>
+    <span class="nt">&lt;/PackageReference&gt;</span>
+    <span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;Microsoft.EntityFrameworkCore.Tools&quot;</span> <span class="na">Version=</span><span class="s">&quot;6.0.8&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;PrivateAssets&gt;</span>all<span class="nt">&lt;/PrivateAssets&gt;</span>
+        <span class="nt">&lt;IncludeAssets&gt;</span>runtime; build; native; contentfiles; analyzers; buildtransitive<span class="nt">&lt;/IncludeAssets&gt;</span>
+    <span class="nt">&lt;/PackageReference&gt;</span>
+<span class="nt">&lt;/ItemGroup&gt;</span>
+</code></pre></div>
+<ul>
+<li>Run this EF Core PowerShell script in VS in the <em>Package Manager Console</em> which generates the database context and entity model:</li>
 </ul>
-</li>
-<li>Use Entity Framework 6.0 mapping.</li>
-<li>Map all tables: make a check next to the <em>Tables</em> folder.</li>
-<li><em>Model namespace</em>: e.g. <code>DataDrivenEntitiesModel</code></li>
-</ul>
-</li>
-<li>
-<p>Wait for the code generation. If VS asks about running a "template" let us allow it.</p>
-</li>
-<li>
-<p>Locate the <em>connection string</em> in <code>app.config</code> and check its contents.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Scaffold-DbContext</span> <span class="s1">&#39;Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=[neptun]&#39;</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">EntityFrameworkCore</span><span class="p">.</span><span class="n">SqlServer</span> <span class="n">-Context</span> <span class="n">AdatvezDbContext</span> <span class="n">-OutputDir</span> <span class="n">Entities</span>
+</code></pre></div>
 <div class="admonition note">
-<p class="admonition-title"><code>app.config</code></p>
-<p>It is advisable to put configuration, such as the <em>connection string</em> here, because the database access information may be different for each installation of an application. If the connection string is hard-wired into the source code, the application needs to be recompiled to change it. However, the <code>app.config</code> file is part of the application next to the executable is an editable xml format.</p>
+<p class="admonition-title">EF Core .NET CLI</p>
+<p>In the future, we will continue to use the commands available from the <em>Package Manager Console</em>, which is installed with the <code>Microsoft.EntityFrameworkCore.Tools</code> package. If anyone wants to use the conventional CLI outside of VS, the documentation can be found at <a href="https://learn.microsoft.com/en-us/ef/core/cli/dotnet">link</a> below.</p>
 </div>
 </li>
 <li>
-<p>Open the EF data model (double-click in the Solution Explorer). Let us examine the entities and the connections.</p>
+<p>Let's examine the generated code-first model.</p>
 <ul>
-<li>The model can be changed using the <em>Entity Data Model Browser</em> and <em>Entity Data Model Mapping Details</em> windows (if not visible open them through <em>View</em> / <em>Other windows</em>).</li>
+<li>The database is accessed through the ``AdatvezDbContext'' class</li>
+<li>Database tables are accessible via <code>DbSet</code> properties.</li>
+<li>The connection is configured in the <code>`OnConfiguring</code>' method. In a live application, this typically comes from a configuration file, which is why the <code>AdatvezDbContext(DbContextOptions&lt;AdatvezDbContext&gt; options)</code> constructor was generated</li>
+<li>The database model was configured in the <code>`OnModelCreating</code>' method.</li>
+</ul>
+</li>
 <li>
-<p>Let us make a few corrections in the generated names:</p>
+<p>Make changes to the model</p>
+<p>Rename the <code>Customer</code> navigation property of the <code>CustomerSite</code> entity to <code>MainCustomer</code> both in the entity and in <code>OnModelCreating</code>. This modification to the code-first model does not change the database schema.</p>
+<div class="highlight"><span class="filename">CustomerSite.cs</span><pre><span></span><code><span class="k">public</span> <span class="k">virtual</span> <span class="n">Customer</span><span class="p">?</span> <span class="n">MainCustomer</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">AdatvezDbContext.cs</span><pre><span></span><code><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnModelCreating</span><span class="p">(</span><span class="n">ModelBuilder</span> <span class="n">modelBuilder</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="n">modelBuilder</span><span class="p">.</span><span class="n">Entity</span><span class="p">&lt;</span><span class="n">CustomerSite</span><span class="p">&gt;(</span><span class="n">entity</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+
+        <span class="n">entity</span><span class="p">.</span><span class="n">HasOne</span><span class="p">(</span><span class="n">d</span> <span class="p">=&gt;</span> <span class="n">d</span><span class="p">.</span><span class="n">MainCustomer</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">WithMany</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">CustomerSites</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">HasForeignKey</span><span class="p">(</span><span class="n">d</span> <span class="p">=&gt;</span> <span class="n">d</span><span class="p">.</span><span class="n">CustomerId</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">HasConstraintName</span><span class="p">(</span><span class="s">&quot;FK__CustomerS__Custo__32E0915F&quot;</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Change the database schema - Migrations</p>
+<p>Currently, we have scaffolded our code-first model from the existing database, but we no longer want to maintain the schema with a database-first approach. Instead, use code-first migrations to change the database schema.</p>
 <ul>
-<li>Customer.CustomerSite1 -&gt; <strong>.Sites</strong></li>
-<li>CustomerSite.Customer1 -&gt; <strong>.MainCustomer</strong></li>
-<li>Order.OrderItem -&gt; .OrderItem&#8203;<strong>s</strong></li>
-<li>Product.OrderItem -&gt; .OrderItem&#8203;<strong>s</strong></li>
-<li>VAT.Product -&gt; .Product&#8203;<strong>s</strong></li>
-<li>Category.Product -&gt; .Product&#8203;<strong>s</strong></li>
+<li>
+<p>Let's create an initial migration called `Init', which will contain our initial schema. In the <em>Package Manager Console</em>, issue the following command.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-Migration</span> <span class="n">Init</span>
+</code></pre></div>
+</li>
+<li>
+<p>Let's try to run this migration on the database with the following command.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Update-Database</span>
+</code></pre></div>
+<p>This fails by definition, because the commands in the migration want to migrate the schema compared to an empty database, but we already have this schema in our database.
+EF keeps track of which migrations are already applied to the database in a special table called <code>__EFMigrationHistory</code>.</p>
+</li>
+<li>
+<p>Let's manually add the ``Init'' migration to this table, with which we indicate to EF that it has essentially already run. Pay attention to the name of the migration, which must also include the date.</p>
+<p><img alt="VS Migration History" src="images/vs-migration-history.png" /></p>
+</li>
+<li>
+<p>Let's change the database schema in our code-first model.</p>
+<ul>
+<li>
+<p>Let the <code>Price' property of our</code>Product' entity be <code>decimal' instead of</code>double', which is more useful for storing amounts of money. It should also be mandatory (cannot be null).</p>
+<div class="highlight"><span class="filename">Product.cs</span><pre><span></span><code><span class="k">public</span> <span class="kt">decimal</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Set the constraint and precision of the SQL field with <code>modelBuilder</code>.</p>
+<div class="highlight"><span class="filename">DatavezDbContext.cs</span><pre><span></span><code><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnModelCreating</span><span class="p">(</span><span class="n">ModelBuilder</span> <span class="n">modelBuilder</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="n">modelBuilder</span><span class="p">.</span><span class="n">Entity</span><span class="p">&lt;</span><span class="n">Product</span><span class="p">&gt;(</span><span class="n">entity</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+
+        <span class="n">entity</span><span class="p">.</span><span class="n">Property</span><span class="p">(</span><span class="n">e</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Price</span><span class="p">).</span><span class="n">HasPrecision</span><span class="p">(</span><span class="m">18</span><span class="p">,</span> <span class="m">2</span><span class="p">).</span><span class="n">IsRequired</span><span class="p">();</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a migration of our change and check the generated migration</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-Migration</span> <span class="n">ProductPriceDecimal</span>
+</code></pre></div>
+</li>
+<li>
+<p>Run the migration on the database and check its effect in the database</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Update-Database</span>
+</code></pre></div>
+</li>
 </ul>
 </li>
 </ul>
-<p>Save the model using Ctrl-S.</p>
+</li>
+</ol>
+<h2 id="task-2-queries">Task 2: Queries<a class="headerlink" href="#task-2-queries" title="Permanent link">&para;</a></h2>
+<p>Formulate the following queries using LINQ on the mapped data model. Print the results to the console.</p>
+<p>Use the debugger to see what kind of SQL statement is generated: by dragging the mouse over the variable of type `IQueryable', you can see the generated SQL as soon as the iteration of the result set begins.</p>
+<ol>
+<li>
+<p>List the names and stock of products of which there are more than 30 in stock!</p>
 </li>
 <li>
-<p>Let us examine the C# source code of the <em>DbContext</em> any one of the entity classes. In <em>Solution Explorer</em> expand the EDM model file, and the C# source files will be listed underneath.</p>
-<div class="admonition note">
-<p>You should <em>not</em> make changes to these files, as these are generated by the EDM model. Any change we make is lost when the EDM is re-generated. We may note, however, that all classes are declared as <code>partial</code>; thus we can extend them by creating new source files and using the same namespace and class name.</p>
+<p>Write a query that lists the products that have been ordered at least twice!</p>
+</li>
+<li>
+<p>Create a query that lists orders with a total value of more than HUF 30,000! When listing the result set, the individual items (Product name, amount, net price) should be listed line by line after the customer's name.</p>
+</li>
+<li>
+<p>List the data of the most expensive product!</p>
+</li>
+<li>
+<p>List the buyer pairs that have locations in the same city. A pair should be listed only once.</p>
+</li>
+</ol>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>using ConsoleApp3.Entities;
+
+using Microsoft.EntityFrameworkCore;
+
+Console.WriteLine(&quot;***** Second Task *****&quot;);
+using (var db = new AdatvezDbContext())
+{
+    // 2.1
+    Console.WriteLine(&quot;\t2.1:&quot;);
+    // Query syntax
+    var productStockQuery = from p in db.Products
+                            where p.Stock &gt; 30
+                            select p;
+
+    // Fluent / Method Chaining syntax
+    // var productStockQuery = db.Products.Where(p =&gt; p.Stock &gt; 30);
+
+    foreach (var p in productStockQuery)
+    {
+        Console.WriteLine($&quot;\t\tName={p.Name}\tStock={p.Stock}&quot;);
+    }
+
+    // 2.2
+    Console.WriteLine(&quot;\t2.2:&quot;);
+    var productOrderQuery = db.Products.Where(p =&gt; p.OrderItems.Count &gt;= 2);
+
+    // query syntax
+    //var productOrderQuery = from p in db.Products
+    // where p.OrderItems.Count &gt;= 2
+    // select p;
+
+    foreach (var p in productOrderQuery)
+    {
+        Console.WriteLine($&quot;\t\tName={p.Name}&quot;);
+    }
+
+    // 2.3
+    Console.WriteLine(&quot;\t2.3 incorrect solution&quot;);
+    var orderTotalQuery = db.Orders.Where(o =&gt; o.OrderItems.Sum(oi =&gt; oi.Amount * oi.Price) &gt; 30000);
+
+    // query syntax
+    //var orderTotalQuery = from o in db.Orders
+    // where o.OrderItems.Sum(oi =&gt; oi.Amount * oi.Price) &gt; 30000
+    // select o;
+
+    //foreach (var o in orderTotalQuery)
+    //{
+    // Console.WriteLine(&quot;\t\tName={0}&quot;, o.CustomerSite.MainCustomer.Name);
+    // foreach (var oi in o.OrderItems)
+    // {
+    // Console.WriteLine($&quot;\t\t\tProduct={oi.Product.Name}\tPrice={oi.Price}\tAmount={oi.Amount}&quot;);
+    // }
+    //}
+
+    // 2.3 second solution
+    // Expression-based Include requires importing the following namespace: (CTRL + . is also offering it during use)
+    // using Microsoft.EntityFrameworkCore;
+
+    // It will generate only one query, it will also load the Navigation Properties immediately
+    Console.WriteLine(&quot;\tc 2.3 correct solution:&quot;);
+    var orderTotalQuery2 = db.Orders
+        .Include(o =&gt; o.OrderItems)
+            .ThenInclude(oi =&gt; oi.Product)
+        .Include(o =&gt; o.CustomerSite)
+        .Include(o =&gt; o.CustomerSite.MainCustomer)
+        .Where(o =&gt; o.OrderItems.Sum(oi =&gt; oi.Amount * oi.Price) &gt; 30000);
+
+    // query syntax
+    //var orderTotalQuery2 = from o in db.Orders
+    //                       .Include(o =&gt; o.OrderItems)
+    //                           .ThenInclude(oi =&gt; oi.Product)
+    //                       .Include(o =&gt; o.CustomerSite)
+    //                       .Include(o =&gt; o.CustomerSite.MainCustomer)
+    //                   where o.OrderItems.Sum(oi =&gt; oi.Amount * oi.Price) &gt; 30000
+    //                   select o;
+
+    foreach (var o in orderTotalQuery2)
+    {
+        Console.WriteLine(&quot;\t\tName={0}&quot;, o.CustomerSite.MainCustomer.Name);
+        foreach (var oi in o.OrderItems)
+        {
+            Console.WriteLine($&quot;\t\t\tProduct={oi.Product.Name}\tPrice={oi.Price}\tAmount={oi.Amount}&quot;);
+        }
+    }
+
+    // 2.4
+    Console.WriteLine(&quot;\t2.4:&quot;);
+    var maxPriceQuery = db.Products.Where(p =&gt; p.Price == db.Products.Max(a =&gt; a.Price));
+
+    // query syntax
+    //var maxPriceQuery = from p in db.Products
+    //                    where p.Price == db.Products.Max(a =&gt; a.Price)
+    //                    select p;
+
+    foreach (var t in maxPriceQuery)
+    {
+        Console.WriteLine($&quot;\t\tName={t.Name}\tPrice={t.Price}&quot;);
+    }
+
+    // 2.5
+    Console.WriteLine(&quot;\t2.5:&quot;);
+    var cityJoinQuery = db.CustomerSites
+        .Join(db.CustomerSites, s1 =&gt; s1.City, s2 =&gt; s2.City, (s1, s2) =&gt; new { s1, s2 })
+        .Where(x =&gt; x.s1.CustomerId
+
+    // query syntax
+    //var cityJoinQuery = from s1 in db.CustomerSites
+    //                    join s2 in db.CustomerSites on s1.City equals s2.City
+    //                    where s1.CustomerId &gt; s2.CustomerId
+    //                    select new { c1 = s1.MainCustomer, c2 = s2.MainCustomer };
+
+    foreach (var v in cityJoinQuery)
+    {
+        Console.WriteLine($&quot;\t\tCustomer 1={v.c1.Name}\tCustomer 2={v.c2.Name}&quot;);
+    }
+}
+</code></pre></div>
+</details>
+<h2 id="task-3-data-changes">Task 3: Data changes<a class="headerlink" href="#task-3-data-changes" title="Permanent link">&para;</a></h2>
+<p>The <code>DbContext</code> can be used not only for queries, but also for insertions, modifications and deletions.</p>
+<ol>
+<li>
+<p>Write a LINQ-based C# code that increases the price of "LEGO" products by 10 percent!</p>
+</li>
+<li>
+<p>Create a new category called <em>Expensive toys</em> and reclassify here all the products whose price is greater than HUF 8,000!</p>
+</li>
+</ol>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>Console.WriteLine(&quot;***** Third Task *****&quot;);
+using (var db = new DatavezDbContext())
+{
+    // 3.1
+    Console.WriteLine(&quot;\t3.1:&quot;);
+    var legoProductsQiery = db.Products.Where(p =&gt; p.Category.Name == &quot;LEGO&quot;);
+
+    Console.WriteLine(&quot;\tBefore change:&quot;);
+    foreach (var p in legoProductsQiery.ToList())
+    {
+        Console.WriteLine($&quot;\t\t\tName={p.Name}\tStock={p.Stock}\tPrice={p.Price}&quot;);
+        p.Price = 1.1m * p.Price;
+    }
+
+    db.SaveChanges();
+
+    Console.WriteLine(&quot;\tAfter modification:&quot;);
+    // ToList induces a database request
+    foreach (var p in legoProductsQiery.ToList())
+    {
+        Console.WriteLine($&quot;\t\t\tName={p.Name}\tStock={p.Stock}\tPrice={p.Price}&quot;);
+    }
+
+    // 3.2
+    Console.WriteLine(&quot;\t3.2:&quot;);
+    var expensiveToysCategory = db.Categories
+        .Where(c =&gt; c.Name == &quot;Expensive Toys&quot;)
+        .SingleOrDefault();
+
+    if (expensiveToysCategory == null)
+    {
+        expensiveToysCategory = new Category { Name = &quot;Expensive toys&quot; };
+
+        // This is not necessary: if there is an unordered product, we add the category entity to it
+        // and it is automatically included in the category table. However, if we take it explicitly, (1) it better
+        // expresses our intention; and (2) we insert the category even if there are no reclassified product.
+        db.Categories.Add(expensiveToysCategory);
+    }
+
+    var expensiveProductsQuery = db.Products.Where(p =&gt; p.Price &gt; 8000);
+
+    foreach (var p in expensiveProductsQuery.ToList())
+    {
+        p.Category = expensiveToysCategory;
+    }
+
+    db.SaveChanges();
+
+    expensiveProductsQuery = db.Products
+        .Include(p =&gt; p.Category)
+        .Where(p =&gt; p.Category.Name == &quot;Expensive toys&quot;);
+
+    foreach (var p in expensiveProductsQuery)
+    {
+        Console.WriteLine($&quot;\t\tName={p.Name}\tPrice={p.Price}\tCategory={p.Category.Name}&quot;);
+    }
+}
+</code></pre></div>
+</details>
+<h2 id="task-4-using-stored-procedures">Task 4: Using stored procedures<a class="headerlink" href="#task-4-using-stored-procedures" title="Permanent link">&para;</a></h2>
+<p>Create a stored procedure using a new code first migration that lists the products of which at least a specified number of units have been sold. Call the stored procedure from C# code!</p>
+<ol>
+<li>
+<p>Create a new empty migration named <code>PopularProducts_SP</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-Migration</span> <span class="n">PopularProducts_SP</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the stored procedure with the code below. Let's ignore the writing of the backward migration for now, where the stored procedure should to be deleted.</p>
+<div class="highlight"><pre><span></span><code>public partial class PopularProducts_SP : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.Sql(
+@&quot;CREATE OR ALTER PROCEDURE dbo.PopularProducts (@MinAmount int = 10)
+DIG
+SELECT Product.*
+FROM Product
+INNER JOIN
+(
+    SELECT OrderItem.ProductID
+    FROM OrderItem
+    GROUP BY OrderItem.ProductID
+    HAVING SUM(OrderItem.Amount) &gt; @MinAmount
+) a ON Product.ID = a.ProductID&quot;);
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+    }
+}
+</code></pre></div>
+</li>
+<li>
+<p>Update the database and check the result!</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Update-Database</span>
+</code></pre></div>
+</li>
+<li>
+<p>Call the stored procedure starting from the <code>Product</code> <code>DbSet</code> of the context using the <code>FromSqlInterpolated</code> or <code>FromSqlRaw</code> methods</p>
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>Console.WriteLine(&quot;***** Fourth Task *****&quot;);
+using (var db = new DatavezDbContext())
+{
+    var popularProducts = db.Products.FromSqlInterpolated($&quot;EXECUTE dbo.PopularProducts @MinAmount={5}&quot;);
+    foreach (var p in popularProducts)
+    {
+        Console.WriteLine($&quot;\tName={p.Name}\tStock={p.Stock}\tPrice={p.Price}&quot;);
+    }
+}
+</code></pre></div>
+</details>
+<div class="admonition danger">
+<p class="admonition-title"><code>FromSqlInterpolated</code> vs. <code>FromSqlRaw</code></p>
+<p>In the above solution, the call is defined with the <code>FromSqlInterpolated</code> function, where, due to its name, the string to be interpolated is still processed by EF and the interpolation is not performed traditionally as a string, but replaces <code>SqlParameters</code> in order to protect against SQL injection.</p>
+<p>On the other hand, when using the <code>FromSqlraw</code> function it is <strong>prohibited</strong> to use string interpolation, instead we have to manually create the `SqlParameters' and define placeholders in the instruction</p>
 </div>
 </li>
 </ol>
-<h2 id="exercise-2-queries">Exercise 2: Queries<a class="headerlink" href="#exercise-2-queries" title="Permanent link">&para;</a></h2>
-<p>In the following exercises, write C# code using Linq to Entities. The results should be printed to console.</p>
-<p>You can check the SQL query generated in runtime: hover over the IQueryable variable once the iteration of the list is underway; it will show you the generated command.</p>
-<ol>
-<li>
-<p>List the names and the amount of stock of all products that we have more than 30 in stock!</p>
-</li>
-<li>
-<p>List the products that have been ordered at least twice!</p>
-</li>
-<li>
-<p>List the orders that have a total value of at least 30.000! For each order, print the customer name and list all items of the order (with the product name, amount, and price).</p>
-</li>
-<li>
-<p>Find the most expensive product!</p>
-</li>
-<li>
-<p>List all customer record pairs that have their main site of business in the same city. Each pair should only be listed once.</p>
-</li>
-</ol>
-<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;***** Exercise two *****&quot;</span><span class="p">);</span>
-<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">db</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataDrivenEntities</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="c1">// 2.1</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.1:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qProductStock</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                        <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span> <span class="p">&gt;</span> <span class="m">30</span>
-                        <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-    <span class="c1">// alternative syntax</span>
-    <span class="c1">// var qProductStock = db.Product.Where(p =&gt; p.Stock &gt; 30);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductStock</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}\tStock={1}&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span><span class="p">);</span>
-
-    <span class="c1">// 2.2</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.2:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qProductOrder</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                        <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;=</span> <span class="m">2</span>
-                        <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-    <span class="c1">// alternative syntax</span>
-    <span class="c1">// var qProductOrder = db.Product.Where(p =&gt; p.OrderItem.Count &gt;= 2);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductOrder</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
-
-    <span class="c1">// 2.3</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.3:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qOrderTotal</span> <span class="p">=</span> <span class="k">from</span> <span class="n">o</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Order</span>
-                        <span class="k">where</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">oi</span> <span class="p">=&gt;</span> <span class="n">oi</span><span class="p">.</span><span class="n">Amount</span> <span class="p">*</span> <span class="n">oi</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span> <span class="p">&gt;</span> <span class="m">30000</span>
-                        <span class="k">select</span> <span class="n">o</span><span class="p">;</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">o</span> <span class="k">in</span> <span class="n">qOrderTotal</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSite</span><span class="p">.</span><span class="n">MainCustomer</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">oi</span> <span class="k">in</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">)</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\t\tProduct={0}\tPrice={1}\tAmount={2}&quot;</span><span class="p">,</span> <span class="n">oi</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">oi</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">oi</span><span class="p">.</span><span class="n">Amount</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 2.3 alternative solution</span>
-    <span class="c1">// A new namespace import is needed; copy the following line to the top of this file!</span>
-    <span class="c1">// using System.Data.Entity;</span>
-
-    <span class="c1">// Generates a single query and populates the Navigation Properties too</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\tc 2.3 alternative solution:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qOrderTotal2</span> <span class="p">=</span>
-        <span class="k">from</span> <span class="n">o</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Order</span>
-            <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">)</span>                          <span class="c1">// or .Include(&quot;OrderItem&quot;)</span>
-            <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">oi</span> <span class="p">=&gt;</span> <span class="n">oi</span><span class="p">.</span><span class="n">Product</span><span class="p">))</span> <span class="c1">// or .Include(&quot;OrderItem.Product&quot;)</span>
-            <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSite</span><span class="p">)</span>                        <span class="c1">// or .Include(&quot;CustomerSite&quot;)</span>
-            <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSite</span><span class="p">.</span><span class="n">MainCustomer</span><span class="p">)</span>           <span class="c1">// or .Include(&quot;CustomerSite.Customer&quot;)</span>
-        <span class="k">where</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">oi</span> <span class="p">=&gt;</span> <span class="n">oi</span><span class="p">.</span><span class="n">Amount</span> <span class="p">*</span> <span class="n">oi</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span> <span class="p">&gt;</span> <span class="m">30000</span>
-        <span class="k">select</span> <span class="n">o</span><span class="p">;</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">o</span> <span class="k">in</span> <span class="n">qOrderTotal2</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">CustomerSite</span><span class="p">.</span><span class="n">MainCustomer</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">oi</span> <span class="k">in</span> <span class="n">o</span><span class="p">.</span><span class="n">OrderItems</span><span class="p">)</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\t\tProduct={0}\tPrice={1}\tAmount={2}&quot;</span><span class="p">,</span> <span class="n">oi</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">oi</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">oi</span><span class="p">.</span><span class="n">Amount</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 2.4</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.4:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qPriceMax</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                    <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">==</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span><span class="p">.</span><span class="n">Max</span><span class="p">(</span><span class="n">a</span> <span class="p">=&gt;</span> <span class="n">a</span><span class="p">.</span><span class="n">Price</span><span class="p">)</span>
-                    <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-    <span class="c1">// alternative syntax</span>
-    <span class="c1">// var qPriceMax = db.Product.Where(p =&gt; p.Price == ctx.Product.Max(p2 =&gt; p2.Price));</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">t</span> <span class="k">in</span> <span class="n">qPriceMax</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}\tPrice={1}&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
-
-    <span class="c1">// 2.5</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t2.5:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qJoin</span> <span class="p">=</span> <span class="k">from</span> <span class="n">s1</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">CustomerSite</span>
-                <span class="k">join</span> <span class="n">s2</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">CustomerSite</span> <span class="k">on</span> <span class="n">s1</span><span class="p">.</span><span class="n">City</span> <span class="k">equals</span> <span class="n">s2</span><span class="p">.</span><span class="n">City</span>
-                <span class="k">where</span> <span class="n">s1</span><span class="p">.</span><span class="n">CustomerID</span> <span class="p">&gt;</span> <span class="n">s2</span><span class="p">.</span><span class="n">CustomerID</span>
-                <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">c1</span> <span class="p">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">MainCustomer</span><span class="p">,</span> <span class="n">c2</span> <span class="p">=</span> <span class="n">s2</span><span class="p">.</span><span class="n">MainCustomer</span> <span class="p">};</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">v</span> <span class="k">in</span> <span class="n">qJoin</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tCustomer 1={0}\tCustomer 2={1}&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">c1</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">c2</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
-<h2 id="exercise-3-data-modification">Exercise 3: Data modification<a class="headerlink" href="#exercise-3-data-modification" title="Permanent link">&para;</a></h2>
-<p>The DbContext can also be used to modify the database.</p>
-<ol>
-<li>
-<p>Write C# code that increases the price of all products in category "LEGO" by 10 percent!</p>
-</li>
-<li>
-<p>Create a new category named <em>Expensive toys</em> and move all products here that cost more than 8000!</p>
-</li>
-</ol>
-<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;***** Exercise three *****&quot;</span><span class="p">);</span>
-<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">db</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataDrivenEntities</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="c1">// 3.1</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t3.1:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qProductsLego</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                        <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Category</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;LEGO&quot;</span>
-                        <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-    <span class="c1">// alternative syntax</span>
-    <span class="c1">// var qProductsLego = db.Product.Where(p =&gt; p.Category.Name == &quot;LEGO&quot;);</span>
-
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\tBefore change:&quot;</span><span class="p">);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductsLego</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\t\tName={0}\tStock={1}\tPrice={2}&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
-        <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">=</span> <span class="m">1.1</span> <span class="p">*</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">db</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
-
-    <span class="n">qProductsLego</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                    <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Category</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;LEGO&quot;</span>
-                    <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\tAfter change:&quot;</span><span class="p">);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductsLego</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\t\tName={0}\tStock={1}\tPrice={2}&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
-
-    <span class="c1">// 3.2</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t3.2:&quot;</span><span class="p">);</span>
-    <span class="n">Category</span> <span class="n">categoryExpensiveToys</span> <span class="p">=</span> <span class="p">(</span><span class="k">from</span> <span class="n">c</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Category</span>
-                                        <span class="k">where</span> <span class="n">c</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;Expensive toys&quot;</span>
-                                        <span class="k">select</span> <span class="n">c</span><span class="p">).</span><span class="n">SingleOrDefault</span><span class="p">();</span>
-    <span class="c1">// alternative syntax</span>
-    <span class="c1">// var categoryExpensiveToys = db.Category.Where(c =&gt; c.Name == &quot;Expensive Toys&quot;)</span>
-    <span class="c1">//                                        .SingleOrDefault();</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">categoryExpensiveToys</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">categoryExpensiveToys</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Category</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Expensive toys&quot;</span> <span class="p">};</span>
-
-        <span class="c1">// The following line is not always necessary. If there is any product assigned to this</span>
-        <span class="c1">// new category, when saving the changes, a new category record will automatically be</span>
-        <span class="c1">// created. If we add this explicitly though, it better reflects our way of thinking,</span>
-        <span class="c1">// and if there are no assigned products, the new category record is created regardless.</span>
-        <span class="n">db</span><span class="p">.</span><span class="n">Category</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">categoryExpensiveToys</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="kt">var</span> <span class="n">qProductExpensive</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                            <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span> <span class="p">&gt;</span> <span class="m">8000</span>
-                            <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qProductExpensive</span><span class="p">)</span>
-        <span class="n">p</span><span class="p">.</span><span class="n">Category</span> <span class="p">=</span> <span class="n">categoryExpensiveToys</span><span class="p">;</span>
-    <span class="n">db</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
-
-    <span class="n">qProductExpensive</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Product</span>
-                        <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">Category</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;Expensive toys&quot;</span>
-                        <span class="k">select</span> <span class="n">p</span><span class="p">;</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">t</span> <span class="k">in</span> <span class="n">qProductExpensive</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}\tPrice={1}&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
-<h2 id="exercise-4-using-stored-procedures">Exercise 4: Using stored procedures<a class="headerlink" href="#exercise-4-using-stored-procedures" title="Permanent link">&para;</a></h2>
-<p>Stored procedures can be mapped into the EDM model either as a method on the DbContext or an entity's operation.</p>
-<div class="admonition note">
-<p class="admonition-title">Procedure mapping in the EDM</p>
-<p>The mapping properties of the stored procedure (e.g., the return value) usually has to be manually altered using the <em>Entity Data Model Browser</em>: find the <em>Function Import</em> and open its properties.</p>
-<p><img alt="Mapping properties of a stored procedure" src="images/vs-storedproc-mapping.png" /></p>
-</div>
-<ol>
-<li>
-<p>Create a new stored procedure that can be used to register a new payment method. Map this stored procedure as the insert operation of the <code>PaymentMethod</code> entity!</p>
-<ul>
-<li>
-<p>Create the stored procedure using SQL Management Studio.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">CreateNewPaymentMethod</span>
-<span class="p">(</span>
-<span class="o">@</span><span class="k">Method</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
-<span class="o">@</span><span class="n">Deadline</span> <span class="nb">int</span>
-<span class="p">)</span>
-<span class="k">AS</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">PaymentMethod</span>
-<span class="k">values</span><span class="p">(</span><span class="o">@</span><span class="k">Method</span><span class="p">,</span><span class="o">@</span><span class="n">Deadline</span><span class="p">)</span>
-<span class="k">select</span> <span class="n">scope_identity</span><span class="p">()</span> <span class="k">as</span> <span class="n">NewId</span>
-</code></pre></div>
-</li>
-<li>
-<p>Set this procedure as the <code>PaymentMethod</code> entity <em>insert</em> operation.</p>
-<ul>
-<li>Add the stored procedure to the EDM. In the EDM Browser right-click to open the context menu and use "Update model from database" to <em>Add</em> the previously created procedure.</li>
-<li>Save the model changes to generate the required C# code in the background.</li>
-<li>
-<p>Set this procedure on the <code>PaymentMethod</code> entity as the <em>insert</em> operation: select the <code>PaymentMethod</code> entity in the EDM and in the <em>Mapping Details</em> window change to the <em>Map Entity to Functions</em> tab, then chose the procedure for <em>Insert</em> operation. The return value shall be mapped to the <em>ID</em> property. Save the model.</p>
-<p><img alt="Mapping procedure to entity" src="images/vs-insert-storedproc.png" /></p>
-</li>
-</ul>
-</li>
-<li>
-<p>Test the behavior: in C# code, create a new <code>PaymentMethod</code> entity and add it to the appropriate list of the DbContext using <code>Add</code>. Verify the creation of the new record in the database.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Create a stored procedure that lists all products that have been sold more than a specified amount of times. Call this method from C# code!</p>
-<ul>
-<li>
-<p>Create the stored procedure with the T-SQL command below.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">dbo</span><span class="p">.</span><span class="n">PopularProducts</span> <span class="p">(</span>
-<span class="o">@</span><span class="n">MinAmount</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="p">)</span>
-<span class="k">AS</span>
-<span class="k">SELECT</span> <span class="n">Product</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">Product</span> <span class="k">INNER</span> <span class="k">JOIN</span>
-<span class="p">(</span>
-<span class="k">SELECT</span> <span class="n">OrderItem</span><span class="p">.</span><span class="n">ProductID</span>
-<span class="k">FROM</span> <span class="n">OrderItem</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">OrderItem</span><span class="p">.</span><span class="n">ProductID</span>
-<span class="k">HAVING</span> <span class="k">SUM</span><span class="p">(</span><span class="n">OrderItem</span><span class="p">.</span><span class="n">Amount</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">MinAmount</span>
-<span class="p">)</span> <span class="n">a</span> <span class="k">ON</span> <span class="n">Product</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">ProductID</span>
-</code></pre></div>
-</li>
-<li>
-<p>Import the procedure into the EDM. Open the function properties (in the <em>EDM Model Browser</em> double click <em>function</em>) and set return value as type <code>Product</code>. Save the model changes.</p>
-<p><img alt="Map return value of a stored procedure" src="images/vs-storedproc-mapping.png" /></p>
-</li>
-<li>
-<p>Use the new method available on the DbContext class to call this method and print the returned product names to console!</p>
-</li>
-</ul>
-</li>
-</ol>
-<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;***** Exercise four *****&quot;</span><span class="p">);</span>
-<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">db</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataDrivenEntities</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="c1">// 4.3</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t4.3:&quot;</span><span class="p">);</span>
-
-    <span class="kt">var</span> <span class="n">pm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PaymentMethod</span>
-    <span class="p">{</span>
-        <span class="n">Method</span> <span class="p">=</span> <span class="s">&quot;Apple pay&quot;</span><span class="p">,</span>
-        <span class="n">Deadline</span> <span class="p">=</span> <span class="m">99999</span>
-    <span class="p">};</span>
-
-    <span class="n">db</span><span class="p">.</span><span class="n">PaymentMethod</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">pm</span><span class="p">);</span>
-    <span class="n">db</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
-
-    <span class="c1">// 4.6</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t4.6:&quot;</span><span class="p">);</span>
-    <span class="kt">var</span> <span class="n">qPopularProducts</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">PopularProducts</span><span class="p">(</span><span class="m">5</span><span class="p">);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">qPopularProducts</span><span class="p">)</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\t\tName={0}\tStock={1}\tPrice={2}&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Stock</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
                 
               
               
