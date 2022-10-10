@@ -1515,7 +1515,10 @@ INNER JOIN
 </li>
 <li>
 <p>Call the stored procedure starting from the <code>Product</code> <code>DbSet</code> of the context using the <code>FromSqlInterpolated</code> or <code>FromSqlRaw</code> methods</p>
-<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>Console.WriteLine(&quot;***** Fourth Task *****&quot;);
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>using Microsoft.EntityFrameworkCore;
+using [project name].Entities;
+
+Console.WriteLine(&quot;***** Fourth Task *****&quot;);
 using (var db = new DatavezDbContext())
 {
     var popularProducts = db.Products.FromSqlInterpolated($&quot;EXECUTE dbo.PopularProducts @MinAmount={5}&quot;);
