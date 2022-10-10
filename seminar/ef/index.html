@@ -1412,7 +1412,10 @@ foreach (var v in cityJoinQuery)
 <p>Create a new category called <em>Expensive toys</em> and reclassify here all the products whose price is greater than HUF 8,000!</p>
 </li>
 </ol>
-<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>Console.WriteLine(&quot;***** Third Task *****&quot;);
+<details class="example"><summary>Solution</summary><div class="highlight"><pre><span></span><code>using Microsoft.EntityFrameworkCore;
+using [project name].Entities;
+
+Console.WriteLine(&quot;***** Third Task *****&quot;);
 using (var db = new DatavezDbContext())
 {
     // 3.1
@@ -1487,9 +1490,9 @@ using (var db = new DatavezDbContext())
     {
         migrationBuilder.Sql(
 @&quot;CREATE OR ALTER PROCEDURE dbo.PopularProducts (@MinAmount int = 10)
-DIG
-SELECT Product.*
-FROM Product
+AS
+SELECT Product.* 
+FROM Product 
 INNER JOIN
 (
     SELECT OrderItem.ProductID
