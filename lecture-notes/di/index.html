@@ -633,11 +633,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-phase-3-dependency-injection-based-on-net-core-dependency-injection" class="md-nav__link">
-    Example phase 3 - dependency injection based on .NET Core Dependency Injection
+  <a href="#example-phase-3-dependency-injection-based-on-net-dependency-injection" class="md-nav__link">
+    Example phase 3 - dependency injection based on .NET Dependency Injection
   </a>
   
-    <nav class="md-nav" aria-label="Example phase 3 - dependency injection based on .NET Core Dependency Injection">
+    <nav class="md-nav" aria-label="Example phase 3 - dependency injection based on .NET Dependency Injection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1111,11 +1111,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-phase-3-dependency-injection-based-on-net-core-dependency-injection" class="md-nav__link">
-    Example phase 3 - dependency injection based on .NET Core Dependency Injection
+  <a href="#example-phase-3-dependency-injection-based-on-net-dependency-injection" class="md-nav__link">
+    Example phase 3 - dependency injection based on .NET Dependency Injection
   </a>
   
-    <nav class="md-nav" aria-label="Example phase 3 - dependency injection based on .NET Core Dependency Injection">
+    <nav class="md-nav" aria-label="Example phase 3 - dependency injection based on .NET Dependency Injection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1216,6 +1216,7 @@
                 
                 
                 <h1 id="dependency-injection-aspnet-core-environment">Dependency Injection ASP.NET Core environment<a class="headerlink" href="#dependency-injection-aspnet-core-environment" title="Permanent link">&para;</a></h1>
+<p>Zoltán Benedek, 11.19.2022</p>
 <div class="admonition abstract">
 <p class="admonition-title">Definition</p>
 <p><strong>Dependency Injection</strong> (DI) is programming technique that makes a class independent of its dependencies. It's a key enabler for decomposing an application into loosely coupled components. More precisely: <strong>Dependency Injection is a mechanism to decouple the creation of dependency graphs for a class from its class definition</strong>.</p>
@@ -1369,7 +1370,7 @@ The most important principles of transformation are the following:</p>
 <li><strong>Dependencies will be based on abstractions/interfaces</strong></li>
 <li><strong>Classes will no longer instantiate their dependencies themselves</strong></li>
 </ul>
-<p>Let's jump right into the code of the improved solution and analyze the differences:</p>
+<p>Let's jump right into the code of the improved solution and then analyze the differences:</p>
 <div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">ToDoService</span>
 <span class="p">{</span>
     <span class="k">const</span> <span class="kt">string</span> <span class="n">smtpAddress</span> <span class="p">=</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">;</span>
@@ -1507,8 +1508,8 @@ The most important principles of transformation are the following:</p>
 </ul>
 </li>
 </ol>
-<h2 id="example-phase-3-dependency-injection-based-on-net-core-dependency-injection">Example phase 3 - dependency injection based on .NET Core Dependency Injection<a class="headerlink" href="#example-phase-3-dependency-injection-based-on-net-core-dependency-injection" title="Permanent link">&para;</a></h2>
-<p>We need some extra help from our framework to solve the two problems we concluded the previous chapter with: an <strong>Inversion of Control (IoC)</strong> container. <strong>Dependency Injection container</strong> is a widely used alternative name for the same tool/technique. In an IoC container we can store abstraction type -&gt; implementation type mappings, such as ILogger-&gt;Logger, IMailSender-&gt;EMailSender, etc. This is called the REGISTER step. And then based on these mappings create an implementation type for a specific abstraction type (e.g. <code>Logger</code> for an <code>ILogger</code>). This is called the RESOLVE step. In more detail:</p>
+<h2 id="example-phase-3-dependency-injection-based-on-net-dependency-injection">Example phase 3 - dependency injection based on .NET Dependency Injection<a class="headerlink" href="#example-phase-3-dependency-injection-based-on-net-dependency-injection" title="Permanent link">&para;</a></h2>
+<p>We need some extra help from our framework to solve the two problems we concluded the previous chapter with: an <strong>Inversion of Control (IoC)</strong> container (also called as Dependency Injection container). <strong>Dependency Injection container</strong> is a widely used alternative name for the same tool/technique. In an IoC container we can store abstraction type -&gt; implementation type mappings, such as ILogger-&gt;Logger, IMailSender-&gt;EMailSender, etc. This is called the REGISTER step. And then based on these mappings create an implementation type for a specific abstraction type (e.g. <code>Logger</code> for an <code>ILogger</code>). This is called the RESOLVE step. In more detail:</p>
 <ol>
 <li><strong>REGISTER</strong>: Register dependency mappings (e.g. <code>ILogger</code>-&gt; <code>Logger</code>, <code>IMailSender</code>-&gt; <code>EMailSender</code>) into an IoC container, once, at a centralized location, at application startup. This is the <strong>REGISTER</strong> step of the DI process.</li>
 <li>Note: This solves "problem 2" pointed out at the end of the previous chapter: the mappings are centralized, and not scattered all over the application code base.</li>
@@ -1518,34 +1519,36 @@ The most important principles of transformation are the following:</p>
 </ul>
 </li>
 </ol>
-<p>Fortunately, .NET Core has a built in IoC container based dependency injection service.
+<p>Fortunately, .NET has a built in IoC container based dependency injection service.
 Now we elucidate and illustrate the complete mechanism (register and resolve steps) using our enhanced e-mail notification solution as an example.</p>
 <h3 id="1-register-step-registering-dependencies">1) REGISTER step (registering dependencies)<a class="headerlink" href="#1-register-step-registering-dependencies" title="Permanent link">&para;</a></h3>
-<p>In an Asp.Net Core environment, dependencies are registered by the <code>ConfigureServices (IServiceCollection services)</code> function of our <code>Startup</code> class, namely by the <strong>AddSingleton</strong>, <strong>AddTransient</strong> and <strong>AddScoped</strong> operations of <code>IServiceCollection</code>. First, let's focus on the most exciting parts of <code>ConfigureServices</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// ...</span>
-        <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">,</span> <span class="n">Logger</span><span class="p">&gt;();</span>
-        <span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">,</span> <span class="n">NotificationService</span><span class="p">&gt;();</span>
-        <span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IContactRepository</span><span class="p">,</span> <span class="n">ContactRepository</span><span class="p">&gt;();</span>
-        <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IEMailSender</span><span class="p">,</span> <span class="n">EMailSender</span><span class="p">&gt;(</span>
-            <span class="n">sp</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;(),</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">)</span> <span class="p">);</span>
-        <span class="c1">// ...</span>
-    <span class="p">}</span>
+<p>In an Asp.Net Core environment, dependencies are registered in the 'Program.cs' file. This file has code that is executed at application startup. The code parts located here and which are relevant for us:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">builder</span> <span class="p">=</span> <span class="n">WebApplication</span><span class="p">.</span><span class="n">CreateBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+
+<span class="c1">// ...</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">,</span> <span class="n">Logger</span><span class="p">&gt;();</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">,</span> <span class="n">NotificationService</span><span class="p">&gt;();</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IContactRepository</span><span class="p">,</span> <span class="n">ContactRepository</span><span class="p">&gt;();</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IEMailSender</span><span class="p">,</span> <span class="n">EMailSender</span><span class="p">&gt;(</span>
+    <span class="n">sp</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;(),</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">)</span> <span class="p">);</span>
+<span class="c1">// ...</span>
 </code></pre></div>
-<p><code>Startup.ConfigureServices</code> is called by the framework at application startup. We receive an <code>IServiceCollection services</code> object as parameter: this represents the IoC container created and initialized by the framework. We can register our own dependency mappings into this container. The</p>
-<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">,</span> <span class="n">Logger</span><span class="p">&gt;();</span>
+<p>The first line creates a <code>builder</code> object, whose <code>Services</code> property is an object implementing the <code>IServiceCollection</code>  interface. This represents the IoC container created by the framework, this can be used to register our dependency mappings as well, namely the  <strong>AddSingleton</strong>, <strong>AddTransient</strong> and <strong>AddScoped</strong> operations of <code>IServiceCollection</code> interface can be used to register them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In .NET versions prior to .NET 6 the instead of <code>Program.cs</code> the <code>ConfigureServices</code> operation of the <code>Startup</code> class was used to register these dependencies.</p>
+</div>
+<p>The</p>
+<div class="highlight"><pre><span></span><code><span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">,</span> <span class="n">Logger</span><span class="p">&gt;();</span>
 </code></pre></div>
 <p>line registers an <code>ILogger</code>-&gt; <code>Logger</code> type mapping, and the <code>Logger</code> is registered as a singleton, as we used the <strong>AddSingleton</strong> operation for registration. This means that if we later ask the container for an <code>ILogger</code> object (provide <code>ILogger</code> as key at the resolve step), we will get a <code>Logger</code> object from the container, and always <strong>the same instance</strong>. The</p>
-<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">,</span> <span class="n">NotificationService</span><span class="p">&gt;();</span>
+<div class="highlight"><pre><span></span><code><span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">INotificationService</span><span class="p">,</span> <span class="n">NotificationService</span><span class="p">&gt;();</span>
 </code></pre></div>
 <p>line registers an <code>INotificationService</code>-&gt; <code>NotificationService</code> transient type mapping, as we used the <strong>AddTransient</strong> operation for registration. This means that if we later ask the container for an <code>INotificationService</code> object (provide <code>INotificationService</code> as key at the resolve step), we will get a <strong>separate newly created instance</strong> of <code>NotificationService</code> object from the container, for each query/resolve.</p>
-<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IContactRepository</span><span class="p">,</span> <span class="n">ContactRepository</span><span class="p">&gt;();</span>
+<div class="highlight"><pre><span></span><code><span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IContactRepository</span><span class="p">,</span> <span class="n">ContactRepository</span><span class="p">&gt;();</span>
 </code></pre></div>
 <p>line registers an <code>IContactRepository</code>-&gt; <code>ContactRepository</code> scoped type mapping, as we used the <strong>AddScoped</strong> operation for registration. This means that if we later ask the container for an <code>IContactRepository</code> object (provide <code>IContactRepository</code> as key at the resolve step), we will get a <code>NotificationService</code> object, which will be the  <strong>same instance for the same scope</strong>, and a different instance for different scopes. For a Web API based application one web request is handled within one scope. Consequently, we receive the same instance of a class turning to the container multiple times within the same web request, but different ones when the web requests are different.</p>
-<p>We can see additional registrations in the sample application's <code>Startup.ConfigureServices</code> method, which we will return to later.</p>
+<p>We can see additional registrations in the sample application, which we will return to later.</p>
 <h3 id="2-resolve-step-resolving-dependencies">2) RESOLVE step (resolving dependencies)<a class="headerlink" href="#2-resolve-step-resolving-dependencies" title="Permanent link">&para;</a></h3>
 <h4 id="the-basics">The basics<a class="headerlink" href="#the-basics" title="Permanent link">&para;</a></h4>
 <p>Let's sum up where we are now: we have our abstraction to implementation type mappings registered into the ASP.NET Core IoC container at application startup. Our mappings are the following:</p>
@@ -1568,6 +1571,7 @@ Now we elucidate and illustrate the complete mechanism (register and resolve ste
     <span class="c1">// namespace via the using statement.</span>
     <span class="c1">// Returns an instance of the Logger class, see explanation above.</span>
     <span class="kt">var</span> <span class="n">logger2</span> <span class="p">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;();</span>
+
     <span class="c1">// GetService returns null if no type mapping is found for the specific type (ILogger)</span>
     <span class="c1">// GetRequiredService throws an exception instead.</span>
     <span class="kt">var</span> <span class="n">logger3</span> <span class="p">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;();</span>
@@ -1601,7 +1605,7 @@ Now we elucidate and illustrate the complete mechanism (register and resolve ste
 <h4 id="dependency-resolution-for-aspnet-web-api-classes">Dependency resolution  for ASP.NET Web API classes<a class="headerlink" href="#dependency-resolution-for-aspnet-web-api-classes" title="Permanent link">&para;</a></h4>
 <p>Besides making our solution IoC container based, we make a few further changes to our todo app. We eliminate our <code>ToDoService</code> class, and move its functionality in a slightly different form into  an Asp.Net Core based <code>ControllerBase</code> derived class. This controller class will serve as our entry point and also as a root object, bringing our solution very close to a real life example (let it be a Web API, Web MVC app or a Web Razor Pages app). We could also have kept <code>ToDoService</code> in the middle of our call/dependency chain, but we try to keep things as simple as possible for our demonstration purposes. Furthermore, we also introduce an Entity Framework <code>DbContext</code> derived class called <code>TodoContext</code> to be able to demonstrate how it can be injected into repository classes in a typical application. Our new object graph will look like this:</p>
 <p><img alt="Object graph 3" src="images/object-graph-3.svg" /></p>
-<p>In the previous two chapters, we have assumed that a <code>IServiceProvider</code> object is available to call <code>GetService</code>. If we create a container ourselves, then this assumption is valid. However, only in the rarest cases do we create a container directly. In a typical ASP.NET Web API application, the container is created by the framework and is not directly accessible to us. Consequently, access to `IServiceProvider ', with the exception of a few startup and configuration points, is not available. The good news is that actually we don't need access to the container. <strong>The core concept of DI is that we perform dependency resolution only at the application entry point for the "root object".</strong> In case of Web API apps, the entry point is a call to an operation of a Controller class serving the specific API request. When a request is received, the framework determines and creates the Controller / ControllerBase child class based on the Url and rooting rules. If the controller class has dependencies (has constructor parameters), they are also resolved based on the container registration mappings, including indirect dependencies. The complete object graph is created, <strong>the root object is the controller class</strong>.</p>
+<p>In the previous two chapters, we have assumed that a <code>IServiceProvider</code> object is available to call <code>GetService</code>. If we create a container ourselves, then this assumption is valid. However, only in the rarest cases do we create a container directly. In a typical ASP.NET Web API application, the container is created by the framework and is not directly accessible to us. Consequently, access to `IServiceProvider ', with the exception of a few startup and configuration points, is not available. The good news is that actually we don't need access to the container. <strong>The core concept of DI is that we perform dependency resolution only at the application entry point for the "root object".</strong> In case of Web API apps, the entry point is a call to an operation of a Controller class serving the specific API request. When a request is received, the framework determines and creates the Controller / ControllerBase child class based on the Url and routing rules. If the controller class has dependencies (has constructor parameters), they are also resolved based on the container registration mappings, including indirect dependencies. The complete object graph is created, <strong>the root object is the controller class</strong>.</p>
 <p>Let's take a look at this in practice by refining our previous example with the addition of a <code>TodoController</code> class:</p>
 <div class="highlight"><pre><span></span><code><span class="na">[Route(&quot;api/[controller]</span><span class="s">&quot;)]</span>
 <span class="na">[ApiController]</span>
@@ -1661,13 +1665,10 @@ Now we elucidate and illustrate the complete mechanism (register and resolve ste
 <li>We create one <code>DbContext</code>  for a specific incoming request and share it for the classes involved in serving the request. In this case, we think of the <code>DbContext</code> instance as a unit of work serving the request.</li>
 </ul>
 <p>To accomplish this latter approach, ASP.NET Core provides a handy built-in DI based solution: when we configure our container with the type mappings at startup, we also register our DbContext class, which is then later automatically injected for our <strong>Controller</strong> and other (typically repository) dependencies.</p>
-<p>Let's see how our <code>TodoContext</code> (<code>DbContext</code> derived) class is registered in our example. The place of the registration is the usual <code>Startup.ConfigureServices</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-    <span class="n">services</span><span class="p">.</span><span class="n">AddDbContext</span><span class="p">&lt;</span><span class="n">TodoContext</span><span class="p">&gt;(</span><span class="n">opt</span> <span class="p">=&gt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">UseInMemoryDatabase</span><span class="p">(</span><span class="s">&quot;TodoList&quot;</span><span class="p">));</span>
-    <span class="c1">// ...</span>
-<span class="p">}</span>
+<p>Let's see how our <code>TodoContext</code> (<code>DbContext</code> derived) class is registered in our example. The place of the registration is the usual <code>Program.cs</code> file (<code>Startup.ConfigureServices</code> for .NET versions prior to .NET 6):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ...</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddDbContext</span><span class="p">&lt;</span><span class="n">TodoContext</span><span class="p">&gt;(</span><span class="n">opt</span> <span class="p">=&gt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">UseInMemoryDatabase</span><span class="p">(</span><span class="s">&quot;TodoList&quot;</span><span class="p">));</span>
+<span class="c1">// ...</span>
 </code></pre></div>
 <p><code>AddDbContext</code> is an extension method defined by the framework for the <code>IServiceCollection</code> interface. This allows convenient registration of our <code>DbContext</code> class. We do not see into the implementation of <code>AddDbContext</code>, but actually it simply performs a scoped registration of our context type into the container:</p>
 <div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">TodoContext</span><span class="p">,</span> <span class="n">TodoContext</span><span class="p">&gt;();</span>
@@ -1686,9 +1687,9 @@ Now we elucidate and illustrate the complete mechanism (register and resolve ste
 <div class="admonition note">
 <p>Not compulsory material.</p>
 </div>
-<p>Let's cover code parts of <code>Startup.ConfigureServices</code> we skipped previously.</p>
+<p>Let's cover code service registration related parts of <code>Program.cs</code> we skipped previously.</p>
 <p>The registration of <code>EMailSender</code> looks quite tricky:</p>
-<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IEMailSender</span><span class="p">,</span> <span class="n">EMailSender</span><span class="p">&gt;(</span>
+<div class="highlight"><pre><span></span><code><span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IEMailSender</span><span class="p">,</span> <span class="n">EMailSender</span><span class="p">&gt;(</span>
     <span class="n">sp</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;(),</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">)</span> <span class="p">);</span>
 </code></pre></div>
 <p>Let's take a look at the constructor of <code>EMailSender</code> to be able to better understand the situation:</p>
@@ -1708,10 +1709,10 @@ The particularities of the DI container built in ASP.NET Core:
 
 * It provides basic services required by most applications (e.g., does not support property injection).
     * If you need more DI related functionality, you can use another IoC container Asp.Net Core can work with.
-    * Several Dependecy Injection / IoC container class libraries exist that can be used with .NET Core, with .NET Framework, or with both. A few examples: AutoFac, DryIoc, LightInject, Castle Windsor, Ninject, StructureMap, SimpleInjector, MEF, ...
+    * Several Dependecy Injection / IoC container class libraries exist that can be used with .NET, with .NET Framework, or with both. A few examples: AutoFac, DryIoc, LightInject, Castle Windsor, Ninject, StructureMap, SimpleInjector, MEF, ...
 * It&#39;s implemented in the __Microsoft.Extensions.DependencyInjection__ NuGet package.
     * For Asp.Net Core applications, it is automatically installed when the Asp.Net project is created. In fact, as we have seen, Asp.Net Core middleware heavily relies on it, it&#39;s a key pillar of runtime configuration and extensibility.
-    * For other .NET Core applications (e.g. a simple .NET Core based console app), you need to add it manually by installing the Microsoft.Extensions.DependencyInjection NuGet package for the project.
+    * For other .NET applications (e.g. a simple .NET Core based console app), you need to add it manually by installing the Microsoft.Extensions.DependencyInjection NuGet package for the project.
     * Note: the NuGet package can be used with the (full) .NET Framework as well as it supports .NET Standard.
 
 ### The Service Locator antipattern
@@ -1722,14 +1723,16 @@ Dependency injection is not the only way of using an IoC container. Another tech
 
 Asp.Net Core has several built in services. E.g. it has support for Web API, and support for Razor Pages or MVC based web applications. These all rely on the DI services of Asp.Net Core.
 
-The `Startup.ConfigureServices` method of an Asp.Net Web API application has to have this piece of code:
+In case of an Asp.Net Web API application at application startup we have to run this piece of code (this is automatically added by VS at project creation):
 
 ```csharp
-services.AddMvc()
-    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+builder.Services.AddControllers();
 </code></pre></div></p>
-<p><code>AddMvc</code> is a built in extension method for the <code>IServiceProvider</code> interface, which registers numerous (far more than 100!) service and configuration classes into the container required by the internals of the Web API middleware/pipeline.</p>
-<p>Starting from .NET Core 3.0 the situation is different: instead of calling AddMvc() we typically call AddControllers(), which is a more lightweight option, resulting in significantly less container registrations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of .NET version preceding .NET 6 <code>services.AddMvc()</code> had to be called from the <code>ConfigureServices</code> operation of our <code>Startup</code> class.</p>
+</div>
+<p><code>AddControllers</code> is a built in extension method for the <code>IServiceProvider</code> interface, which registers numerous (far more than 100!) service and configuration classes into the container required by the internals of the Web API middleware/pipeline.</p>
 <h3 id="disposing-service-objects">Disposing service objects<a class="headerlink" href="#disposing-service-objects" title="Permanent link">&para;</a></h3>
 <p>The container calls <code>Dispose</code> for the objects it creates if the object implements the <code>IDisposable</code> interface.</p>
 <h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
