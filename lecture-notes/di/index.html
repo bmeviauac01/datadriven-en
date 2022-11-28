@@ -698,8 +698,36 @@
     Advanced dependency injection registration example
   </a>
   
-    <nav class="md-nav" aria-label="Advanced dependency injection registration example">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-topics" class="md-nav__link">
+    Further topics
+  </a>
+  
+    <nav class="md-nav" aria-label="Further topics">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-injectionioc-containers-in-general" class="md-nav__link">
+    Dependency Injection/IoC containers in general
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-service-locator-antipattern" class="md-nav__link">
+    The Service Locator antipattern
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspnet-core-framework-services" class="md-nav__link">
+    Asp.Net Core framework services
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#disposing-service-objects" class="md-nav__link">
@@ -1176,8 +1204,36 @@
     Advanced dependency injection registration example
   </a>
   
-    <nav class="md-nav" aria-label="Advanced dependency injection registration example">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-topics" class="md-nav__link">
+    Further topics
+  </a>
+  
+    <nav class="md-nav" aria-label="Further topics">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-injectionioc-containers-in-general" class="md-nav__link">
+    Dependency Injection/IoC containers in general
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-service-locator-antipattern" class="md-nav__link">
+    The Service Locator antipattern
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspnet-core-framework-services" class="md-nav__link">
+    Asp.Net Core framework services
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#disposing-service-objects" class="md-nav__link">
@@ -1693,41 +1749,36 @@ Now we elucidate and illustrate the complete mechanism (register and resolve ste
     <span class="n">sp</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">EMailSender</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&gt;(),</span> <span class="s">&quot;smtp.myserver.com&quot;</span><span class="p">)</span> <span class="p">);</span>
 </code></pre></div>
 <p>Let's take a look at the constructor of <code>EMailSender</code> to be able to better understand the situation:</p>
-<p>```csharp
- public EMailSender(ILogger logger, string smtpAddress)
-{
-    _logger = logger;
-    _smtpAddress = smtpAddress;
-}
-<div class="highlight"><pre><span></span><code>`EMailSender` will need to be instantiated by the container when resolving `IEMailSender`, and the constructor parameters must be specified appropriately. The logger parameter is completely &quot;OK&quot;, and the container can resolve it based on the ILogger-&gt; Logger container mapping registration. However, there is no way to find out the value of the `smtpAddress` parameter. To solve this problem, ASP.NET Core proposes an &quot;options&quot; mechanism for the framework, which allows us to retrieve the value from some configuration. Covering the &quot;options&quot; topic would be a far-reaching thread for us, so for simplification we applied another approach. The `AddSingleton` (and other Add ... operations) have an overload in which we can specify a lambda expression. This lambda is called by the container later at the resolve step (that is, when we ask the container for an `IEMailSender` implementation) for each instance. With the help of this lambda we manually create the `EMailSender` object, so we have the chance to provide the necessary constructor parameters. In fact, the container is really &quot;helpful&quot; with us:  it provides an `IServiceCollection` object as the lambda parameter for us (in this example it&#39;s called `sp`), and based on container registrations we can conveniently resolve types with the help of the already covered `GetRequiredService` and `GetService` calls.
-
-## Further topics
-
-### Dependency Injection/IoC containers in general
-
-The particularities of the DI container built in ASP.NET Core:
-
-* It provides basic services required by most applications (e.g., does not support property injection).
-    * If you need more DI related functionality, you can use another IoC container Asp.Net Core can work with.
-    * Several Dependecy Injection / IoC container class libraries exist that can be used with .NET, with .NET Framework, or with both. A few examples: AutoFac, DryIoc, LightInject, Castle Windsor, Ninject, StructureMap, SimpleInjector, MEF, ...
-* It&#39;s implemented in the __Microsoft.Extensions.DependencyInjection__ NuGet package.
-    * For Asp.Net Core applications, it is automatically installed when the Asp.Net project is created. In fact, as we have seen, Asp.Net Core middleware heavily relies on it, it&#39;s a key pillar of runtime configuration and extensibility.
-    * For other .NET applications (e.g. a simple .NET Core based console app), you need to add it manually by installing the Microsoft.Extensions.DependencyInjection NuGet package for the project.
-    * Note: the NuGet package can be used with the (full) .NET Framework as well as it supports .NET Standard.
-
-### The Service Locator antipattern
-
-Dependency injection is not the only way of using an IoC container. Another technique called __Service Locator__ exists. Dependency Injection is based on the mechanism of passing the dependencies of a class as constructor parameters. Service Locator uses another approach: the classes directly access the IoC container in their methods to resolve their dependencies. Keep in mind that this approach is considered an __anti-pattern__. The reason is simple: every time time a class needs a dependency, it has to turn to a container, so much of our code will depend on the container itself! In contrast, when dependency injection is used, dependency resolution is performed &quot;once&quot; at the application entry point for &quot;root objects&quot; (e.g. for the controller class in case of a Web API call), the rest of our code is completely independent of the container. Note that in our previous example, in our TodoController, NotificationService, EMailSender, Logger, and ContactRepository classes, we did not refer the container (neither via an IServiceProvider, nor by any other means).
-
-### Asp.Net Core framework services
-
-Asp.Net Core has several built in services. E.g. it has support for Web API, and support for Razor Pages or MVC based web applications. These all rely on the DI services of Asp.Net Core.
-
-In case of an Asp.Net Web API application at application startup we have to run this piece of code (this is automatically added by VS at project creation):
-
-```csharp
-builder.Services.AddControllers();
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="nf">EMailSender</span><span class="p">(</span><span class="n">ILogger</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">string</span> <span class="n">smtpAddress</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+    <span class="n">_smtpAddress</span> <span class="p">=</span> <span class="n">smtpAddress</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>EMailSender</code> will need to be instantiated by the container when resolving <code>IEMailSender</code>, and the constructor parameters must be specified appropriately. The logger parameter is completely "OK", and the container can resolve it based on the ILogger-&gt; Logger container mapping registration. However, there is no way to find out the value of the <code>smtpAddress</code> parameter. To solve this problem, ASP.NET Core proposes an "options" mechanism for the framework, which allows us to retrieve the value from some configuration. Covering the "options" topic would be a far-reaching thread for us, so for simplification we applied another approach. The <code>AddSingleton</code> (and other Add ... operations) have an overload in which we can specify a lambda expression. This lambda is called by the container later at the resolve step (that is, when we ask the container for an <code>IEMailSender</code> implementation) for each instance. With the help of this lambda we manually create the <code>EMailSender</code> object, so we have the chance to provide the necessary constructor parameters. In fact, the container is really "helpful" with us:  it provides an <code>IServiceCollection</code> object as the lambda parameter for us (in this example it's called <code>sp</code>), and based on container registrations we can conveniently resolve types with the help of the already covered <code>GetRequiredService</code> and <code>GetService</code> calls.</p>
+<h2 id="further-topics">Further topics<a class="headerlink" href="#further-topics" title="Permanent link">&para;</a></h2>
+<h3 id="dependency-injectionioc-containers-in-general">Dependency Injection/IoC containers in general<a class="headerlink" href="#dependency-injectionioc-containers-in-general" title="Permanent link">&para;</a></h3>
+<p>The particularities of the DI container built in ASP.NET Core:</p>
+<ul>
+<li>It provides basic services required by most applications (e.g., does not support property injection).<ul>
+<li>If you need more DI related functionality, you can use another IoC container Asp.Net Core can work with.</li>
+<li>Several Dependecy Injection / IoC container class libraries exist that can be used with .NET, with .NET Framework, or with both. A few examples: AutoFac, DryIoc, LightInject, Castle Windsor, Ninject, StructureMap, SimpleInjector, MEF, ...</li>
+</ul>
+</li>
+<li>It's implemented in the <strong>Microsoft.Extensions.DependencyInjection</strong> NuGet package.<ul>
+<li>For Asp.Net Core applications, it is automatically installed when the Asp.Net project is created. In fact, as we have seen, Asp.Net Core middleware heavily relies on it, it's a key pillar of runtime configuration and extensibility.</li>
+<li>For other .NET applications (e.g. a simple .NET Core based console app), you need to add it manually by installing the Microsoft.Extensions.DependencyInjection NuGet package for the project.
+    * Note: the NuGet package can be used with the (full) .NET Framework as well as it supports .NET Standard.</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-service-locator-antipattern">The Service Locator antipattern<a class="headerlink" href="#the-service-locator-antipattern" title="Permanent link">&para;</a></h3>
+<p>Dependency injection is not the only way of using an IoC container. Another technique called <strong>Service Locator</strong> exists. Dependency Injection is based on the mechanism of passing the dependencies of a class as constructor parameters. Service Locator uses another approach: the classes directly access the IoC container in their methods to resolve their dependencies. Keep in mind that this approach is considered an <strong>anti-pattern</strong>. The reason is simple: every time time a class needs a dependency, it has to turn to a container, so much of our code will depend on the container itself! In contrast, when dependency injection is used, dependency resolution is performed "once" at the application entry point for "root objects" (e.g. for the controller class in case of a Web API call), the rest of our code is completely independent of the container. Note that in our previous example, in our TodoController, NotificationService, EMailSender, Logger, and ContactRepository classes, we did not refer the container (neither via an IServiceProvider, nor by any other means).</p>
+<h3 id="aspnet-core-framework-services">Asp.Net Core framework services<a class="headerlink" href="#aspnet-core-framework-services" title="Permanent link">&para;</a></h3>
+<p>Asp.Net Core has several built in services. E.g. it has support for Web API, and support for Razor Pages or MVC based web applications. These all rely on the DI services of Asp.Net Core.</p>
+<p>In case of an Asp.Net Web API application at application startup we have to run this piece of code (this is automatically added by VS at project creation):</p>
+<div class="highlight"><pre><span></span><code><span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">();</span>
+</code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In case of .NET version preceding .NET 6 <code>services.AddMvc()</code> had to be called from the <code>ConfigureServices</code> operation of our <code>Startup</code> class.</p>
